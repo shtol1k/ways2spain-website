@@ -32,5 +32,6 @@ export const formatSlug = (val: string): string => {
     return transliterate(val)
         .replace(/ /g, '-')
         .replace(/[^\w-]+/g, '')
+        .replace(/-+/g, '-') // Replace multiple hyphens with single hyphen
         .toLowerCase()
 }
