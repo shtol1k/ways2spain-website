@@ -23,7 +23,7 @@ export const RenderBlocks: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) =
 
           if (Block) {
             return (
-              <div className="my-16" key={index}>
+              <div key={index}>
                {/* @ts-ignore */}
                 <Block {...block} />
               </div>

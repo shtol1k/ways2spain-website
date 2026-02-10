@@ -5,6 +5,10 @@ import ProcessSection from '@/components/ProcessSection'
 import CTASection from '@/components/CTASection'
 import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
+import { RenderBlocks } from '@/components/blocks/RenderBlocks'
+import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'Ways 2 Spain - Релокація в Іспанію через Digital Nomad Visa',
@@ -38,7 +42,23 @@ export const metadata: Metadata = {
   },
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const payload = await getPayload({ config: configPromise })
+  
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: {
+      slug: {
+        equals: 'home',
+      },
+    },
+    limit: 1,
+  })
+
+  // We don't want to show 404 for home page if it doesn't exist in CMS yet,
+  // we just fall back to static content.
+  const homePage = docs[0] || null
+
   return (
     <>
       {/* Structured Data for SEO */}
@@ -99,7 +119,26 @@ export default function HomePage() {
       />
       
       <div className="min-h-screen">
+        {/* Existing Static Hero */}
         <Hero />
+        
+        {/* CMS Blocks (New Hero) - Rendered nicely separating both */}
+        {homePage?.layout && (
+          <div className="relative z-10 bg-background">
+             <div className="h-4 flex items-center justify-center bg-yellow-50/50 dark:bg-yellow-900/10 border-y border-dashed border-yellow-300 dark:border-yellow-700">
+               <span className="text-[10px] uppercase tracking-wider font-mono text-yellow-600 dark:text-yellow-400">
+                 CMS Content Start
+               </span>
+             </div>
+             <RenderBlocks blocks={homePage.layout} />
+             <div className="h-4 flex items-center justify-center bg-yellow-50/50 dark:bg-yellow-900/10 border-y border-dashed border-yellow-300 dark:border-yellow-700">
+               <span className="text-[10px] uppercase tracking-wider font-mono text-yellow-600 dark:text-yellow-400">
+                 CMS Content End
+               </span>
+             </div>
+          </div>
+        )}
+
         <Features />
         <Testimonials />
         <ProcessSection />
