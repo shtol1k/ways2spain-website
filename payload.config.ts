@@ -15,6 +15,7 @@ import { Guides } from './src/collections/Guides'
 import { Pages } from './src/collections/Pages'
 import { resendAdapter } from '@payloadcms/email-resend'
 import { SiteSettings } from './src/globals/SiteSettings'
+import { Footer } from './src/globals/Footer'
 
 // ============================================
 // Environment Variables Validation
@@ -83,6 +84,7 @@ export default buildConfig({
   // Globals
   globals: [
     SiteSettings,
+    Footer,
   ],
 
   // Collections — ordered by sidebar group appearance

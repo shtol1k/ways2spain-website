@@ -22,6 +22,7 @@ export const metadata: Metadata = {
 }
 
 import { notFound } from "next/navigation"
+import PayloadFooter from "@/components/PayloadFooter"
 
 export const revalidate = 60
 
@@ -46,5 +47,12 @@ export default async function VisaPage() {
   const pageData = docs[0]
 
   // Cast to specific type if needed, or rely on TS compatibility
-  return <VisaPageClient initialData={pageData as any} />
+  return (
+    <>
+      <VisaPageClient initialData={pageData as any} />
+      
+      {/* Temporary Payload Footer for Preview */}
+      <PayloadFooter />
+    </>
+  )
 }
