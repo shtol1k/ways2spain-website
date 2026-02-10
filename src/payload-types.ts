@@ -252,13 +252,11 @@ export interface Page {
             title: string;
             text?: string | null;
             media: number | Media;
-            primaryCta: {
-              label: string;
-              page: number | Page;
-            };
-            secondaryCta: {
-              label: string;
-              page: number | Page;
+            cta: {
+              primaryLabel: string;
+              primaryPage: number | Page;
+              secondaryLabel: string;
+              secondaryPage: number | Page;
             };
             benefits?:
               | {
@@ -930,17 +928,13 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               text?: T;
               media?: T;
-              primaryCta?:
+              cta?:
                 | T
                 | {
-                    label?: T;
-                    page?: T;
-                  };
-              secondaryCta?:
-                | T
-                | {
-                    label?: T;
-                    page?: T;
+                    primaryLabel?: T;
+                    primaryPage?: T;
+                    secondaryLabel?: T;
+                    secondaryPage?: T;
                   };
               benefits?:
                 | T

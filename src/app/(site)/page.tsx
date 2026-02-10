@@ -8,6 +8,7 @@ import type { Metadata } from 'next'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import { RenderBlocks } from '@/components/blocks/RenderBlocks'
+import { HomePageClient } from './HomePageClient'
 import { notFound } from 'next/navigation'
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default async function HomePage() {
     },
     limit: 1,
     depth: 2,
+    draft: true,
   })
 
   // We don't want to show 404 for home page if it doesn't exist in CMS yet,
@@ -120,9 +122,9 @@ export default async function HomePage() {
       />
       
       <div className="min-h-screen">
-        {/* CMS Blocks */}
-        {homePage?.layout && (
-          <RenderBlocks blocks={homePage.layout} />
+        {/* CMS Blocks — wrapped in HomePageClient for Live Preview support */}
+        {homePage && (
+          <HomePageClient initialData={homePage} />
         )}
 
         <Features />

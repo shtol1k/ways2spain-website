@@ -30,27 +30,27 @@ export const HeroBlock: Block = {
       required: true,
     },
     {
-      name: 'primaryCta',
+      name: 'cta',
       type: 'group',
-      label: 'Primary CTA (Gold Button)',
+      label: 'CTA',
       fields: [
         {
           type: 'row',
           fields: [
             {
-              name: 'label',
+              name: 'primaryLabel',
               type: 'text',
-              label: 'Label',
+              label: 'Primary CTA Label',
               required: true,
               admin: {
                 width: '50%',
               },
             },
             {
-              name: 'page',
+              name: 'primaryPage',
               type: 'relationship',
               relationTo: 'pages',
-              label: 'Target Page',
+              label: 'Primary CTA Target',
               required: true,
               admin: {
                 width: '50%',
@@ -58,30 +58,23 @@ export const HeroBlock: Block = {
             },
           ],
         },
-      ],
-    },
-    {
-      name: 'secondaryCta',
-      type: 'group',
-      label: 'Secondary CTA (Outline Button)',
-      fields: [
         {
           type: 'row',
           fields: [
             {
-              name: 'label',
+              name: 'secondaryLabel',
               type: 'text',
-              label: 'Label',
+              label: 'Secondary CTA Label',
               required: true,
               admin: {
                 width: '50%',
               },
             },
             {
-              name: 'page',
+              name: 'secondaryPage',
               type: 'relationship',
               relationTo: 'pages',
-              label: 'Target Page',
+              label: 'Secondary CTA Target',
               required: true,
               admin: {
                 width: '50%',
