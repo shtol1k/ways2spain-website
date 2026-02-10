@@ -19,8 +19,8 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
   })
 
   // Fallback content if fields are empty
-  const title = data.hero?.title || data.title || "Digital Nomad Visa в Іспанії"
-  const description = data.hero?.description || "Повна інформація про візу для віддалених спеціалістів — від умов до процедури отримання"
+  const title = data.title || "Digital Nomad Visa в Іспанії"
+  const description = "Повна інформація про візу для віддалених спеціалістів — від умов до процедури отримання"
 
   return (
     <div className="min-h-screen pt-32 pb-20">
