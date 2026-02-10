@@ -30,21 +30,40 @@ export const HeroBlock: Block = {
       required: true,
     },
     {
-      name: 'buttons',
-      type: 'array',
-      label: 'Buttons',
-      // Always exactly 2 buttons: Primary CTA and Secondary CTA
-      minRows: 2,
-      maxRows: 2,
-      labels: {
-        singular: 'Button',
-        plural: 'Buttons',
-      },
-      admin: {
-        // Prevent reordering and deleting — buttons are fixed
-        isSortable: false,
-        description: 'First button = Primary CTA (gold), Second button = Secondary CTA (outline)',
-      },
+      name: 'primaryCta',
+      type: 'group',
+      label: 'Primary CTA (Gold Button)',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'label',
+              type: 'text',
+              label: 'Label',
+              required: true,
+              admin: {
+                width: '50%',
+              },
+            },
+            {
+              name: 'page',
+              type: 'relationship',
+              relationTo: 'pages',
+              label: 'Target Page',
+              required: true,
+              admin: {
+                width: '50%',
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'secondaryCta',
+      type: 'group',
+      label: 'Secondary CTA (Outline Button)',
       fields: [
         {
           type: 'row',

@@ -252,16 +252,14 @@ export interface Page {
             title: string;
             text?: string | null;
             media: number | Media;
-            /**
-             * First button = Primary CTA (gold), Second button = Secondary CTA (outline)
-             */
-            buttons?:
-              | {
-                  label: string;
-                  page: number | Page;
-                  id?: string | null;
-                }[]
-              | null;
+            primaryCta: {
+              label: string;
+              page: number | Page;
+            };
+            secondaryCta: {
+              label: string;
+              page: number | Page;
+            };
             benefits?:
               | {
                   text: string;
@@ -932,12 +930,17 @@ export interface PagesSelect<T extends boolean = true> {
               title?: T;
               text?: T;
               media?: T;
-              buttons?:
+              primaryCta?:
                 | T
                 | {
                     label?: T;
                     page?: T;
-                    id?: T;
+                  };
+              secondaryCta?:
+                | T
+                | {
+                    label?: T;
+                    page?: T;
                   };
               benefits?:
                 | T

@@ -5,22 +5,24 @@ import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 import { Media, Page } from '@/payload-types'
 
+interface CtaButton {
+  label: string
+  page?: Page | string | any
+}
+
 interface HeroBlockProps {
   title: string
   text?: string
   media?: Media | string
-  buttons?: {
-    id?: string
-    label: string
-    page?: Page | string | any
-  }[]
+  primaryCta?: CtaButton
+  secondaryCta?: CtaButton
   benefits?: {
     id?: string
     text: string
   }[]
 }
 
-export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, buttons, benefits }) => {
+export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, primaryCta, secondaryCta, benefits }) => {
   // Handle media field which can be a full Media object or just an ID string depending on depth
   const mediaObj = typeof media === 'object' && media !== null ? media as Media : null
   let mediaUrl = mediaObj?.url
@@ -79,37 +81,28 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, button
             </p>
           )}
 
-          {/* Buttons — Primary CTA (first) + Secondary CTA (second) */}
-          {buttons && buttons.length > 0 && (
+          {/* CTA Buttons — Primary (gold) + Secondary (outline) */}
+          {(primaryCta?.label || secondaryCta?.label) && (
             <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in">
-              {buttons.map((button, index) => {
-                const href = button.page ? getPageHref(button.page) : '#'
-
-                // First button = Primary CTA (gold hero style)
-                if (index === 0) {
-                  return (
-                    <Link key={button.id || index} href={href}>
-                      <Button variant="hero" size="xl">
-                        {button.label}
-                        <ArrowRight className="ml-2" />
-                      </Button>
-                    </Link>
-                  )
-                }
-
-                // Second button = Secondary CTA (outline glassmorphism)
-                return (
-                  <Link key={button.id || index} href={href}>
-                    <Button
-                      variant="outline"
-                      size="xl"
-                      className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
-                    >
-                      {button.label}
-                    </Button>
-                  </Link>
-                )
-              })}
+              {primaryCta?.label && (
+                <Link href={primaryCta.page ? getPageHref(primaryCta.page) : '#'}>
+                  <Button variant="hero" size="xl">
+                    {primaryCta.label}
+                    <ArrowRight className="ml-2" />
+                  </Button>
+                </Link>
+              )}
+              {secondaryCta?.label && (
+                <Link href={secondaryCta.page ? getPageHref(secondaryCta.page) : '#'}>
+                  <Button
+                    variant="outline"
+                    size="xl"
+                    className="bg-white/10 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm"
+                  >
+                    {secondaryCta.label}
+                  </Button>
+                </Link>
+              )}
             </div>
           )}
 

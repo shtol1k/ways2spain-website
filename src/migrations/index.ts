@@ -22,6 +22,7 @@ import * as migration_20260210_171238 from './20260210_171238';
 import * as migration_20260210_172306 from './20260210_172306';
 import * as migration_20260210_181642_add_hero_benefits from './20260210_181642_add_hero_benefits';
 import * as migration_20260210_184543_simplify_hero_buttons from './20260210_184543_simplify_hero_buttons';
+import * as migration_20260210_185653_hero_cta_groups from './20260210_185653_hero_cta_groups';
 
 export const migrations = [
   {
@@ -142,6 +143,11 @@ export const migrations = [
   {
     up: migration_20260210_184543_simplify_hero_buttons.up,
     down: migration_20260210_184543_simplify_hero_buttons.down,
-    name: '20260210_184543_simplify_hero_buttons'
+    name: '20260210_184543_simplify_hero_buttons',
+  },
+  {
+    up: migration_20260210_185653_hero_cta_groups.up,
+    down: migration_20260210_185653_hero_cta_groups.down,
+    name: '20260210_185653_hero_cta_groups'
   },
 ];
