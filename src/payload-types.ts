@@ -67,16 +67,16 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    users: User;
-    testimonials: Testimonial;
     media: Media;
-    categories: Category;
-    tags: Tag;
-    authors: Author;
-    posts: Post;
-    'guide-categories': GuideCategory;
-    guides: Guide;
     pages: Page;
+    posts: Post;
+    categories: Category;
+    authors: Author;
+    tags: Tag;
+    guides: Guide;
+    'guide-categories': GuideCategory;
+    testimonials: Testimonial;
+    users: User;
     'payload-kv': PayloadKv;
     'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
@@ -89,16 +89,16 @@ export interface Config {
     };
   };
   collectionsSelect: {
-    users: UsersSelect<false> | UsersSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
-    categories: CategoriesSelect<false> | CategoriesSelect<true>;
-    tags: TagsSelect<false> | TagsSelect<true>;
-    authors: AuthorsSelect<false> | AuthorsSelect<true>;
-    posts: PostsSelect<false> | PostsSelect<true>;
-    'guide-categories': GuideCategoriesSelect<false> | GuideCategoriesSelect<true>;
-    guides: GuidesSelect<false> | GuidesSelect<true>;
     pages: PagesSelect<false> | PagesSelect<true>;
+    posts: PostsSelect<false> | PostsSelect<true>;
+    categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    authors: AuthorsSelect<false> | AuthorsSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    guides: GuidesSelect<false> | GuidesSelect<true>;
+    'guide-categories': GuideCategoriesSelect<false> | GuideCategoriesSelect<true>;
+    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
+    users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -141,81 +141,6 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users".
- */
-export interface User {
-  id: number;
-  name: string;
-  /**
-   * Admin: Full access including settings. Manager: Content management only.
-   */
-  role: 'admin' | 'manager';
-  updatedAt: string;
-  createdAt: string;
-  email: string;
-  resetPasswordToken?: string | null;
-  resetPasswordExpiration?: string | null;
-  salt?: string | null;
-  hash?: string | null;
-  loginAttempts?: number | null;
-  lockUntil?: string | null;
-  sessions?:
-    | {
-        id: string;
-        createdAt?: string | null;
-        expiresAt: string;
-      }[]
-    | null;
-  password?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: number;
-  name: string;
-  title: string;
-  /**
-   * Client testimonial text
-   */
-  testimonial: string;
-  date: string;
-  /**
-   * Client photo (optional)
-   */
-  photo?: (number | null) | Media;
-  socialLinks?: {
-    /**
-     * LinkedIn profile URL
-     */
-    linkedin?: string | null;
-    /**
-     * Facebook profile URL
-     */
-    facebook?: string | null;
-    /**
-     * Twitter/X profile URL
-     */
-    twitter?: string | null;
-    /**
-     * Instagram profile URL
-     */
-    instagram?: string | null;
-    /**
-     * Telegram profile URL
-     */
-    telegram?: string | null;
-  };
-  /**
-   * Show on website
-   */
-  published?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -295,103 +220,32 @@ export interface FolderInterface {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories".
+ * via the `definition` "pages".
  */
-export interface Category {
+export interface Page {
   id: number;
+  title: string;
   /**
-   * Category name for website display
-   */
-  name: string;
-  /**
-   * URL-friendly identifier (e.g. instructions, taxes)
+   * The URL slug for the page (e.g. "about", "contact"). Use "home" for the homepage.
    */
   slug: string;
-  /**
-   * Category description for SEO and category page
-   */
-  description?: string | null;
-  /**
-   * Sorting order (lower number = higher in list)
-   */
-  order?: number | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags".
- */
-export interface Tag {
-  id: number;
-  /**
-   * Tag name for website display
-   */
-  name: string;
-  /**
-   * URL-friendly identifier (e.g. digital-nomad)
-   */
-  slug: string;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "authors".
- */
-export interface Author {
-  id: number;
-  /**
-   * Full author name
-   */
-  name: string;
-  /**
-   * URL-friendly identifier (e.g. maria-shevchenko)
-   */
-  slug: string;
-  /**
-   * Author photo for blog display
-   */
-  photo?: (number | null) | Media;
-  /**
-   * Short biography (2-3 sentences)
-   */
-  bio?: string | null;
-  /**
-   * Position or role (e.g. CEO, Immigration Expert)
-   */
-  role?: string | null;
-  /**
-   * Links to social media profiles
-   */
-  socialLinks?: {
-    /**
-     * LinkedIn profile URL
-     */
-    linkedin?: string | null;
-    /**
-     * Twitter/X profile URL
-     */
-    twitter?: string | null;
-    /**
-     * Instagram profile URL
-     */
-    instagram?: string | null;
-    /**
-     * Facebook profile URL
-     */
-    facebook?: string | null;
-    /**
-     * Telegram URL or username
-     */
-    telegram?: string | null;
+  layout?:
+    | {
+        title: string;
+        subtitle?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pageHeader';
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
   };
-  /**
-   * Link to CMS user account (optional)
-   */
-  user?: (number | null) | User;
   updatedAt: string;
   createdAt: string;
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -457,34 +311,130 @@ export interface Post {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "guide-categories".
+ * via the `definition` "authors".
  */
-export interface GuideCategory {
+export interface Author {
   id: number;
   /**
-   * Category name (e.g. Visas, Documents, Vehicles)
+   * Full author name
    */
   name: string;
   /**
-   * URL-friendly identifier (auto-generated from name if empty)
+   * URL-friendly identifier (e.g. maria-shevchenko)
    */
   slug: string;
   /**
-   * Category description for listing page
+   * Author photo for blog display
+   */
+  photo?: (number | null) | Media;
+  /**
+   * Short biography (2-3 sentences)
+   */
+  bio?: string | null;
+  /**
+   * Position or role (e.g. CEO, Immigration Expert)
+   */
+  role?: string | null;
+  /**
+   * Links to social media profiles
+   */
+  socialLinks?: {
+    /**
+     * LinkedIn profile URL
+     */
+    linkedin?: string | null;
+    /**
+     * Twitter/X profile URL
+     */
+    twitter?: string | null;
+    /**
+     * Instagram profile URL
+     */
+    instagram?: string | null;
+    /**
+     * Facebook profile URL
+     */
+    facebook?: string | null;
+    /**
+     * Telegram URL or username
+     */
+    telegram?: string | null;
+  };
+  /**
+   * Link to CMS user account (optional)
+   */
+  user?: (number | null) | User;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users".
+ */
+export interface User {
+  id: number;
+  name: string;
+  /**
+   * Admin: Full access including settings. Manager: Content management only.
+   */
+  role: 'admin' | 'manager';
+  updatedAt: string;
+  createdAt: string;
+  email: string;
+  resetPasswordToken?: string | null;
+  resetPasswordExpiration?: string | null;
+  salt?: string | null;
+  hash?: string | null;
+  loginAttempts?: number | null;
+  lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
+  password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "categories".
+ */
+export interface Category {
+  id: number;
+  /**
+   * Category name for website display
+   */
+  name: string;
+  /**
+   * URL-friendly identifier (e.g. instructions, taxes)
+   */
+  slug: string;
+  /**
+   * Category description for SEO and category page
    */
   description?: string | null;
-  /**
-   * Lucide icon name (e.g. FileText, Car, Heart)
-   */
-  icon?: string | null;
   /**
    * Sorting order (lower number = higher in list)
    */
   order?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: number;
   /**
-   * Hex color for badges (e.g. #3b82f6)
+   * Tag name for website display
    */
-  color?: string | null;
+  name: string;
+  /**
+   * URL-friendly identifier (e.g. digital-nomad)
+   */
+  slug: string;
   updatedAt: string;
   createdAt: string;
 }
@@ -671,32 +621,82 @@ export interface Guide {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages".
+ * via the `definition` "guide-categories".
  */
-export interface Page {
+export interface GuideCategory {
   id: number;
-  title: string;
   /**
-   * The URL slug for the page (e.g. "about", "contact"). Use "home" for the homepage.
+   * Category name (e.g. Visas, Documents, Vehicles)
+   */
+  name: string;
+  /**
+   * URL-friendly identifier (auto-generated from name if empty)
    */
   slug: string;
-  layout?:
-    | {
-        title: string;
-        subtitle?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'pageHeader';
-      }[]
-    | null;
-  meta?: {
-    title?: string | null;
-    description?: string | null;
-    image?: (number | null) | Media;
-  };
+  /**
+   * Category description for listing page
+   */
+  description?: string | null;
+  /**
+   * Lucide icon name (e.g. FileText, Car, Heart)
+   */
+  icon?: string | null;
+  /**
+   * Sorting order (lower number = higher in list)
+   */
+  order?: number | null;
+  /**
+   * Hex color for badges (e.g. #3b82f6)
+   */
+  color?: string | null;
   updatedAt: string;
   createdAt: string;
-  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials".
+ */
+export interface Testimonial {
+  id: number;
+  name: string;
+  title: string;
+  /**
+   * Client testimonial text
+   */
+  testimonial: string;
+  date: string;
+  /**
+   * Client photo (optional)
+   */
+  photo?: (number | null) | Media;
+  socialLinks?: {
+    /**
+     * LinkedIn profile URL
+     */
+    linkedin?: string | null;
+    /**
+     * Facebook profile URL
+     */
+    facebook?: string | null;
+    /**
+     * Twitter/X profile URL
+     */
+    twitter?: string | null;
+    /**
+     * Instagram profile URL
+     */
+    instagram?: string | null;
+    /**
+     * Telegram profile URL
+     */
+    telegram?: string | null;
+  };
+  /**
+   * Show on website
+   */
+  published?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -723,44 +723,44 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
-        relationTo: 'users';
-        value: number | User;
-      } | null)
-    | ({
-        relationTo: 'testimonials';
-        value: number | Testimonial;
-      } | null)
-    | ({
         relationTo: 'media';
         value: number | Media;
       } | null)
     | ({
-        relationTo: 'categories';
-        value: number | Category;
-      } | null)
-    | ({
-        relationTo: 'tags';
-        value: number | Tag;
-      } | null)
-    | ({
-        relationTo: 'authors';
-        value: number | Author;
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'posts';
         value: number | Post;
       } | null)
     | ({
-        relationTo: 'guide-categories';
-        value: number | GuideCategory;
+        relationTo: 'categories';
+        value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'authors';
+        value: number | Author;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: number | Tag;
       } | null)
     | ({
         relationTo: 'guides';
         value: number | Guide;
       } | null)
     | ({
-        relationTo: 'pages';
-        value: number | Page;
+        relationTo: 'guide-categories';
+        value: number | GuideCategory;
+      } | null)
+    | ({
+        relationTo: 'testimonials';
+        value: number | Testimonial;
+      } | null)
+    | ({
+        relationTo: 'users';
+        value: number | User;
       } | null)
     | ({
         relationTo: 'payload-folders';
@@ -807,53 +807,6 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "users_select".
- */
-export interface UsersSelect<T extends boolean = true> {
-  name?: T;
-  role?: T;
-  updatedAt?: T;
-  createdAt?: T;
-  email?: T;
-  resetPasswordToken?: T;
-  resetPasswordExpiration?: T;
-  salt?: T;
-  hash?: T;
-  loginAttempts?: T;
-  lockUntil?: T;
-  sessions?:
-    | T
-    | {
-        id?: T;
-        createdAt?: T;
-        expiresAt?: T;
-      };
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  name?: T;
-  title?: T;
-  testimonial?: T;
-  date?: T;
-  photo?: T;
-  socialLinks?:
-    | T
-    | {
-        linkedin?: T;
-        facebook?: T;
-        twitter?: T;
-        instagram?: T;
-        telegram?: T;
-      };
-  published?: T;
-  updatedAt?: T;
-  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -911,48 +864,33 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "categories_select".
+ * via the `definition` "pages_select".
  */
-export interface CategoriesSelect<T extends boolean = true> {
-  name?: T;
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
   slug?: T;
-  description?: T;
-  order?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "tags_select".
- */
-export interface TagsSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "authors_select".
- */
-export interface AuthorsSelect<T extends boolean = true> {
-  name?: T;
-  slug?: T;
-  photo?: T;
-  bio?: T;
-  role?: T;
-  socialLinks?:
+  layout?:
     | T
     | {
-        linkedin?: T;
-        twitter?: T;
-        instagram?: T;
-        facebook?: T;
-        telegram?: T;
+        pageHeader?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              id?: T;
+              blockName?: T;
+            };
       };
-  user?: T;
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -984,15 +922,46 @@ export interface PostsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "guide-categories_select".
+ * via the `definition` "categories_select".
  */
-export interface GuideCategoriesSelect<T extends boolean = true> {
+export interface CategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
   description?: T;
-  icon?: T;
   order?: T;
-  color?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "authors_select".
+ */
+export interface AuthorsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  photo?: T;
+  bio?: T;
+  role?: T;
+  socialLinks?:
+    | T
+    | {
+        linkedin?: T;
+        twitter?: T;
+        instagram?: T;
+        facebook?: T;
+        telegram?: T;
+      };
+  user?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -1088,33 +1057,64 @@ export interface GuidesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "pages_select".
+ * via the `definition` "guide-categories_select".
  */
-export interface PagesSelect<T extends boolean = true> {
-  title?: T;
+export interface GuideCategoriesSelect<T extends boolean = true> {
+  name?: T;
   slug?: T;
-  layout?:
-    | T
-    | {
-        pageHeader?:
-          | T
-          | {
-              title?: T;
-              subtitle?: T;
-              id?: T;
-              blockName?: T;
-            };
-      };
-  meta?:
-    | T
-    | {
-        title?: T;
-        description?: T;
-        image?: T;
-      };
+  description?: T;
+  icon?: T;
+  order?: T;
+  color?: T;
   updatedAt?: T;
   createdAt?: T;
-  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "testimonials_select".
+ */
+export interface TestimonialsSelect<T extends boolean = true> {
+  name?: T;
+  title?: T;
+  testimonial?: T;
+  date?: T;
+  photo?: T;
+  socialLinks?:
+    | T
+    | {
+        linkedin?: T;
+        facebook?: T;
+        twitter?: T;
+        instagram?: T;
+        telegram?: T;
+      };
+  published?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "users_select".
+ */
+export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  role?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  email?: T;
+  resetPasswordToken?: T;
+  resetPasswordExpiration?: T;
+  salt?: T;
+  hash?: T;
+  loginAttempts?: T;
+  lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

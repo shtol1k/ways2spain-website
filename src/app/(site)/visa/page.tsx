@@ -21,6 +21,8 @@ export const metadata: Metadata = {
   },
 }
 
+import { notFound } from "next/navigation"
+
 export const revalidate = 60
 
 export default async function VisaPage() {
@@ -35,22 +37,13 @@ export default async function VisaPage() {
       },
     },
     depth: 2,
-    // Note: Live Preview will automatically fetch drafts on the client side
-    // Initial server render uses published data by default
   })
 
-  // Basic fallback data structure if no page is found in CMS yet
-  const pageData = docs[0] || {
-    id: 0,
-    title: 'Digital Nomad Visa в Іспанії',
-    slug: 'visa',
-    hero: {
-      title: 'Digital Nomad Visa в Іспанії',
-      description: 'Повна інформація про візу для віддалених спеціалістів — від умов до процедури отримання',
-    },
-    updatedAt: new Date().toISOString(),
-    createdAt: new Date().toISOString(),
+  if (!docs[0]) {
+    return notFound()
   }
+
+  const pageData = docs[0]
 
   // Cast to specific type if needed, or rely on TS compatibility
   return <VisaPageClient initialData={pageData as any} />

@@ -18,23 +18,12 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
     depth: 2,
   })
 
-  // Fallback content if fields are empty
-  const title = data.title || "Digital Nomad Visa в Іспанії"
-  const description = "Повна інформація про візу для віддалених спеціалістів — від умов до процедури отримання"
-
   return (
     <div className="min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header - Connected to Live Preview */}
-        {data.layout && data.layout.length > 0 ? (
+        {data.layout && Array.isArray(data.layout) && data.layout.length > 0 && (
            <RenderBlocks blocks={data.layout} />
-        ) : (
-          <div className="max-w-4xl mx-auto text-center mb-16">
-            <h1 className="mb-6">{title}</h1>
-            <p className="text-xl text-muted-foreground">
-              {description}
-            </p>
-          </div>
         )}
 
         {/* Main Info Grid - Static for now */}

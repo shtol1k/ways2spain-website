@@ -85,18 +85,24 @@ export default buildConfig({
     SiteSettings,
   ],
 
-  // Collections
+  // Collections — ordered by sidebar group appearance
   collections: [
-    Users,
-    Testimonials,
+    // Resources
     Media,
-    Categories,
-    Tags,
-    Authors,
-    Posts,
-    GuideCategories,
-    Guides,
+    // Layout
     Pages,
+    // Blog
+    Posts,
+    Categories,
+    Authors,
+    Tags,
+    // Guides
+    Guides,
+    GuideCategories,
+    // Testimonials
+    Testimonials,
+    // Settings
+    Users,
   ],
 
   // Server configuration

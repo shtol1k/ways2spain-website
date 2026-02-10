@@ -3,6 +3,9 @@ import { GlobalConfig } from 'payload'
 export const SiteSettings: GlobalConfig = {
     slug: 'site-settings',
     label: 'Site Settings',
+    admin: {
+        group: 'Settings',
+    },
     access: {
         read: () => true, // Accessible by everyone (for middleware check)
         update: ({ req: { user } }) => {

@@ -5,6 +5,7 @@ export const Testimonials: CollectionConfig = {
   admin: {
     useAsTitle: 'name',
     defaultColumns: ['name', 'title', 'date'],
+    group: 'Testimonials',
   },
   access: {
     read: () => true, // Public read

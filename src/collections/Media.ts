@@ -7,6 +7,7 @@ export const Media: CollectionConfig = {
   folders: true,
   admin: {
     useAsTitle: 'filename',
+    group: 'Resources',
   },
   access: {
     read: () => true, // Public read for displaying on website
