@@ -2,7 +2,7 @@
 import { revalidatePath } from 'next/cache'
 import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
-export const revalidatePost: CollectionAfterChangeHook | CollectionAfterDeleteHook = ({ doc, req: { payload } }) => {
+export const revalidatePost = ({ doc, req: { payload } }: any) => {
     payload.logger.info(`Revalidating post at path: /blog/${doc.slug}`)
 
     try {

@@ -196,13 +196,7 @@ async function createNotionEntry(data: {
     throw new Error('NOTION_DATABASE_ID is not configured');
   }
 
-  const properties: Record<string, {
-    title?: Array<{ text: { content: string } }>;
-    email?: string;
-    rich_text?: Array<{ text: { content: string } }>;
-    date?: { start: string };
-    select?: { name: string };
-  }> = {
+  const properties: any = {
     "Ім'я": {
       title: [
         {

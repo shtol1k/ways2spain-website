@@ -153,7 +153,7 @@ export default buildConfig({
 
   // Typescript
   typescript: {
-    outputFile: './src/types/payload.ts',
+    outputFile: './src/payload-types.ts',
   },
 
   // Folders feature (beta) - enables folder organization for collections

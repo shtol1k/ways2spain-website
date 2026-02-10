@@ -91,7 +91,10 @@ export default async function BlogPage({ params }: BlogPageProps) {
     { label: post.title },
   ];
 
-  const articleSchema = generateArticleSchema(post);
+  const articleSchema = generateArticleSchema({
+    ...post,
+    slug: post.slug || slug,
+  });
   const breadcrumbSchema = generateBreadcrumbSchema(breadcrumbItems);
   const personSchema =
     post.author && typeof post.author !== "number" && post.author.name

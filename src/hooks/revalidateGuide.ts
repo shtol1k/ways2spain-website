@@ -1,10 +1,9 @@
 import { revalidatePath } from 'next/cache'
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook } from 'payload'
 
-export const revalidateGuide: CollectionAfterChangeHook | CollectionAfterDeleteHook = async ({
+export const revalidateGuide = async ({
   doc,
   req: { payload },
-}) => {
+}: any) => {
   const slug = typeof doc?.slug === 'string' ? doc.slug : undefined
   let categorySlug: string | null = null
   if (doc?.category && typeof doc.category === 'object' && 'slug' in doc.category) {
