@@ -12,6 +12,7 @@ import { Authors } from './src/collections/Authors'
 import { Posts } from './src/collections/Posts'
 import { GuideCategories } from './src/collections/GuideCategories'
 import { Guides } from './src/collections/Guides'
+import { Pages } from './src/collections/Pages'
 import { resendAdapter } from '@payloadcms/email-resend'
 import { SiteSettings } from './src/globals/SiteSettings'
 
@@ -95,6 +96,7 @@ export default buildConfig({
     Posts,
     GuideCategories,
     Guides,
+    Pages,
   ],
 
   // Server configuration

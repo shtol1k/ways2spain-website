@@ -26,6 +26,7 @@
     "@notionhq/client": "^2.2.15",
     "@payloadcms/db-postgres": "^3.74.0",
     "@payloadcms/email-resend": "^3.74.0",
+    "@payloadcms/live-preview-react": "^3.74.0",
     "@payloadcms/next": "^3.74.0",
     "@payloadcms/richtext-lexical": "^3.74.0",
     "@payloadcms/storage-s3": "^3.74.0",

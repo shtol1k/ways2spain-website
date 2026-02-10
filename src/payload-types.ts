@@ -76,6 +76,7 @@ export interface Config {
     posts: Post;
     'guide-categories': GuideCategory;
     guides: Guide;
+    pages: Page;
     'payload-kv': PayloadKv;
     'payload-folders': FolderInterface;
     'payload-locked-documents': PayloadLockedDocument;
@@ -97,6 +98,7 @@ export interface Config {
     posts: PostsSelect<false> | PostsSelect<true>;
     'guide-categories': GuideCategoriesSelect<false> | GuideCategoriesSelect<true>;
     guides: GuidesSelect<false> | GuidesSelect<true>;
+    pages: PagesSelect<false> | PagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -669,6 +671,35 @@ export interface Guide {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages".
+ */
+export interface Page {
+  id: number;
+  title: string;
+  /**
+   * The URL slug for the page (e.g. "about", "contact"). Use "home" for the homepage.
+   */
+  slug: string;
+  layout?:
+    | {
+        title: string;
+        subtitle?: string | null;
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'pageHeader';
+      }[]
+    | null;
+  meta?: {
+    title?: string | null;
+    description?: string | null;
+    image?: (number | null) | Media;
+  };
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -726,6 +757,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'guides';
         value: number | Guide;
+      } | null)
+    | ({
+        relationTo: 'pages';
+        value: number | Page;
       } | null)
     | ({
         relationTo: 'payload-folders';
@@ -1046,6 +1081,36 @@ export interface GuidesSelect<T extends boolean = true> {
         metaTitle?: T;
         metaDescription?: T;
         metaImage?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "pages_select".
+ */
+export interface PagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  layout?:
+    | T
+    | {
+        pageHeader?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+      };
+  meta?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        image?: T;
       };
   updatedAt?: T;
   createdAt?: T;
