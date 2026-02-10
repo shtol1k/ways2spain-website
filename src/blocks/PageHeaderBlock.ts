@@ -6,6 +6,9 @@ export const PageHeaderBlock: Block = {
     singular: 'Page Header',
     plural: 'Page Headers',
   },
+  admin: {
+    disableBlockName: true,
+  },
   fields: [
     {
       name: 'title',

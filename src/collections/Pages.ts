@@ -58,7 +58,11 @@ export const Pages: CollectionConfig = {
             {
               name: 'layout',
               type: 'blocks',
-              label: 'Page Blocks',
+              label: 'Page Content',
+              labels: {
+                singular: 'Block',
+                plural: 'Blocks',
+              },
               minRows: 0,
               blocks: [
                 PageHeaderBlock,
