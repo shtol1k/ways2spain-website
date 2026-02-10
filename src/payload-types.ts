@@ -232,13 +232,33 @@ export interface Page {
    */
   slug: string;
   layout?:
-    | {
-        title: string;
-        subtitle?: string | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'pageHeader';
-      }[]
+    | (
+        | {
+            title: string;
+            subtitle?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'pageHeader';
+          }
+        | {
+            title: string;
+            text?: string | null;
+            media: number | Media;
+            buttons?:
+              | {
+                  label: string;
+                  type?: ('custom' | 'page') | null;
+                  url?: string | null;
+                  page?: (number | null) | Page;
+                  style?: ('primary' | 'secondary' | 'outline') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'hero';
+          }
+      )[]
     | null;
   meta?: {
     title?: string | null;
@@ -879,6 +899,25 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               title?: T;
               subtitle?: T;
+              id?: T;
+              blockName?: T;
+            };
+        hero?:
+          | T
+          | {
+              title?: T;
+              text?: T;
+              media?: T;
+              buttons?:
+                | T
+                | {
+                    label?: T;
+                    type?: T;
+                    url?: T;
+                    page?: T;
+                    style?: T;
+                    id?: T;
+                  };
               id?: T;
               blockName?: T;
             };

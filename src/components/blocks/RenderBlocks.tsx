@@ -1,9 +1,11 @@
 import React, { Fragment } from 'react'
 import { Page } from '@/payload-types'
 import { PageHeaderBlock } from './PageHeaderBlock'
+import { HeroBlock } from './HeroBlock'
 
 const blockComponents = {
   pageHeader: PageHeaderBlock,
+  hero: HeroBlock,
 }
 
 export const RenderBlocks: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {

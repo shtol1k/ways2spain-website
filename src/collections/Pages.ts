@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import { PageHeaderBlock } from '../blocks/PageHeaderBlock'
+import { HeroBlock } from '../blocks/HeroBlock'
 import { revalidatePage } from '../hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
@@ -66,6 +67,7 @@ export const Pages: CollectionConfig = {
               minRows: 0,
               blocks: [
                 PageHeaderBlock,
+                HeroBlock,
               ],
             },
           ],
