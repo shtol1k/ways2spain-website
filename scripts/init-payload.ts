@@ -1,4 +1,4 @@
-import payload from 'payload'
+import { getPayload, buildConfig } from 'payload'
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import dotenv from 'dotenv'
 
@@ -8,11 +8,10 @@ const init = async () => {
   console.log('🚀 Initializing Payload CMS...')
   
   try {
-    // Initialize Payload with config inline
-    await payload.init({
+    // Initialize Payload with config
+    const config = buildConfig({
       secret: process.env.PAYLOAD_SECRET || 'dev-secret-change-this-in-production',
-      local: true,
-      database: postgresAdapter({
+      db: postgresAdapter({
         pool: {
           connectionString: process.env.DATABASE_URL || 'postgresql://atamanov@localhost:5432/w2s_local',
         },
@@ -55,6 +54,8 @@ const init = async () => {
       cors: ['http://localhost:3000'],
       csrf: ['http://localhost:3000'],
     })
+
+    await getPayload({ config })
     
     console.log('✅ Payload initialized successfully!')
     console.log('📊 Database:', process.env.DATABASE_URL)
