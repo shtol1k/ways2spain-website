@@ -1,8 +1,13 @@
 import { CollectionConfig } from 'payload'
 import { PageHeaderBlock } from '../blocks/PageHeaderBlock'
+import { revalidatePage } from '../hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
   slug: 'pages',
+  hooks: {
+    afterChange: [revalidatePage],
+    afterDelete: [revalidatePage],
+  },
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
