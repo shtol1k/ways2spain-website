@@ -70,6 +70,12 @@ export const Media: CollectionConfig = {
         height: 800,
         fit: 'inside',
       },
+      {
+        name: 'hero',
+        width: 1920,
+        height: 1080,
+        fit: 'cover', // Crop to exact 16:9 ratio for full-screen hero backgrounds
+      },
     ],
   },
   fields: [

@@ -192,6 +192,14 @@ export interface Media {
       filesize?: number | null;
       filename?: string | null;
     };
+    hero?: {
+      url?: string | null;
+      width?: number | null;
+      height?: number | null;
+      mimeType?: string | null;
+      filesize?: number | null;
+      filename?: string | null;
+    };
   };
 }
 /**
@@ -244,13 +252,13 @@ export interface Page {
             title: string;
             text?: string | null;
             media: number | Media;
+            /**
+             * First button = Primary CTA (gold), Second button = Secondary CTA (outline)
+             */
             buttons?:
               | {
                   label: string;
-                  type?: ('custom' | 'page') | null;
-                  url?: string | null;
-                  page?: (number | null) | Page;
-                  style?: ('primary' | 'secondary' | 'outline') | null;
+                  page: number | Page;
                   id?: string | null;
                 }[]
               | null;
@@ -888,6 +896,16 @@ export interface MediaSelect<T extends boolean = true> {
               filesize?: T;
               filename?: T;
             };
+        hero?:
+          | T
+          | {
+              url?: T;
+              width?: T;
+              height?: T;
+              mimeType?: T;
+              filesize?: T;
+              filename?: T;
+            };
       };
 }
 /**
@@ -918,10 +936,7 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     label?: T;
-                    type?: T;
-                    url?: T;
                     page?: T;
-                    style?: T;
                     id?: T;
                   };
               benefits?:

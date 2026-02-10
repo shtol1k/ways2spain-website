@@ -69,6 +69,17 @@ export const Pages: CollectionConfig = {
                 PageHeaderBlock,
                 HeroBlock,
               ],
+              // Limit Hero block to maximum 1 per page
+              validate: (value) => {
+                if (!Array.isArray(value)) return true
+                const heroCount = value.filter(
+                  (block: any) => block.blockType === 'hero'
+                ).length
+                if (heroCount > 1) {
+                  return 'Only one Hero block is allowed per page'
+                }
+                return true
+              },
             },
           ],
         },

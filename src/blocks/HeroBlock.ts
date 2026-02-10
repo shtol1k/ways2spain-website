@@ -6,6 +6,10 @@ export const HeroBlock: Block = {
     singular: 'Hero',
     plural: 'Heroes',
   },
+  // Prevent renaming the block in the admin UI
+  admin: {
+    disableBlockName: true,
+  },
   fields: [
     {
       name: 'title',
@@ -29,11 +33,17 @@ export const HeroBlock: Block = {
       name: 'buttons',
       type: 'array',
       label: 'Buttons',
-      minRows: 0,
+      // Always exactly 2 buttons: Primary CTA and Secondary CTA
+      minRows: 2,
       maxRows: 2,
       labels: {
         singular: 'Button',
         plural: 'Buttons',
+      },
+      admin: {
+        // Prevent reordering and deleting — buttons are fixed
+        isSortable: false,
+        description: 'First button = Primary CTA (gold), Second button = Secondary CTA (outline)',
       },
       fields: [
         {
@@ -49,69 +59,11 @@ export const HeroBlock: Block = {
               },
             },
             {
-              name: 'type',
-              type: 'select',
-              label: 'Type',
-              defaultValue: 'custom',
-              options: [
-                {
-                  label: 'Custom URL',
-                  value: 'custom',
-                },
-                {
-                  label: 'Internal Page',
-                  value: 'page',
-                },
-              ],
-              admin: {
-                width: '50%',
-              },
-            },
-          ],
-        },
-        {
-          type: 'row',
-          fields: [
-            {
-              name: 'url',
-              type: 'text',
-              label: 'Custom URL',
-              required: true,
-              admin: {
-                condition: (_, siblingData) => siblingData?.type === 'custom',
-                width: '50%',
-              },
-            },
-            {
               name: 'page',
               type: 'relationship',
               relationTo: 'pages',
-              label: 'Internal Page',
+              label: 'Target Page',
               required: true,
-              admin: {
-                condition: (_, siblingData) => siblingData?.type === 'page',
-                width: '50%',
-              },
-            },
-            {
-              name: 'style',
-              type: 'select',
-              label: 'Style',
-              defaultValue: 'primary',
-              options: [
-                {
-                  label: 'Primary',
-                  value: 'primary',
-                },
-                {
-                  label: 'Secondary',
-                  value: 'secondary',
-                },
-                {
-                  label: 'Outline',
-                  value: 'outline',
-                },
-              ],
               admin: {
                 width: '50%',
               },

@@ -1,4 +1,4 @@
-import Hero from '@/components/Hero'
+
 import Features from '@/components/Features'
 import Testimonials from '@/components/Testimonials'
 import ProcessSection from '@/components/ProcessSection'
@@ -120,24 +120,9 @@ export default async function HomePage() {
       />
       
       <div className="min-h-screen">
-        {/* Existing Static Hero */}
-        <Hero />
-        
-        {/* CMS Blocks (New Hero) - Rendered nicely separating both */}
+        {/* CMS Blocks */}
         {homePage?.layout && (
-          <div className="relative z-10 bg-background">
-             <div className="h-4 flex items-center justify-center bg-yellow-50/50 dark:bg-yellow-900/10 border-y border-dashed border-yellow-300 dark:border-yellow-700">
-               <span className="text-[10px] uppercase tracking-wider font-mono text-yellow-600 dark:text-yellow-400">
-                 CMS Content Start
-               </span>
-             </div>
-             <RenderBlocks blocks={homePage.layout} />
-             <div className="h-4 flex items-center justify-center bg-yellow-50/50 dark:bg-yellow-900/10 border-y border-dashed border-yellow-300 dark:border-yellow-700">
-               <span className="text-[10px] uppercase tracking-wider font-mono text-yellow-600 dark:text-yellow-400">
-                 CMS Content End
-               </span>
-             </div>
-          </div>
+          <RenderBlocks blocks={homePage.layout} />
         )}
 
         <Features />

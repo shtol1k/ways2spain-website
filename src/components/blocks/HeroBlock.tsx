@@ -12,10 +12,7 @@ interface HeroBlockProps {
   buttons?: {
     id?: string
     label: string
-    type: 'custom' | 'page'
-    url?: string
     page?: Page | string | any
-    style?: 'primary' | 'secondary' | 'outline'
   }[]
   benefits?: {
     id?: string
@@ -35,6 +32,14 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, button
       if (urlObj.hostname === 'localhost' || urlObj.hostname === '127.0.0.1') {
           mediaUrl = urlObj.pathname;
       }
+  }
+
+  // Resolve page relationship to a URL path
+  const getPageHref = (page: Page | string | any): string => {
+    if (typeof page === 'object' && page?.slug) {
+      return page.slug === 'home' ? '/' : `/${page.slug}`
+    }
+    return '#'
   }
 
   return (
@@ -74,34 +79,25 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, button
             </p>
           )}
 
-          {/* Buttons — using Button component with proper variants */}
+          {/* Buttons — Primary CTA (first) + Secondary CTA (second) */}
           {buttons && buttons.length > 0 && (
             <div className="flex flex-col sm:flex-row gap-4 mb-12 animate-fade-in">
               {buttons.map((button, index) => {
-                // Determine href
-                let href = '#'
-                if (button.type === 'custom' && button.url) {
-                  href = button.url
-                } else if (button.type === 'page' && button.page) {
-                  const pageData = button.page as any
-                  if (typeof pageData === 'object' && pageData.slug) {
-                    href = pageData.slug === 'home' ? '/' : `/${pageData.slug}`
-                  }
-                }
+                const href = button.page ? getPageHref(button.page) : '#'
 
-                // Map Payload style to Button component variants
-                if (button.style === 'primary' || !button.style) {
+                // First button = Primary CTA (gold hero style)
+                if (index === 0) {
                   return (
                     <Link key={button.id || index} href={href}>
                       <Button variant="hero" size="xl">
                         {button.label}
-                        {index === 0 && <ArrowRight className="ml-2" />}
+                        <ArrowRight className="ml-2" />
                       </Button>
                     </Link>
                   )
                 }
 
-                // Outline and secondary both use outline variant with glassmorphism
+                // Second button = Secondary CTA (outline glassmorphism)
                 return (
                   <Link key={button.id || index} href={href}>
                     <Button
@@ -123,11 +119,11 @@ export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, button
               {benefits.map((benefit, index) => (
                 <div
                   key={benefit.id || index}
-                  className={`flex items-center space-x-2 rounded-lg flex-shrink-0 ${
+                  className={`flex items-center space-x-2 rounded-lg shrink-0 ${
                     index === 0 ? 'whitespace-nowrap' : ''
                   }`}
                 >
-                  <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
+                  <CheckCircle className="w-5 h-5 text-secondary shrink-0" />
                   <span className="text-white text-sm font-medium">{benefit.text}</span>
                 </div>
               ))}
