@@ -1,31 +1,55 @@
-import { getTestimonials, getImageUrl, type Testimonial as PayloadTestimonial } from "@/lib/api";
-import { TestimonialsCarousel, type Testimonial } from "./TestimonialsCarousel";
+import { getPayload } from 'payload'
+import config from '@payload-config'
+import type { Testimonial as PayloadTestimonial, Media } from '@/payload-types'
+import { TestimonialsCarousel, type Testimonial } from './TestimonialsCarousel'
+
+/**
+ * Get photo URL from Payload media object.
+ * Handles both populated Media objects and raw IDs.
+ */
+function getPhotoUrl(photo: PayloadTestimonial['photo']): string | undefined {
+  if (!photo || typeof photo === 'number') return undefined
+
+  const media = photo as Media
+  return media.url ?? undefined
+}
 
 export default async function Testimonials() {
-  let testimonials: Testimonial[] = [];
+  let testimonials: Testimonial[] = []
 
   try {
-    const data = await getTestimonials('uk');
-    
-    // Adapt Payload data to component format
-    testimonials = data.map((item: PayloadTestimonial) => ({
-      id: item.id,
+    // Use Payload Local API instead of HTTP fetch.
+    // This works reliably during both build-time and runtime,
+    // because it queries the database directly without needing a running server.
+    const payload = await getPayload({ config })
+
+    const result = await payload.find({
+      collection: 'testimonials',
+      where: {
+        published: { equals: true },
+      },
+      sort: '-date',
+      depth: 1, // Populate photo relationship
+    })
+
+    testimonials = (result.docs as PayloadTestimonial[]).map((item) => ({
+      id: String(item.id),
       name: item.name,
       title: item.title,
       testimonial: item.testimonial,
       date: item.date,
-      facebook: item.socialLinks?.facebook,
-      linkedin: item.socialLinks?.linkedin,
-      photo: getImageUrl(item.photo),
-    }));
+      facebook: item.socialLinks?.facebook ?? undefined,
+      linkedin: item.socialLinks?.linkedin ?? undefined,
+      photo: getPhotoUrl(item.photo),
+    }))
   } catch (err) {
-    console.error('Error loading testimonials:', err);
-    // Continue with empty array - testimonials are non-critical
+    console.error('Error loading testimonials:', err)
+    // Continue with empty array — testimonials are non-critical
   }
 
-  // Don't show error message, just skip section if no testimonials
+  // Don't render section if no testimonials
   if (testimonials.length === 0) {
-    return null;
+    return null
   }
 
   return (
@@ -41,5 +65,5 @@ export default async function Testimonials() {
         <TestimonialsCarousel testimonials={testimonials} />
       </div>
     </section>
-  );
+  )
 }
