@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
     const { pathname } = request.nextUrl
 
     if (
@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
         }
     } catch (error) {
         // Fail open - allow access if settings fetch fails
-        console.error('Middleware maintenance check failed:', error)
+        console.error('Proxy maintenance check failed:', error)
     }
 
     return NextResponse.next()
