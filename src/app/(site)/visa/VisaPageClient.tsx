@@ -5,6 +5,7 @@ import { CheckCircle2, FileText, Clock, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Page } from '@/payload-types'
+import { RenderBlocks } from '@/components/blocks/RenderBlocks'
 
 interface VisaPageClientProps {
   initialData: Page
@@ -25,12 +26,16 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
     <div className="min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header - Connected to Live Preview */}
-        <div className="max-w-4xl mx-auto text-center mb-16">
-          <h1 className="mb-6">{title}</h1>
-          <p className="text-xl text-muted-foreground">
-            {description}
-          </p>
-        </div>
+        {data.layout && data.layout.length > 0 ? (
+           <RenderBlocks blocks={data.layout} />
+        ) : (
+          <div className="max-w-4xl mx-auto text-center mb-16">
+            <h1 className="mb-6">{title}</h1>
+            <p className="text-xl text-muted-foreground">
+              {description}
+            </p>
+          </div>
+        )}
 
         {/* Main Info Grid - Static for now */}
         <div className="grid lg:grid-cols-2 gap-8 mb-20">
