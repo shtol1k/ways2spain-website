@@ -120,5 +120,24 @@ export const HeroBlock: Block = {
         },
       ],
     },
+    {
+      name: 'benefits',
+      type: 'array',
+      label: 'Benefits',
+      minRows: 0,
+      maxRows: 5,
+      labels: {
+        singular: 'Benefit',
+        plural: 'Benefits',
+      },
+      fields: [
+        {
+          name: 'text',
+          type: 'text',
+          label: 'Text',
+          required: true,
+        },
+      ],
+    },
   ],
 }

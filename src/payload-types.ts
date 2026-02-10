@@ -254,6 +254,12 @@ export interface Page {
                   id?: string | null;
                 }[]
               | null;
+            benefits?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
             id?: string | null;
             blockName?: string | null;
             blockType: 'hero';
@@ -916,6 +922,12 @@ export interface PagesSelect<T extends boolean = true> {
                     url?: T;
                     page?: T;
                     style?: T;
+                    id?: T;
+                  };
+              benefits?:
+                | T
+                | {
+                    text?: T;
                     id?: T;
                   };
               id?: T;
