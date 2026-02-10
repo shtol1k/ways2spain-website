@@ -19,8 +19,18 @@ interface HeroBlockProps {
 }
 
 export const HeroBlock: React.FC<HeroBlockProps> = ({ title, text, media, buttons }) => {
-  const mediaUrl = typeof media === 'object' && media !== null ? media.url : null
-  const mediaAlt = (typeof media === 'object' && media !== null ? media.alt : '') || 'Hero Background'
+  // Handle media field which can be a full Media object or just an ID string depending on depth
+  const mediaObj = typeof media === 'object' && media !== null ? media as Media : null
+  let mediaUrl = mediaObj?.url
+  const mediaAlt = mediaObj?.alt || 'Hero Background'
+
+  // Ensure internal media URLs are relative for Next.js Image
+  if (mediaUrl && mediaUrl.startsWith('http')) {
+      const urlObj = new URL(mediaUrl);
+      if (urlObj.hostname === 'localhost' || urlObj.hostname === '127.0.0.1') {
+          mediaUrl = urlObj.pathname;
+      }
+  }
 
   return (
     <section className="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden bg-gray-900 text-white">

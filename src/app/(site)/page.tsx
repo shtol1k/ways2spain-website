@@ -53,6 +53,7 @@ export default async function HomePage() {
       },
     },
     limit: 1,
+    depth: 2,
   })
 
   // We don't want to show 404 for home page if it doesn't exist in CMS yet,
