@@ -16,6 +16,7 @@ npx payload migrate:create --name descriptive-name
 ```
 
 **Payload's generator automatically includes:**
+
 - ✅ Main table creation (CREATE TABLE)
 - ✅ **System table updates** (`payload_locked_documents_rels`, `payload_preferences_rels`)
 - ✅ All required foreign keys and indexes
@@ -25,6 +26,7 @@ npx payload migrate:create --name descriptive-name
 ### NEVER create manual migrations for schema changes
 
 **Why manual schema migrations break things:**
+
 - ❌ Missing `payload_locked_documents_rels` relations → **Blank edit pages in admin**
 - ❌ No schema snapshot created → Generator creates "full" migration next time
 - ❌ Missing system table indexes and constraints
@@ -33,10 +35,53 @@ npx payload migrate:create --name descriptive-name
 ### When to use manual migrations
 
 Manual migrations are ONLY for:
+
 - ✅ **Seed data** (INSERT statements)
 - ✅ **Data transformations** (UPDATE, data migration)
 - ✅ **Cleanup** (DROP old tables not managed by Payload)
 - ✅ **Custom SQL** that doesn't affect Payload schema
+
+---
+
+## ⚠️ File Naming Convention
+
+### Use ONLY underscores (`_`) in migration file names — NEVER hyphens (`-`)
+
+Payload auto-generates `src/migrations/index.ts`, which imports each migration file using `import * as <identifier> from './filename'`. The identifier is derived directly from the filename.
+
+**Hyphens (`-`) are NOT valid characters in TypeScript/JavaScript identifiers.** TypeScript interprets `-` as the subtraction operator, which causes a **build-breaking syntax error**.
+
+**Example of the error:**
+
+```
+./src/migrations/index.ts:1:47
+Type error: 'from' expected.
+
+> 1 | import * as migration_20260202_120000_rollback-folder-system from '...';
+  |                                               ^
+```
+
+TypeScript reads `rollback` as a valid identifier, then sees `-` (subtraction), then `folder` — and at that point expects `from`, not another identifier. This **breaks the production build on Vercel**.
+
+**Correct naming:**
+
+```bash
+# ✅ CORRECT — underscores only
+npx payload migrate:create --name add_folders_support
+npx payload migrate:create --name create_categories_table
+npx payload migrate:create --name rollback_folder_system
+
+# ❌ WRONG — hyphens will break the build
+npx payload migrate:create --name add-folders-support
+npx payload migrate:create --name create-categories-table
+npx payload migrate:create --name rollback-folder-system
+```
+
+**If you already have migration files with hyphens:**
+
+1. Open `src/migrations/index.ts`
+2. Replace all hyphens with underscores **only in import alias names** and their references (`.up`, `.down`)
+3. Keep original file paths and `name` values with hyphens (they match actual filenames)
 
 ---
 
@@ -111,12 +156,14 @@ npx payload migrate
 ## Critical Rules
 
 **NEVER:**
+
 - ❌ Create manual migrations for CREATE TABLE / ALTER TABLE schema changes
 - ❌ Modify `payload_locked_documents_rels` manually without understanding Payload's requirements
 - ❌ Skip migration creation and modify DB directly
 - ❌ Delete `.json` snapshot files from migrations folder
 
 **ALWAYS:**
+
 - ✅ Use `npx payload migrate:create` for any schema changes
 - ✅ Review the generated SQL before applying
 - ✅ Check that system tables are updated in the migration
@@ -126,18 +173,30 @@ npx payload migrate
 
 ## Troubleshooting
 
+### `Type error: 'from' expected` in `src/migrations/index.ts`
+
+**Cause:** Migration file names contain hyphens (`-`), which produce invalid TypeScript identifiers in auto-generated `index.ts`.
+
+**Fix:**
+
+1. Open `src/migrations/index.ts`
+2. Replace hyphens with underscores in all import alias names and their `.up`/`.down` references
+3. Do NOT rename the actual migration files or change `name` strings — they must match the filesystem
+4. Going forward, always use underscores in migration names (see **File Naming Convention** section above)
+
 ### Blank/empty edit pages in admin panel
 
 **Cause:** Collection missing from `payload_locked_documents_rels`
 
 **Fix:**
+
 ```sql
 -- Add missing column
-ALTER TABLE payload_locked_documents_rels 
-ADD COLUMN IF NOT EXISTS {collection}_id integer 
+ALTER TABLE payload_locked_documents_rels
+ADD COLUMN IF NOT EXISTS {collection}_id integer
 REFERENCES {collection}(id) ON DELETE CASCADE;
 
-CREATE INDEX IF NOT EXISTS payload_locked_documents_rels_{collection}_id_idx 
+CREATE INDEX IF NOT EXISTS payload_locked_documents_rels_{collection}_id_idx
 ON payload_locked_documents_rels({collection}_id);
 ```
 
@@ -146,19 +205,21 @@ ON payload_locked_documents_rels({collection}_id);
 **Cause:** No previous schema snapshot exists
 
 **Solution:**
+
 1. If this is initial setup, this is expected — apply the full migration
 2. If tables already exist, you need to:
    - Extract ONLY the new changes from the migration
    - Apply them manually via SQL
    - Register the migration as completed:
    ```sql
-   INSERT INTO payload_migrations (name, batch, created_at, updated_at) 
+   INSERT INTO payload_migrations (name, batch, created_at, updated_at)
    VALUES ('migration_name', NEXT_BATCH, NOW(), NOW());
    ```
 
 ### "column already exists" error
 
 Migration already applied partially. Check status:
+
 ```bash
 npx payload migrate:status
 ```
@@ -166,6 +227,7 @@ npx payload migrate:status
 ### "relation does not exist" error
 
 Migration not applied. Run:
+
 ```bash
 npx payload migrate
 ```
