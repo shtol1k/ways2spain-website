@@ -1,15 +1,15 @@
-import * as migration_20260202_120000_rollback-folder-system from './20260202_120000_rollback-folder-system';
-import * as migration_20260202_120100_fix-empty-size-urls from './20260202_120100_fix-empty-size-urls';
-import * as migration_20260202_140000_add-folders-support from './20260202_140000_add-folders-support';
-import * as migration_20260202_150000_add-folders-to-locked-docs from './20260202_150000_add-folders-to-locked-docs';
-import * as migration_20260203_180000_create-categories-table from './20260203_180000_create-categories-table';
-import * as migration_20260203_180100_seed-blog-categories from './20260203_180100_seed-blog-categories';
-import * as migration_20260203_180200_add-categories-to-locked-docs from './20260203_180200_add-categories-to-locked-docs';
-import * as migration_20260203_180300_remove-categories-locales from './20260203_180300_remove-categories-locales';
+import * as migration_20260202_120000_rollback_folder_system from './20260202_120000_rollback-folder-system';
+import * as migration_20260202_120100_fix_empty_size_urls from './20260202_120100_fix-empty-size-urls';
+import * as migration_20260202_140000_add_folders_support from './20260202_140000_add-folders-support';
+import * as migration_20260202_150000_add_folders_to_locked_docs from './20260202_150000_add-folders-to-locked-docs';
+import * as migration_20260203_180000_create_categories_table from './20260203_180000_create-categories-table';
+import * as migration_20260203_180100_seed_blog_categories from './20260203_180100_seed-blog-categories';
+import * as migration_20260203_180200_add_categories_to_locked_docs from './20260203_180200_add-categories-to-locked-docs';
+import * as migration_20260203_180300_remove_categories_locales from './20260203_180300_remove-categories-locales';
 import * as migration_20260203_204436 from './20260203_204436';
 import * as migration_20260203_204712 from './20260203_204712';
-import * as migration_20260203_212300_create-tags-table from './20260203_212300_create-tags-table';
-import * as migration_20260203_213800_create-authors-table from './20260203_213800_create-authors-table';
+import * as migration_20260203_212300_create_tags_table from './20260203_212300_create-tags-table';
+import * as migration_20260203_213800_create_authors_table from './20260203_213800_create-authors-table';
 import * as migration_20260204_114317 from './20260204_114317';
 import * as migration_20260204_154132 from './20260204_154132';
 import * as migration_20260204_160500_ensure_site_settings from './20260204_160500_ensure_site_settings';
@@ -28,43 +28,43 @@ import * as migration_20260211_132543 from './20260211_132543';
 
 export const migrations = [
   {
-    up: migration_20260202_120000_rollback-folder-system.up,
-    down: migration_20260202_120000_rollback-folder-system.down,
+    up: migration_20260202_120000_rollback_folder_system.up,
+    down: migration_20260202_120000_rollback_folder_system.down,
     name: '20260202_120000_rollback-folder-system',
   },
   {
-    up: migration_20260202_120100_fix-empty-size-urls.up,
-    down: migration_20260202_120100_fix-empty-size-urls.down,
+    up: migration_20260202_120100_fix_empty_size_urls.up,
+    down: migration_20260202_120100_fix_empty_size_urls.down,
     name: '20260202_120100_fix-empty-size-urls',
   },
   {
-    up: migration_20260202_140000_add-folders-support.up,
-    down: migration_20260202_140000_add-folders-support.down,
+    up: migration_20260202_140000_add_folders_support.up,
+    down: migration_20260202_140000_add_folders_support.down,
     name: '20260202_140000_add-folders-support',
   },
   {
-    up: migration_20260202_150000_add-folders-to-locked-docs.up,
-    down: migration_20260202_150000_add-folders-to-locked-docs.down,
+    up: migration_20260202_150000_add_folders_to_locked_docs.up,
+    down: migration_20260202_150000_add_folders_to_locked_docs.down,
     name: '20260202_150000_add-folders-to-locked-docs',
   },
   {
-    up: migration_20260203_180000_create-categories-table.up,
-    down: migration_20260203_180000_create-categories-table.down,
+    up: migration_20260203_180000_create_categories_table.up,
+    down: migration_20260203_180000_create_categories_table.down,
     name: '20260203_180000_create-categories-table',
   },
   {
-    up: migration_20260203_180100_seed-blog-categories.up,
-    down: migration_20260203_180100_seed-blog-categories.down,
+    up: migration_20260203_180100_seed_blog_categories.up,
+    down: migration_20260203_180100_seed_blog_categories.down,
     name: '20260203_180100_seed-blog-categories',
   },
   {
-    up: migration_20260203_180200_add-categories-to-locked-docs.up,
-    down: migration_20260203_180200_add-categories-to-locked-docs.down,
+    up: migration_20260203_180200_add_categories_to_locked_docs.up,
+    down: migration_20260203_180200_add_categories_to_locked_docs.down,
     name: '20260203_180200_add-categories-to-locked-docs',
   },
   {
-    up: migration_20260203_180300_remove-categories-locales.up,
-    down: migration_20260203_180300_remove-categories-locales.down,
+    up: migration_20260203_180300_remove_categories_locales.up,
+    down: migration_20260203_180300_remove_categories_locales.down,
     name: '20260203_180300_remove-categories-locales',
   },
   {
@@ -78,13 +78,13 @@ export const migrations = [
     name: '20260203_204712',
   },
   {
-    up: migration_20260203_212300_create-tags-table.up,
-    down: migration_20260203_212300_create-tags-table.down,
+    up: migration_20260203_212300_create_tags_table.up,
+    down: migration_20260203_212300_create_tags_table.down,
     name: '20260203_212300_create-tags-table',
   },
   {
-    up: migration_20260203_213800_create-authors-table.up,
-    down: migration_20260203_213800_create-authors-table.down,
+    up: migration_20260203_213800_create_authors_table.up,
+    down: migration_20260203_213800_create_authors_table.down,
     name: '20260203_213800_create-authors-table',
   },
   {
