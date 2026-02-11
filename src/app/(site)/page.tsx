@@ -1,5 +1,4 @@
 
-import Features from '@/components/Features'
 import Testimonials from '@/components/Testimonials'
 import ProcessSection from '@/components/ProcessSection'
 import CTASection from '@/components/CTASection'
@@ -127,7 +126,7 @@ export default async function HomePage() {
           <HomePageClient initialData={homePage} />
         )}
 
-        <Features />
+
         <Testimonials />
         <ProcessSection />
         <CTASection />

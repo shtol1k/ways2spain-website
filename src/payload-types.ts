@@ -268,6 +268,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'hero';
           }
+        | {
+            title: string;
+            subtitle?: string | null;
+            features?:
+              | {
+                  icon: number | Media;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'features';
+          }
       )[]
     | null;
   meta?: {
@@ -940,6 +955,22 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        features?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              features?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
                     id?: T;
                   };
               id?: T;
