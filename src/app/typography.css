@@ -10,8 +10,9 @@
     font-feature-settings: "kern" 1;
   }
 
-  /* MOBILE (< 768px / 48rem) */
-
+  /* -------------------------------------------------------------------------- */
+  /*  📱 MOBILE (< 768px / 48rem)                                              */
+  /* -------------------------------------------------------------------------- */
   @media (width < 48rem) {
     
     /* HEADINGS */
@@ -43,10 +44,68 @@
       font-size: var(--text-base);
       line-height: var(--leading-normal);
     }
+
+    /* BODY TEXT STYLES (Mobile Defaults) */
+    .text-body-xl {
+      font-size: var(--text-xl);       /* 20px */
+      line-height: var(--leading-snug); /* 1.375 */
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-large {
+      font-size: var(--text-lg);       /* 18px */
+      line-height: var(--leading-relaxed); /* 1.625 */
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-base {
+      font-size: var(--text-base);     /* 16px */
+      line-height: var(--leading-normal); /* 1.5 */
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-small {
+      font-size: var(--text-sm);       /* 14px */
+      line-height: var(--leading-snug); /* 1.375 */
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-xs {
+      font-size: var(--text-xs);       /* 12px */
+      line-height: var(--leading-tight); /* 1.25 */
+      font-weight: var(--font-weight-normal);
+    }
+
+    /* UI / INTERACTIVE ELEMENTS (Mobile Defaults) */
+    .text-ui-nav {
+      font-size: var(--text-base);     /* 16px */
+      line-height: var(--leading-none); /* 1 */
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-l {
+      font-size: var(--text-base);     /* 16px */
+      line-height: var(--leading-none); /* 1 */
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-m {
+      font-size: var(--text-sm);       /* 14px */
+      line-height: var(--leading-none); /* 1 */
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-label {
+      font-size: var(--text-sm);       /* 14px */
+      line-height: var(--leading-none); /* 1 */
+      font-weight: var(--font-weight-medium);
+    }
   }
 
-  /*  TABLET (768px - 1023px).  48rem <= width < 64rem */
-
+  /* -------------------------------------------------------------------------- */
+  /*  📟 TABLET (768px - 1023px)                                               */
+  /*  48rem <= width < 64rem                                                   */
+  /* -------------------------------------------------------------------------- */
   @media (48rem <= width < 64rem) {
     
     /* HEADINGS */
@@ -81,10 +140,67 @@
       font-size: var(--text-base);
       line-height: var(--leading-normal);
     }
+
+    /* BODY TEXT STYLES (Tablet Defaults - Same as Mobile for now, customizable) */
+    .text-body-xl {
+      font-size: var(--text-xl);
+      line-height: var(--leading-snug);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-large {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-base {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-small {
+      font-size: var(--text-sm);
+      line-height: var(--leading-snug);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-xs {
+      font-size: var(--text-xs);
+      line-height: var(--leading-tight);
+      font-weight: var(--font-weight-normal);
+    }
+
+    /* UI ELEMENTS (Tablet Defaults) */
+    .text-ui-nav {
+      font-size: var(--text-base);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-l {
+      font-size: var(--text-base);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-m {
+      font-size: var(--text-sm);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-label {
+      font-size: var(--text-sm);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
   }
 
-  /*  DESKTOP (>= 1024px / 64rem) */
-
+  /* -------------------------------------------------------------------------- */
+  /*  🖥 DESKTOP (>= 1024px / 64rem)                                           */
+  /* -------------------------------------------------------------------------- */
   @media (width >= 64rem) {
 
     /* HEADINGS */
@@ -115,6 +231,62 @@
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+    }
+
+     /* BODY TEXT STYLES (Desktop Defaults) */
+    .text-body-xl {
+      font-size: var(--text-xl);
+      line-height: var(--leading-snug);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-large {
+      font-size: var(--text-lg);
+      line-height: var(--leading-relaxed);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-base {
+      font-size: var(--text-base);
+      line-height: var(--leading-normal);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-small {
+      font-size: var(--text-sm);
+      line-height: var(--leading-snug);
+      font-weight: var(--font-weight-normal);
+    }
+
+    .text-body-xs {
+      font-size: var(--text-xs);
+      line-height: var(--leading-tight);
+      font-weight: var(--font-weight-normal);
+    }
+
+    /* UI ELEMENTS (Desktop Defaults) */
+    .text-ui-nav {
+      font-size: var(--text-base);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-l {
+      font-size: var(--text-base);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-btn-m {
+      font-size: var(--text-sm);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-ui-label {
+      font-size: var(--text-sm);
+      line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
     }
   }
 }
