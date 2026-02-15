@@ -1,0 +1,54 @@
+/* Payload Admin Custom Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+/* Base */
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-heading: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Menlo', monospace;
+}
+/* Headings */
+.ContentEditable__root h1, 
+.ContentEditable__root h2, 
+.ContentEditable__root h3, 
+.ContentEditable__root h4, 
+.ContentEditable__root h5, 
+.ContentEditable__root h6 {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  color: #0f172a !important; /* Slate-900 (Content Primary) */
+  margin-top: 1.5em !important;
+  margin-bottom: 0.5em !important;
+  line-height: 1.25 !important;
+}
+
+/* Paragraph */
+.ContentEditable__root p {
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #475569 !important; /* Slate-600 (Content Secondary) */
+}
+
+/* Links */
+.ContentEditable__root a {
+  color: #2563eb !important; /* Blue-600 */
+  text-decoration: underline !important;
+}
+
+/* Lists */
+.ContentEditable__root ul, .ContentEditable__root ol {
+  font-family: 'Inter', system-ui, sans-serif !important;font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #475569 !important; /* Slate-600 (Content Secondary) */
+  padding-left: 1.5rem !important;
+  margin-bottom: 1rem !important;
+}
+.ContentEditable__root li {
+  margin-bottom: 0.25rem !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  color: #475569 !important; /* Slate-600 (Content Secondary) */
+}
