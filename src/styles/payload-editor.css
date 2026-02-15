@@ -8,45 +8,67 @@
   --font-mono: 'Menlo', monospace;
 }
 
-/* Headings */
+/* Headings Base */
 .ContentEditable__root h1,h2,h3,h4,h5,h6 {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.025em; /* tracking-tight */
   color: #0f172a; /* Slate-900 */
-  margin-top: 1.5em;
-  margin-bottom: 0.5em;
 }
 
+/* H1 */
 .ContentEditable__root h1 {
   font-size: 4.5rem; /* 72px */
   line-height: 1.1;
+  margin-top: 3rem; /* 48px */
+  margin-bottom: 1.5rem; /* 24px */
 }
 
+/* H2 */
 .ContentEditable__root h2 {
   font-size: 3rem; /* 48px */
   line-height: 1.1;
+  margin-top: 2.5rem; /* 40px */
+  margin-bottom: 1.25rem; /* 20px */
 }
 
+/* H3 */
 .ContentEditable__root h3 {
   font-size: 1.875rem; /* 30px */
-  line-height: 1.375; /* snug is usually 1.375, tight is 1.25 */
+  line-height: 1.375;
+  margin-top: 2rem; /* 32px */
+  margin-bottom: 1rem; /* 16px */
 }
 
+/* H4 */
 .ContentEditable__root h4 {
   font-size: 1.25rem; /* 20px */
   line-height: 1.375;
+  margin-top: 1.5rem; /* 24px */
+  margin-bottom: 0.75rem; /* 12px */
 }
 
+/* H5 */
 .ContentEditable__root h5 {
   font-size: 1.125rem; /* 18px */
   line-height: 1.5;
+  margin-top: 1.25rem; /* 20px */
+  margin-bottom: 0.5rem; /* 8px */
 }
 
+/* H6 */
 .ContentEditable__root h6 {
   font-size: 1rem; /* 16px */
   line-height: 1.5;
+  margin-top: 1rem; /* 16px */
+  margin-bottom: 0.5rem; /* 8px */
 }
+
+/* Remove margin-top from the first heading in the editor to mimic :not(:first-child) */
+.ContentEditable__root > *:first-child {
+  margin-top: 0 !important;
+}
+
 
 /* Body Text (Paragraphs & Lists) */
 .ContentEditable__root p,ul,ol,li {

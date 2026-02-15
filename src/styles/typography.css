@@ -26,29 +26,44 @@
       letter-spacing: var(--tracking-tight);
       color: var(--content-primary);
     }
+    
+    /* Top margins (only if not first child) */
+    h1:not(:first-child) { margin-top: 2.5rem; }  /* 40px */
+    h2:not(:first-child) { margin-top: 2rem; }    /* 32px */
+    h3:not(:first-child) { margin-top: 1.75rem; } /* 28px */
+    h4:not(:first-child) { margin-top: 1.5rem; }  /* 24px */
+    h5:not(:first-child) { margin-top: 1.25rem; } /* 20px */
+    h6:not(:first-child) { margin-top: 1rem; }    /* 16px */
+
     h1 {
       font-size: var(--text-5xl);
       line-height: var(--leading-tight);
+      margin-bottom: 1rem; /* 16px */
     }
     h2 {
       font-size: var(--text-4xl);
       line-height: var(--leading-tight);
+      margin-bottom: 0.875rem; /* 14px */
     }
     h3 {
       font-size: var(--text-2xl);
       line-height: var(--leading-snug);
+      margin-bottom: 0.75rem; /* 12px */
     }
     h4 {
       font-size: var(--text-xl);
       line-height: var(--leading-snug);
+      margin-bottom: 0.5rem; /* 8px */
     }
     h5 {
       font-size: var(--text-lg);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
 
     /* DEFAULT TEXT ELEMENTS */
@@ -132,32 +147,44 @@
       letter-spacing: var(--tracking-tight);
       color: var(--content-primary);
     }
+    
+    /* Top margins (only if not first child) */
+    h1:not(:first-child) { margin-top: 2.5rem; }  /* 40px */
+    h2:not(:first-child) { margin-top: 2rem; }    /* 32px */
+    h3:not(:first-child) { margin-top: 1.75rem; } /* 28px */
+    h4:not(:first-child) { margin-top: 1.5rem; }  /* 24px */
+    h5:not(:first-child) { margin-top: 1.25rem; } /* 20px */
+    h6:not(:first-child) { margin-top: 1rem; }    /* 16px */
+
     h1 {
       font-size: var(--text-6xl);
       line-height: var(--leading-tight);
+      margin-bottom: 1.25rem; /* 20px */
     }
     h2 {
       font-size: var(--text-5xl);
       line-height: var(--leading-tight);
+      margin-bottom: 1rem; /* 16px */
     }
     h3 {
       font-size: var(--text-3xl);
       line-height: var(--leading-snug);
+      margin-bottom: 0.875rem; /* 14px */
     }
-
     h4 {
       font-size: var(--text-xl);
       line-height: var(--leading-snug);
+      margin-bottom: 0.75rem; /* 12px */
     }
-
     h5 {
       font-size: var(--text-lg);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
-
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
 
     /* DEFAULT TEXT ELEMENTS */
@@ -241,29 +268,44 @@
       letter-spacing: var(--tracking-tight);
       color: var(--content-primary);
     }
+
+    /* Top margins (only if not first child) */
+    h1:not(:first-child) { margin-top: 3rem; }    /* 48px */
+    h2:not(:first-child) { margin-top: 2.5rem; }  /* 40px */
+    h3:not(:first-child) { margin-top: 2rem; }    /* 32px */
+    h4:not(:first-child) { margin-top: 1.5rem; }  /* 24px */
+    h5:not(:first-child) { margin-top: 1.25rem; } /* 20px */
+    h6:not(:first-child) { margin-top: 1rem; }    /* 16px */
+
     h1 {
       font-size: var(--text-7xl);
       line-height: var(--leading-tight);
+      margin-bottom: 1.5rem; /* 24px */
     }
     h2 {
       font-size: var(--text-5xl);
       line-height: var(--leading-tight);
+      margin-bottom: 1.25rem; /* 20px */
     }
     h3 {
       font-size: var(--text-3xl);
       line-height: var(--leading-snug);
+      margin-bottom: 1rem; /* 16px */
     }
     h4 {
       font-size: var(--text-xl);
       line-height: var(--leading-snug);
+      margin-bottom: 0.75rem; /* 12px */
     }
     h5 {
       font-size: var(--text-lg);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+      margin-bottom: 0.5rem; /* 8px */
     }
 
     /* DEFAULT TEXT ELEMENTS */
