@@ -8,6 +8,7 @@
 }
 
 @layer base {
+
   /* GLOBAL DEFAULTS */
   body {
     font-family: var(--font-sans); /* Force Inter as default */
@@ -23,6 +24,7 @@
     h1, h2, h3, h4, h5, h6 {
       font-weight: var(--font-weight-bold);
       letter-spacing: var(--tracking-tight);
+      color: var(--content-primary);
     }
     h1 {
       font-size: var(--text-5xl);
@@ -48,6 +50,27 @@
       font-size: var(--text-base);
       line-height: var(--leading-normal);
     }
+
+    /* DEFAULT TEXT ELEMENTS */
+    p, li {
+      font-size: var(--text-base);     /* 16px */
+      line-height: var(--leading-6);   /* 24px */
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+    }
+
+    a {
+      color: var(--content-link);
+      font-weight: inherit;
+      text-decoration: inherit;
+    }
+
+    small {
+      font-size: var(--text-sm);       /* 14px */
+      line-height: var(--leading-5);   /* 20px */
+      font-weight: var(--font-weight-normal);
+    }
+
 
     /* BODY */
     .text-body-large {
@@ -107,6 +130,7 @@
     h1, h2, h3, h4, h5, h6 {
       font-weight: var(--font-weight-bold);
       letter-spacing: var(--tracking-tight);
+      color: var(--content-primary);
     }
     h1 {
       font-size: var(--text-6xl);
@@ -135,6 +159,27 @@
       font-size: var(--text-base);
       line-height: var(--leading-normal);
     }
+
+    /* DEFAULT TEXT ELEMENTS */
+    p, li {
+      font-size: var(--text-base);
+      line-height: var(--leading-6);
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+    }
+
+    a {
+      color: var(--content-link);
+      font-weight: inherit;
+      text-decoration: inherit;
+    }
+
+    small {
+      font-size: var(--text-sm);
+      line-height: var(--leading-5);
+      font-weight: var(--font-weight-normal);
+    }
+
 
     /* BODY */
     .text-body-large {
@@ -194,6 +239,7 @@
     h1, h2, h3, h4, h5, h6 {
       font-weight: var(--font-weight-bold);
       letter-spacing: var(--tracking-tight);
+      color: var(--content-primary);
     }
     h1 {
       font-size: var(--text-7xl);
@@ -219,6 +265,27 @@
       font-size: var(--text-base);
       line-height: var(--leading-normal);
     }
+
+    /* DEFAULT TEXT ELEMENTS */
+    p, li {
+      font-size: var(--text-base);
+      line-height: var(--leading-6);
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+    }
+
+    a {
+      color: var(--content-link);
+      font-weight: inherit;
+      text-decoration: inherit;
+    }
+
+    small {
+      font-size: var(--text-sm);
+      line-height: var(--leading-5);
+      font-weight: var(--font-weight-normal);
+    }
+
 
      /* BODY */
     .text-body-large {

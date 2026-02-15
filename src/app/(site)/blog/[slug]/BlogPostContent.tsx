@@ -34,7 +34,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
         <div className="max-w-4xl mx-auto mb-8">
           {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} /> : null}
           <Link href="/blog">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="text-ui-btn-m">
               <ArrowLeft className="mr-2 w-4 h-4" />
               Повернутися до блогу
             </Button>
@@ -44,12 +44,12 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
         {/* Header */}
         <header className="max-w-4xl mx-auto mb-12">
           {post.category && typeof post.category !== 'number' && (
-            <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 text-secondary text-sm font-semibold mb-4">
+            <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 color-content-brand text-ui-label mb-4">
               {post.category.name}
             </span>
           )}
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
-          <div className="flex items-center space-x-6 text-muted-foreground">
+          <h1 className="mb-6">{post.title}</h1>
+          <div className="flex items-center space-x-6 color-content-secondary text-body-small">
             <div className="flex items-center space-x-2">
               <Calendar className="w-5 h-5" />
               <span>
@@ -77,7 +77,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
                 priority
               />
             ) : (
-              <span className="text-muted-foreground/40 text-8xl">📄</span>
+              <span className="color-content-tertiary text-8xl">📄</span>
             )}
           </div>
         </div>
@@ -88,19 +88,19 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           {contentHtml ? (
             <div
               className="blog-content prose prose-lg dark:prose-invert max-w-none 
-              prose-headings:font-bold prose-headings:text-foreground prose-headings:scroll-mt-24
-              prose-p:text-muted-foreground prose-p:leading-relaxed
-              prose-a:text-secondary prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-foreground
+              prose-headings:color-content-primary prose-headings:scroll-mt-24
+              prose-p:color-content-secondary prose-p:leading-relaxed
+              prose-a:color-content-brand prose-a:no-underline hover:prose-a:underline
+              prose-strong:color-content-primary
               prose-ul:list-disc prose-ul:pl-6
               prose-ol:list-decimal prose-ol:pl-6
-              prose-li:text-muted-foreground
+              prose-li:color-content-secondary
               prose-img:rounded-xl prose-img:shadow-lg
               prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:italic"
               dangerouslySetInnerHTML={{ __html: contentHtml }}
             />
           ) : (
-            <div className="text-center py-10 text-muted-foreground">
+            <div className="text-center py-10 color-content-tertiary text-body-base">
               Контент не знайдено або він має неправильний формат.
             </div>
           )}
@@ -127,7 +127,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           <div className="mt-16 pt-8 border-t border-border">
             <div className="flex items-center justify-between">
               <h3 className="text-xl font-bold">Поділитися статтею</h3>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" className="text-ui-btn-m">
                 <Share2 className="w-4 h-4 mr-2" />
                 Поділитися
               </Button>
@@ -137,7 +137,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           {/* Related posts carousel */}
           {relatedPosts && relatedPosts.length > 0 && (
             <div className="mt-16">
-              <h3 className="text-2xl font-bold mb-8">Читайте також</h3>
+              <h3 className="mb-8">Читайте також</h3>
               <Carousel opts={{ align: "start", loop: true }} className="w-full">
                 <CarouselContent className="-ml-4">
                   {relatedPosts.map((relatedPost) => (
@@ -147,17 +147,17 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
                         className="bg-card rounded-xl border border-border p-6 hover:shadow-elegant transition-smooth flex flex-col h-full"
                       >
                         {relatedPost.category && typeof relatedPost.category !== "number" && (
-                          <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 text-secondary text-xs font-semibold mb-3 w-fit">
+                          <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 color-content-brand text-ui-label mb-3 w-fit">
                             {relatedPost.category.name}
                           </span>
                         )}
-                        <h4 className="text-lg font-bold mb-2 hover:text-secondary transition-smooth line-clamp-2">
+                        <h4 className="mb-2 hover:color-content-brand transition-smooth line-clamp-2">
                           {relatedPost.title}
                         </h4>
-                        <p className="text-muted-foreground text-sm mb-4 line-clamp-2 flex-grow">
+                        <p className="color-content-secondary text-body-small mb-4 line-clamp-2 grow">
                           {relatedPost.excerpt}
                         </p>
-                        <div className="flex items-center text-sm text-muted-foreground mt-auto">
+                        <div className="flex items-center text-body-extra-small color-content-tertiary mt-auto">
                           <Clock className="w-4 h-4 mr-2" />
                           <span>
                             {relatedPost.readTime ? `${relatedPost.readTime} хв` : "3 хв"}

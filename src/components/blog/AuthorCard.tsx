@@ -73,19 +73,19 @@ export function AuthorCard({
           {author.slug ? (
             <Link
               href={`/blog/author/${author.slug}`}
-              className="font-semibold text-foreground hover:text-primary hover:underline"
+              className="font-semibold color-content-primary hover:text-primary hover:underline"
             >
               {author.name}
             </Link>
           ) : (
-            <span className="font-semibold text-foreground">{author.name}</span>
+            <span className="font-semibold color-content-primary">{author.name}</span>
           )}
           {author.role && (
-            <span className="text-sm text-muted-foreground">{author.role}</span>
+            <span className="text-body-small color-content-secondary">{author.role}</span>
           )}
         </div>
         {variant === "full" && author.bio && (
-          <p className="mt-2 text-sm text-muted-foreground">{author.bio}</p>
+          <p className="mt-2 text-body-small color-content-secondary">{author.bio}</p>
         )}
         {variant === "full" && social && (
           <div className="mt-3 flex flex-wrap gap-3">
@@ -94,7 +94,7 @@ export function AuthorCard({
                 href={social.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="color-content-secondary hover:color-content-primary"
                 aria-label="LinkedIn"
               >
                 <LinkedInIcon className="h-5 w-5" />
@@ -105,7 +105,7 @@ export function AuthorCard({
                 href={social.twitter}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="color-content-secondary hover:color-content-primary"
                 aria-label="Twitter / X"
               >
                 <XIcon className="h-5 w-5" />
@@ -116,7 +116,7 @@ export function AuthorCard({
                 href={social.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="color-content-secondary hover:color-content-primary"
                 aria-label="Instagram"
               >
                 <InstagramIcon className="h-5 w-5" />
@@ -127,7 +127,7 @@ export function AuthorCard({
                 href={social.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="color-content-secondary hover:color-content-primary"
                 aria-label="Facebook"
               >
                 <FacebookIcon className="h-5 w-5" />
@@ -142,7 +142,7 @@ export function AuthorCard({
                 }
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="color-content-secondary hover:color-content-primary"
                 aria-label="Telegram"
               >
                 <TelegramIcon className="h-5 w-5" />
