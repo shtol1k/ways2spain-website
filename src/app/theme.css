@@ -1,120 +1,74 @@
-/* Typography Theme Control */
-/* Structure: Device First (Isolated Groups) for maximum flexibility */
+/* Theme Configuration (Colors & Design Tokens) */
 
 @layer base {
+  :root {
+    /* -------------------------------------------------------------------------- */
+    /*  Light Theme (Default)                                                     */
+    /* -------------------------------------------------------------------------- */
 
-  /* GLOBAL DEFAULTS (Apply everywhere) */
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-feature-settings: "kern" 1;
-  }
-
-  /* MOBILE (< 768px / 48rem) */
-
-  @media (width < 48rem) {
+    /* Content Colors (Text & Icons) */
+    --content-primary: var(--color-slate-900);
+    --content-secondary: var(--color-slate-600);
+    --content-tertiary: var(--color-slate-500);
+    --content-disable: var(--color-black);
     
-    /* HEADINGS */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: var(--font-bold);
-      letter-spacing: var(--tracking-tight);
-    }
-    h1 {
-      font-size: var(--text-5xl);
-      line-height: 1.1;
-    }
-    h2 {
-      font-size: var(--text-4xl);
-      line-height: 1.2;
-    }
-    h3 {
-      font-size: var(--text-2xl);
-      line-height: 1.3;
-    }
-    h4 {
-      font-size: var(--text-xl);
-      line-height: 1.4;
-    }
-    h5 {
-      font-size: var(--text-lg);
-      line-height: 1.55;
-    }
-    h6 {
-      font-size: var(--text-base);
-      line-height: 1.5;
-    }
-  }
-
-  /*  TABLET (768px - 1023px).  48rem <= width < 64rem */
-
-  @media (48rem <= width < 64rem) {
+    --content-brand: var(--color-amber-600);
+    --content-link: var(--color-black);
     
-    /* HEADINGS */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: var(--font-bold);
-      letter-spacing: var(--tracking-tight);
-    }
-    h1 {
-      font-size: var(--text-6xl);
-      line-height: 1.1;
-    }
-    h2 {
-      font-size: var(--text-5xl);
-      line-height: 1.2;
-    }
-    h3 {
-      font-size: var(--text-3xl);
-      line-height: 1.3;
-    }
-
-    h4 {
-      font-size: var(--text-xl);
-      line-height: 1.4;
-    }
-
-    h5 {
-      font-size: var(--text-lg);
-      line-height: 1.55;
-    }
-
-    h6 {
-      font-size: var(--text-base);
-      line-height: 1.5;
-    }
+    --content-info: var(--color-sky-600);
+    --content-notice: var(--color-yellow-600);
+    --content-negative: var(--color-red-600);
+    --content-positive: var(--color-green-600);
   }
 
-  /*  DESKTOP (>= 1024px / 64rem) */
+  /* 
+  .dark {
+     --content-primary: var(--color-slate-50);
+     ... override for dark mode here
+  } 
+  */
+}
 
-  @media (width >= 64rem) {
+@layer utilities {
+  /* Utility Classes for Content Colors */
+  
+  .color-content-primary {
+    color: var(--content-primary);
+  }
 
-    /* HEADINGS */
-    h1, h2, h3, h4, h5, h6 {
-      font-weight: var(--font-bold);
-      letter-spacing: var(--tracking-tight);
-    }
-    h1 {
-      font-size: var(--text-7xl);
-      line-height: 1.1;
-    }
-    h2 {
-      font-size: var(--text-5xl);
-      line-height: 1.2;
-    }
-    h3 {
-      font-size: var(--text-3xl);
-      line-height: 1.3;
-    }
-    h4 {
-      font-size: var(--text-xl);
-      line-height: 1.4;
-    }
-    h5 {
-      font-size: var(--text-lg);
-      line-height: 1.55;
-    }
-    h6 {
-      font-size: var(--text-base);
-      line-height: 1.5;
-    }
+  .color-content-secondary {
+    color: var(--content-secondary);
+  }
+
+  .color-content-tertiary {
+    color: var(--content-tertiary);
+  }
+
+  .color-content-disable {
+    color: var(--content-disable);
+  }
+
+  .color-content-brand {
+    color: var(--content-brand);
+  }
+
+  .color-content-link {
+    color: var(--content-link);
+  }
+
+  .color-content-info {
+    color: var(--content-info);
+  }
+
+  .color-content-notice {
+    color: var(--content-notice);
+  }
+
+  .color-content-negative {
+    color: var(--content-negative);
+  }
+
+  .color-content-positive {
+    color: var(--content-positive);
   }
 }
