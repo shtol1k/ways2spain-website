@@ -1,5 +1,5 @@
 import { buildConfig } from 'payload'
-import './src/styles/payload-editor.css'
+
 import { postgresAdapter } from '@payloadcms/db-postgres'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
