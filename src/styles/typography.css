@@ -75,9 +75,16 @@
       margin-bottom: 1.25rem;          /* 20px */
     }
 
-    ul, ol {
+    ul {
       margin-bottom: 1.25rem;          /* 20px */
       padding-left: 1.25rem;           /* 20px */
+      list-style-type: disc;
+    }
+
+    ol {
+      margin-bottom: 1.25rem;          /* 20px */
+      padding-left: 1.25rem;           /* 20px */
+      list-style-type: decimal;
     }
 
     li {
@@ -214,9 +221,16 @@
       margin-bottom: 1.5rem;           /* 24px */
     }
 
-    ul, ol {
+    ul {
       margin-bottom: 1.5rem;           /* 24px */
       padding-left: 1.625rem;          /* 26px */
+      list-style-type: disc;
+    }
+
+    ol {
+      margin-bottom: 1.5rem;           /* 24px */
+      padding-left: 1.625rem;          /* 26px */
+      list-style-type: decimal;
     }
 
     li {
@@ -353,9 +367,16 @@
       margin-bottom: 1.5rem;           /* 24px */
     }
 
-    ul, ol {
+    ul {
       margin-bottom: 1.5rem;           /* 24px */
       padding-left: 1.625rem;          /* 26px */
+      list-style-type: disc;
+    }
+
+    ol {
+      margin-bottom: 1.5rem;           /* 24px */
+      padding-left: 1.625rem;          /* 26px */
+      list-style-type: decimal;
     }
 
     li {
