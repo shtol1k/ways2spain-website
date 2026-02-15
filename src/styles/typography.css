@@ -67,11 +67,25 @@
     }
 
     /* DEFAULT TEXT ELEMENTS */
-    p, li {
+    p {
       font-size: var(--text-base);     /* 16px */
       line-height: var(--leading-6);   /* 24px */
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-bottom: 1.25rem;          /* 20px */
+    }
+
+    ul, ol {
+      margin-bottom: 1.25rem;          /* 20px */
+      padding-left: 1.25rem;           /* 20px */
+    }
+
+    li {
+      font-size: var(--text-base);     /* 16px */
+      line-height: var(--leading-6);   /* 24px */
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+      margin-bottom: 0.25rem;          /* 4px */
     }
 
     a {
@@ -92,24 +106,28 @@
       font-size: var(--text-lg);       /* 18px */
       line-height: var(--leading-7);   /* 28px */
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.25rem;          /* 20px */
     }
 
     .text-body-base {
       font-size: var(--text-base);     /* 16px */
       line-height: var(--leading-6);   /* 24px */
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.25rem;          /* 20px */
     }
 
     .text-body-small {
       font-size: var(--text-sm);       /* 14px */
       line-height: var(--leading-5);   /* 20px */
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.25rem;          /* 20px */
     }
 
     .text-body-extra-small {
       font-size: var(--text-xs);       /* 12px */
       line-height: var(--leading-4);   /* 16px */
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.25rem;          /* 20px */
     }
 
     /* UI */
@@ -188,11 +206,25 @@
     }
 
     /* DEFAULT TEXT ELEMENTS */
-    p, li {
+    p {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-bottom: 1.5rem;           /* 24px */
+    }
+
+    ul, ol {
+      margin-bottom: 1.5rem;           /* 24px */
+      padding-left: 1.625rem;          /* 26px */
+    }
+
+    li {
+      font-size: var(--text-base);
+      line-height: var(--leading-6);
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+      margin-bottom: 0.5rem;           /* 8px */
     }
 
     a {
@@ -213,24 +245,28 @@
       font-size: var(--text-lg);
       line-height: var(--leading-7);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-base {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-small {
       font-size: var(--text-sm);
       line-height: var(--leading-5);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-extra-small {
       font-size: var(--text-xs);
       line-height: var(--leading-4);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     /* UI */
@@ -309,11 +345,25 @@
     }
 
     /* DEFAULT TEXT ELEMENTS */
-    p, li {
+    p {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-bottom: 1.5rem;           /* 24px */
+    }
+
+    ul, ol {
+      margin-bottom: 1.5rem;           /* 24px */
+      padding-left: 1.625rem;          /* 26px */
+    }
+
+    li {
+      font-size: var(--text-base);
+      line-height: var(--leading-6);
+      font-weight: var(--font-weight-normal);
+      color: var(--content-secondary);
+      margin-bottom: 0.5rem;           /* 8px */
     }
 
     a {
@@ -334,24 +384,28 @@
       font-size: var(--text-lg);
       line-height: var(--leading-7);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-base {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-small {
       font-size: var(--text-sm);
       line-height: var(--leading-5);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     .text-body-extra-small {
       font-size: var(--text-xs);
       line-height: var(--leading-4);
       font-weight: var(--font-weight-normal);
+      margin-bottom: 1.5rem;           /* 24px */
     }
 
     /* UI */
