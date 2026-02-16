@@ -31,39 +31,40 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
     <div className="min-h-screen pt-32 pb-20">
       <ReadingProgress />
       <article className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-4xl mx-auto mb-8">
-          {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} /> : null}
-          <Link href="/blog">
-            <Button variant="ghost" size="sm" className="text-ui-btn-m">
-              <ArrowLeft className="mr-2 w-4 h-4" />
-              Повернутися до блогу
-            </Button>
-          </Link>
-        </div>
+        {/* Refactored Header Scaffolding (Placeholders) */}
+        <header className="w-full max-w-screen-2xl mx-auto mb-10">
+          {/* Top Row: Breadcrumbs + Share */}
+          <div id="nav" className="flex items-center justify-between w-full h-5 md:h-10 mb-6">
+            {/* Breadcrumbs Placeholder */}
+            <div className="h-full w-48 md:w-64 bg-muted/50 rounded animate-pulse" />
+            
+            {/* Share Button Placeholder (Desktop/Tablet only) */}
+            <div className="hidden md:block h-full w-32 bg-muted/50 rounded-md animate-pulse" />
+          </div>
 
-        {/* Header */}
-        <header className="max-w-4xl mx-auto mb-12">
-          {post.category && typeof post.category !== 'number' && (
-            <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 color-content-brand text-ui-label mb-4">
-              {post.category.name}
-            </span>
-          )}
-          <h1 className="mb-6">{post.title}</h1>
-          <div className="flex items-center space-x-6 color-content-secondary text-body-small">
-            <div className="flex items-center space-x-2">
-              <Calendar className="w-5 h-5" />
-              <span>
-                {post.publishedAt ? format(new Date(post.publishedAt), 'd MMMM yyyy', { locale: uk }) : 'TBA'}
-              </span>
-            </div>
-            {post.readTime && (
-              <div className="flex items-center space-x-2">
-                <Clock className="w-5 h-5" />
-                <span>{post.readTime} хв читання</span>
-              </div>
-            )}
+          {/* Title Section */}
+          <div id="title" className="flex flex-col w-full mb-4 md:mb-6">
+            <h2>{post.title}</h2>
+            {post.excerpt && <p className="text-body-large mb-0">{post.excerpt}</p>}
+          </div>
+
+          {/* Divider Placeholder */}
+          <div id="divider" className="w-full border-t border-slate-300 border-dashed mb-4 md:mb-6" />
+
+          {/* Meta Data Row Placeholder */}
+          <div id="metadata" className="flex items-center gap-4 w-full h-6 md:h-8">
+             {/* Category Tag */}
+             <div className="h-full w-24 bg-muted/50 rounded-full animate-pulse" />
+             
+             {/* Date */}
+             <div className="h-full w-32 bg-muted/50 rounded animate-pulse" />
+             
+             {/* Read Time */}
+             <div className="h-full w-28 bg-muted/50 rounded animate-pulse" />
           </div>
         </header>
+
+        {/* Existing Content (pushed down) */}
 
         {/* Featured Image */}
         <div className="max-w-5xl mx-auto mb-12">
