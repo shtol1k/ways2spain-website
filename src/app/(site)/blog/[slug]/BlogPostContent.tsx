@@ -55,14 +55,14 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           <div id="divider" className="w-full border-t border-slate-300 border-dashed mb-4 md:mb-6" />
 
           {/* Meta Data Row */}
-          <div id="metadata" className="flex items-center gap-[var(--space-4)] md:gap-[var(--space-6)] w-full h-6 md:h-8">
+          <div id="metadata" className="flex items-center gap-(--space-4) md:gap-(--space-6) w-full h-6 md:h-8">
              {/* Category Tag */}
              {post.category && typeof post.category !== 'number' && (
                 <CategoryTag>{post.category.name}</CategoryTag>
              )}
              
              {/* Date */}
-             <div className="flex items-center gap-[var(--space-1)] md:gap-[var(--space-2)] color-content-tertiary">
+             <div className="flex items-center gap-(--space-1) md:gap-(--space-2) color-content-tertiary">
                 <Icon name="calendar" size="md" className="md:hidden text-current" />
                 <Icon name="calendar" size="lg" className="hidden md:flex text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
@@ -74,8 +74,9 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
              </div>
              
              {/* Read Time */}
-             <div className="hidden md:flex items-center gap-[var(--space-2)] color-content-tertiary">
-                <Clock className="w-5 h-5 md:w-6 md:h-6" />
+             <div className="flex items-center gap-(--space-1) md:gap-(--space-2) color-content-tertiary">
+                <Icon name="clock" size="md" className="md:hidden text-current" />
+                <Icon name="clock" size="lg" className="hidden md:flex text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
                    {post.readTime ? `${post.readTime} хв читання` : "3 хв читання"}
                 </span>

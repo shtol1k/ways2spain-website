@@ -1,6 +1,8 @@
 import { Calendar, User, ArrowRight, LayoutGrid, AlertCircle, CheckCircle, Info, X } from 'lucide-react';
 import { CalendarMd } from './custom/calendar/CalendarMd';
 import { CalendarLg } from './custom/calendar/CalendarLg';
+import { ClockMd } from './custom/clock/ClockMd';
+import { ClockLg } from './custom/clock/ClockLg';
 
 export const iconsRegistry = {
   // Common UI icons (Lucide defaults)
@@ -18,5 +20,9 @@ export const iconsRegistry = {
   calendar: {
     md: CalendarMd,
     lg: CalendarLg
+  },
+  clock: {
+    md: ClockMd,
+    lg: ClockLg
   }
 };
