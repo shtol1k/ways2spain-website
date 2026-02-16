@@ -15,13 +15,14 @@ export interface BlogBreadcrumbItem {
 
 export interface BlogBreadcrumbsProps {
   items: BlogBreadcrumbItem[];
+  className?: string;
 }
 
-export function BlogBreadcrumbs({ items }: BlogBreadcrumbsProps) {
+export function BlogBreadcrumbs({ items, className }: BlogBreadcrumbsProps) {
   if (!items?.length) return null;
 
   return (
-    <Breadcrumb className="mb-6">
+    <Breadcrumb className={`mb-6 ${className || ''}`}>
       <BreadcrumbList>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;

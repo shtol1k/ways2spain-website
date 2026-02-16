@@ -1,6 +1,7 @@
 "use client";
 
-import { Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Clock, ArrowLeft, Share2 } from "lucide-react";
+import { Icon } from "@/components/ui/icons";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { format } from "date-fns";
@@ -11,6 +12,7 @@ import { BlogBreadcrumbs, type BlogBreadcrumbItem } from "@/components/blog/Blog
 import { AuthorCard } from "@/components/blog/AuthorCard";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { TableOfContents } from "@/components/blog/TableOfContents";
+import { CategoryTag } from "@/components/blog/CategoryTag";
 import {
   Carousel,
   CarouselContent,
@@ -35,11 +37,12 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
         <header className="w-full max-w-screen-2xl mx-auto mb-10">
           {/* Top Row: Breadcrumbs + Share */}
           <div id="nav" className="flex items-center justify-between w-full h-5 md:h-10 mb-6">
-            {/* Breadcrumbs Placeholder */}
-            <div className="h-full w-48 md:w-64 bg-muted/50 rounded animate-pulse" />
+            <div className="flex-1 min-w-0 md:mr-8 overflow-hidden">
+              {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} className="mb-0 [&>ol]:p-0 [&>ol]:m-0" /> : null}
+            </div>
             
             {/* Share Button Placeholder (Desktop/Tablet only) */}
-            <div className="hidden md:block h-full w-32 bg-muted/50 rounded-md animate-pulse" />
+            <div className="hidden md:block h-full w-32 bg-muted/50 rounded-md animate-pulse shrink-0" />
           </div>
 
           {/* Title Section */}
@@ -51,16 +54,32 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           {/* Divider Placeholder */}
           <div id="divider" className="w-full border-t border-slate-300 border-dashed mb-4 md:mb-6" />
 
-          {/* Meta Data Row Placeholder */}
-          <div id="metadata" className="flex items-center gap-4 w-full h-6 md:h-8">
+          {/* Meta Data Row */}
+          <div id="metadata" className="flex items-center gap-[var(--space-4)] md:gap-[var(--space-6)] w-full h-6 md:h-8">
              {/* Category Tag */}
-             <div className="h-full w-24 bg-muted/50 rounded-full animate-pulse" />
+             {post.category && typeof post.category !== 'number' && (
+                <CategoryTag>{post.category.name}</CategoryTag>
+             )}
              
              {/* Date */}
-             <div className="h-full w-32 bg-muted/50 rounded animate-pulse" />
+             <div className="flex items-center gap-[var(--space-1)] md:gap-[var(--space-2)] color-content-tertiary">
+                <Icon name="calendar" size="md" className="md:hidden text-current" />
+                <Icon name="calendar" size="lg" className="hidden md:flex text-current" />
+                <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
+                  {post.publishedAt 
+                    ? format(new Date(post.publishedAt), 'd MMMM yyyy', { locale: uk }) 
+                    : format(new Date(post.createdAt), 'd MMMM yyyy', { locale: uk })
+                  }
+                </span>
+             </div>
              
              {/* Read Time */}
-             <div className="h-full w-28 bg-muted/50 rounded animate-pulse" />
+             <div className="hidden md:flex items-center gap-[var(--space-2)] color-content-tertiary">
+                <Clock className="w-5 h-5 md:w-6 md:h-6" />
+                <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
+                   {post.readTime ? `${post.readTime} хв читання` : "3 хв читання"}
+                </span>
+             </div>
           </div>
         </header>
 
