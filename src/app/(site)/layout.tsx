@@ -1,7 +1,11 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import { Suspense } from 'react'
+import { config } from '@fortawesome/fontawesome-svg-core'
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import '../globals.css'
+
+config.autoAddCss = false
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import LoadingBar from '@/components/LoadingBar'

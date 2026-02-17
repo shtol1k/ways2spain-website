@@ -1,70 +1,129 @@
-# Icon System Documentation
+# Система Іконок (Font Awesome Pro)
 
-The Ways2Spain project uses **Font Awesome Pro 6** as the core icon system. This provides a consistent, high-quality, and scalable set of icons (Solid, Regular, Light, Duotone brands).
+У проекті Ways2Spain ми використовуємо **Font Awesome 6 Pro** (Regular, Solid, Light, Duotone). Це забезпечує єдиний стиль, професійну якість іконок та легкість масштабування.
 
-## Architecture
+## 1. Як це працює
 
-The system is built around a centralized registry and a unified `<Icon />` component. We **do not** import Font Awesome icons directly in UI components. Instead, we use a semantic name (e.g., `calendar`) which maps to a specific Font Awesome definition.
+Ми не використовуємо прямий імпорт Font Awesome у компонентах (щоб уникнути хаосу в коді). Замість цього ми маємо **централізований реєстр** і **універсальний компонент**.
 
-### Key Files
+### Основні файли
 
-- `src/components/ui/icons/registry.tsx`: **The Source of Truth**. Maps internal icon names to Font Awesome icon definitions.
-- `src/components/ui/icons/index.tsx`: The `<Icon />` component. Handles sizing, styling, and rendering.
-- `src/components/ui/icons/types.ts`: TypeScript definitions for icon names and props.
+1.  `src/components/ui/icons/registry.tsx`: **Реєстр**. Тут ми імпортуємо іконку з пакета FA і даємо їй коротке ім'я (наприклад, `calendar` замість `faCalendarDays`).
+2.  `src/components/ui/icons/types.ts`: **Типи**. Тут ми додаємо це коротке ім'я в список дозволених (`IconName`).
+3.  `src/components/ui/icons/index.tsx`: **Компонент**. `<Icon />` відповідає за рендеринг і розміри.
 
-## Usage
+---
 
-Use the `<Icon />` component anywhere in the application.
+## 2. Як додати нову іконку (Workflow)
 
-```tsx
-import { Icon } from "@/components/ui/icons";
+Процес займає менше хвилини.
 
-// Basic usage (defaults to size="md" which is 20px)
-<Icon name="calendar" />
+### Крок 1: Знайти іконку
 
-// Sizing
-<Icon name="clock" size="sm" /> // 16px
-<Icon name="clock" size="md" /> // 20px
-<Icon name="clock" size="lg" /> // 24px
-<Icon name="clock" size="xl" /> // 32px
+Зайди на [Font Awesome Search](https://fontawesome.com/search) і знайди потрібну іконку (наприклад, `coffee` зі стилю Regular).
 
-// Styling (Tailwind classes pass through)
-<Icon name="warning" className="text-red-500" />
-```
+### Крок 2: Додати в код
 
-## Adding New Icons
+Тобі потрібно оновити два файли.
 
-To use a new icon from Font Awesome:
-
-1.  **Find the icon**: Go to [Font Awesome Search](https://fontawesome.com/search).
-2.  **Update Registry**:
-    - Open `src/components/ui/icons/registry.tsx`.
-    - Import the icon from the appropriate package (e.g., `@fortawesome/pro-regular-svg-icons`).
-    - Add it to the `iconsRegistry` object with a descriptive name.
+**A. `src/components/ui/icons/registry.tsx`**
 
 ```tsx
-// registry.tsx
-import { faCoffee } from "@fortawesome/pro-regular-svg-icons";
+import { faCoffee } from "@fortawesome/pro-regular-svg-icons"; // Імпорт
 
 export const iconsRegistry = {
-  // ... existing icons
-  coffee: faCoffee,
+  // ... інші іконки
+  coffee: faCoffee, // Додавання в об'єкт
 };
 ```
 
-3.  **Update Types**:
-    - Open `src/components/ui/icons/types.ts`.
-    - Add the new name to the `IconName` type union.
+**B. `src/components/ui/icons/types.ts`**
 
-```ts
-// types.ts
+```tsx
 export type IconName =
   | "calendar"
   // ...
-  | "coffee";
+  | "coffee"; // Додавання в тип
 ```
 
-## Configuration
+### Крок 3: Використати
 
-- **Authentication**: Font Awesome Pro packages are installed via `.npmrc` using the `FONTAWESOME_NPM_AUTH_TOKEN` environment variable.
-- **Vercel**: The environment variable must be set in Vercel Project Settings for deployment to work.
+```tsx
+<Icon name="coffee" />
+```
+
+---
+
+## 3. Пам'ятка по використанню (Cheatsheet)
+
+### Базове використання
+
+```tsx
+<Icon name="user" />
+```
+
+За замовчуванням розмір - `md` (20px).
+
+### Розміри (Фіксовані)
+
+Використовуй ці пропси для стандартних кнопок та інтерфейсів:
+
+```tsx
+<Icon name="close" size="sm" /> // 16px (w-4 h-4)
+<Icon name="user" size="md" />  // 20px (w-5 h-5) - Стандарт
+<Icon name="arrowRight" size="lg" /> // 24px (w-6 h-6)
+<Icon name="check" size="xl" /> // 32px (w-8 h-8)
+```
+
+### Розміри (Адаптивні / Responsive)
+
+Якщо іконка має змінювати розмір на різних екранах (як у блозі), використовуй `size="responsive"` і Tailwind класи:
+
+```tsx
+<Icon
+  name="clock"
+  size="responsive"
+  className="w-5 h-5 md:w-6 md:h-6 text-gray-500"
+/>
+```
+
+### Стилізація (Колір, Відступи)
+
+Колір успадковується від тексту (`currentColor`).
+
+```tsx
+<Icon name="warning" className="text-red-500 mr-2" />
+```
+
+### Анімація
+
+```tsx
+<Icon name="spinner" spin />
+<Icon name="arrowRight" rotation={90} />
+```
+
+---
+
+## 4. Промпти для AI Агента
+
+Коли ти просиш агента додати іконки, використовуй такі формулювання:
+
+**Додавання нової іконки:**
+
+> "Додай іконку `map-pin` (Regular) з Font Awesome в систему. Назви її `mapPin`."
+
+**Використання в компоненті:**
+
+> "Встав іконку `mapPin` перед адресою. Використовуй розмір `sm` і світло-сірий колір."
+
+**Адаптивна іконка:**
+
+> "Додай іконку `search`. На мобільному вона має бути 20px, а на десктопі 24px."
+
+---
+
+## 5. Технічні деталі (Admin Only)
+
+- Token: `FONTAWESOME_NPM_AUTH_TOKEN` (в `.env.local` та Vercel).
+- Config: `.npmrc` налаштований на `npm.fontawesome.com`.
+- Global CSS: Імпортований в `src/app/(site)/layout.tsx` (autoAddCss=false).
