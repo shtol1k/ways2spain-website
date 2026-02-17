@@ -63,8 +63,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
              
              {/* Date */}
              <div id="published" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
-                <Icon name="calendar" size="md" className="md:hidden text-current" />
-                <Icon name="calendar" size="lg" className="hidden md:flex text-current" />
+                <Icon name="calendar" size="responsive" className="w-5 h-5 md:w-6 md:h-6 text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
                   {post.publishedAt 
                     ? format(new Date(post.publishedAt), 'd MMMM yyyy', { locale: uk }) 
@@ -75,8 +74,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
              
              {/* Read Time */}
              <div id="timetoread" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
-                <Icon name="clock" size="md" className="md:hidden text-current" />
-                <Icon name="clock" size="lg" className="hidden md:flex text-current" />
+                <Icon name="clock" size="responsive" className="w-5 h-5 md:w-6 md:h-6 text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
                    {post.readTime ? `${post.readTime} хв читання` : "3 хв читання"}
                 </span>
