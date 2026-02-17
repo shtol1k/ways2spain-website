@@ -1,134 +1,70 @@
-# Система Іконок (Design System: Twin-Icon Architecture)
+# Icon System Documentation
 
-## 1. Загальний огляд
+The Ways2Spain project uses **Font Awesome Pro 6** as the core icon system. This provides a consistent, high-quality, and scalable set of icons (Solid, Regular, Light, Duotone brands).
 
-Ця система була створена для автоматизації процесу додавання іконок на сайт, вирішуючи проблему оптичного масштабування та невідповідності розмірів контейнерів (boundary boxes).
+## Architecture
 
-**Проблема:**
+The system is built around a centralized registry and a unified `<Icon />` component. We **do not** import Font Awesome icons directly in UI components. Instead, we use a semantic name (e.g., `calendar`) which maps to a specific Font Awesome definition.
 
-- У Figma дизайнери часто використовують різні версії іконок для різних розмірів (наприклад, 20px та 24px). Маленькі іконки потребують тонших ліній та меншої деталізації, щоб залишатися розбірливими.
-- Експорт "голого" SVG (без контейнера) призводить до того, що іконка "гуляє" по екрану, бо втрачається її вирівнювання відносно центру кнопки чи списку.
-- Розробнику доводиться вручну підбирати розміри та відступи.
+### Key Files
 
-**Рішення:**
+- `src/components/ui/icons/registry.tsx`: **The Source of Truth**. Maps internal icon names to Font Awesome icon definitions.
+- `src/components/ui/icons/index.tsx`: The `<Icon />` component. Handles sizing, styling, and rendering.
+- `src/components/ui/icons/types.ts`: TypeScript definitions for icon names and props.
 
-- **Twin-Icon Pattern**: Система підтримує дві версії однієї іконки (`md` - 20px, `lg` - 24px) під одним логічним ім'ям.
-- **Auto-Dispatcher**: Компонент `<Icon />` автоматично вибирає правильний SVG файл залежно від переданого розміру (`size="md"` або `size="lg"`).
-- **Boundary Box Preservation**: Ми експортуємо іконки разом з їхнім контейнером (Frame) з Figma, що гарантує ідеальне вирівнювання.
+## Usage
 
----
+Use the `<Icon />` component anywhere in the application.
 
-## 2. Архітектура
+```tsx
+import { Icon } from "@/components/ui/icons";
 
-### Структура файлів
+// Basic usage (defaults to size="md" which is 20px)
+<Icon name="calendar" />
 
-```text
-src/
-├── assets/
-│   └── icons/
-│       ├── input/          <-- Inbox для нових SVG файлів (сюди кидає дизайнер)
-│       └── archive/        <-- Архів вже оброблених файлів
-│
-└── components/
-    └── ui/
-        └── icons/
-            ├── index.tsx       <-- Головний компонент <Icon /> (Dispatcher)
-            ├── registry.tsx    <-- Мапінг імен на компоненти (Single Source of Truth)
-            ├── types.ts        <-- TypeScript типи (IconName, IconSize)
-            ├── AGENT_INSTRUCTIONS.md <-- Інструкції для AI
-            └── custom/         <-- Згенеровані React-компоненти
-                ├── calendar/
-                │   ├── CalendarMd.tsx  (viewBox="0 0 20 20")
-                │   └── CalendarLg.tsx  (viewBox="0 0 24 24")
-                └── ...
+// Sizing
+<Icon name="clock" size="sm" /> // 16px
+<Icon name="clock" size="md" /> // 20px
+<Icon name="clock" size="lg" /> // 24px
+<Icon name="clock" size="xl" /> // 32px
+
+// Styling (Tailwind classes pass through)
+<Icon name="warning" className="text-red-500" />
 ```
 
-### Ключові компоненти
+## Adding New Icons
 
-#### 1. `<Icon />` (Dispatcher)
+To use a new icon from Font Awesome:
 
-Це єдина точка входу для використання іконок. Він приймає `name` та `size` і вирішує, що рендерити.
+1.  **Find the icon**: Go to [Font Awesome Search](https://fontawesome.com/search).
+2.  **Update Registry**:
+    - Open `src/components/ui/icons/registry.tsx`.
+    - Import the icon from the appropriate package (e.g., `@fortawesome/pro-regular-svg-icons`).
+    - Add it to the `iconsRegistry` object with a descriptive name.
 
-**Логіка вибору:**
+```tsx
+// registry.tsx
+import { faCoffee } from "@fortawesome/pro-regular-svg-icons";
 
-1. Перевіряє `registry.tsx` за ключем `name`.
-2. Якщо знайдено об'єкт `{ md: Component, lg: Component }`:
-   - Якщо просимо `size="md"`, бере `md`.
-   - Якщо просимо `size="lg"`, бере `lg`.
-   - Фолбек: якщо просимо `lg`, а є тільки `md` (або навпаки), бере те, що є (хрест-навхрест).
-3. Якщо знайдено один компонент (наприклад, з бібліотеки `lucide-react`), використовує його універсально.
-
-#### 2. Реєстр (`registry.tsx`)
-
-Центральне місце реєстрації. Тут ми визначаємо, які іконки доступні в проекті.
-
-```typescript
 export const iconsRegistry = {
-  // Універсальна іконка (Lucide)
-  user: User,
-
-  // Twin-Icon (Custom from Figma)
-  calendar: {
-    md: CalendarMd, // Оптимізована під 20px
-    lg: CalendarLg, // Оптимізована під 24px
-  },
+  // ... existing icons
+  coffee: faCoffee,
 };
 ```
 
----
+3.  **Update Types**:
+    - Open `src/components/ui/icons/types.ts`.
+    - Add the new name to the `IconName` type union.
 
-## 3. Стандартний Workflow (Флоу роботи)
-
-Цей процес розроблено для максимальної автоматизації за допомогою AI Agent.
-
-### Крок 1: Дизайнер (Operator)
-
-1. У Figma підготувати іконки у фреймах (Frames):
-   - Фрейм 20x20 px -> Експорт як `icon-name-md.svg`
-   - Фрейм 24x24 px -> Експорт як `icon-name-lg.svg`
-   - **Важливо:** Експортувати саме Frame, щоб зберігся `viewBox`.
-2. Скопіювати SVG файли в папку `src/assets/icons/input/`.
-
-### Крок 2: AI Agent (Automation)
-
-1. Користувач запускає команду/воркфлоу: `/icon-registration` (або просить "Зареєструй іконки").
-2. Агент виконує наступні дії (згідно `.agent/workflows/icon-registration.md`):
-   - **Сканує** папку `input`.
-   - **Валідує** `viewBox` (чи відповідає він суфіксу `md`/`lg`).
-   - **Генерує** React компоненти в `src/components/ui/icons/custom/`.
-     - Замінює кольори на `currentColor`.
-     - Видаляє `width/height`.
-   - **Оновлює** `registry.tsx`, додаючи нові імпорти та записи.
-   - **Архівує** вихідні файли в `src/assets/icons/archive/`.
-
-### Крок 3: Розробник (Usage)
-
-Використання в коді JSX/TSX:
-
-```tsx
-import { Icon } from '@/components/ui/icons';
-
-// Використає CalendarMd (20px)
-<Icon name="calendar" size="md" className="text-gray-500" />
-
-// Використає CalendarLg (24px)
-<Icon name="calendar" size="lg" className="text-primary" />
+```ts
+// types.ts
+export type IconName =
+  | "calendar"
+  // ...
+  | "coffee";
 ```
 
----
+## Configuration
 
-## 4. Інструкція з відтворення (Replication Guide)
-
-Щоб відтворити цю систему на іншому проекті за допомогою AI, виконайте наступні кроки:
-
-1.  **Створіть структуру папок**: `src/components/ui/icons` та `src/assets/icons/input`.
-2.  **Створіть базові файли**:
-    - `types.ts`: Визначте типи `IconName` та `IconSize`.
-    - `registry.tsx`: Створіть пустий (або з демо-іконками) об'єкт `iconsRegistry`.
-    - `index.tsx`: Скопіюйте код Dispatcher-компонента (логіка вибору розміру).
-3.  **Створіть Workflow**:
-    - Додайте файл `.agent/workflows/icon-registration.md` з алгоритмом обробки SVG.
-4.  **Налаштуйте AI**:
-    - Додайте `AGENT_INSTRUCTIONS.md` в папку іконок, щоб агент знав контекст (про `currentColor`, `viewBox` тощо).
-
-Ця архітектура є **"Zero-Config"** для додавання нових іконок після початкового налаштування.
+- **Authentication**: Font Awesome Pro packages are installed via `.npmrc` using the `FONTAWESOME_NPM_AUTH_TOKEN` environment variable.
+- **Vercel**: The environment variable must be set in Vercel Project Settings for deployment to work.

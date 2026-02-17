@@ -1,14 +1,13 @@
-import { LucideProps } from 'lucide-react';
-import { iconsRegistry } from './registry';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { iconsRegistry, IconName } from './registry';
 
-// Size definitions for consistent usage
-export type IconSize = 'md' | 'lg';
+export type { IconName };
+export type IconSize = 'sm' | 'md' | 'lg' | 'xl'; // Added more sizes if needed, keeping md/lg as primary
 
-// Valid icon names are derived from the registry keys
-export type IconName = keyof typeof iconsRegistry;
-
-// Props extend LucideProps but override size and add name
-export interface IconProps extends Omit<LucideProps, 'size'> {
+export interface IconProps {
   name: IconName;
   size?: IconSize;
+  className?: string; // Additional classes for color, margin, etc.
+  spin?: boolean; // FA support
+  rotation?: 90 | 180 | 270; // FA support
 }

@@ -1,60 +1,46 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { cn } from '@/lib/utils';
 import { iconsRegistry } from './registry';
 import { IconProps, IconSize } from './types';
 
-// Container size mapping (Tailwind classes)
+// Container size mapping (Tailwind classes) to enforce specific boundary boxes
+// FA icons are scalable, but we wrap them to maintain layout stability
 const containerSizes: Record<IconSize, string> = {
-  md: 'w-5 h-5', // 20px
-  lg: 'w-6 h-6', // 24px
+  sm: 'w-4 h-4 text-xs', // 16px
+  md: 'w-5 h-5 text-sm', // 20px
+  lg: 'w-6 h-6 text-base', // 24px
+  xl: 'w-8 h-8 text-xl', // 32px
 };
 
 export const Icon: React.FC<IconProps> = ({ 
   name, 
   size = 'md', 
   className, 
+  spin,
+  rotation,
   ...props 
 }) => {
-  const registryEntry = iconsRegistry[name];
+  const iconDefinition = iconsRegistry[name];
 
-  if (!registryEntry) {
+  if (!iconDefinition) {
      if (process.env.NODE_ENV === 'development') {
         console.warn(`Icon "${name}" not found in registry.`);
      }
      return null;
   }
 
-  // Type guard: Check if it's a size-specific configuration object
-  // Lucide icons are functions. Size maps are objects.
-  const isSizeMap = typeof registryEntry === 'object' && registryEntry !== null && ('md' in registryEntry || 'lg' in registryEntry);
-
-  let IconComponent;
-
-  if (isSizeMap) {
-     // Start with desired size, fallback to other size
-     // @ts-ignore - TS guarantees existence if isSizeMap is true
-     IconComponent = registryEntry[size] || registryEntry[size === 'md' ? 'lg' : 'md'];
-  } else {
-     IconComponent = registryEntry;
-  }
-
-  if (!IconComponent) return null;
-
-  const Component = IconComponent as React.ElementType;
-
   return (
     <div 
       className={cn(
-        "inline-flex items-center justify-center shrink-0", 
+        "inline-flex items-center justify-center shrink-0 leading-none", 
         containerSizes[size], 
         className
       )}
       aria-hidden="true"
+      {...props}
     >
-      <Component 
-        className="w-full h-full" 
-        {...props} 
-      />
+      <FontAwesomeIcon icon={iconDefinition} className="w-full h-full" spin={spin} rotation={rotation} />
     </div>
   );
 };
