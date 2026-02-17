@@ -55,14 +55,14 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           <div id="divider" className="w-full border-t border-slate-300 border-dashed mb-4 md:mb-6" />
 
           {/* Meta Data Row */}
-          <div id="metadata" className="flex items-center gap-(--space-4) md:gap-(--space-6) w-full h-6 md:h-8">
+          <div id="metadata" className="flex flex-wrap items-center gap-4 md:gap-6 gap-y-3 w-full">
              {/* Category Tag */}
              {post.category && typeof post.category !== 'number' && (
                 <CategoryTag>{post.category.name}</CategoryTag>
              )}
              
              {/* Date */}
-             <div className="flex items-center gap-(--space-1) md:gap-(--space-2) color-content-tertiary">
+             <div id="published" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
                 <Icon name="calendar" size="md" className="md:hidden text-current" />
                 <Icon name="calendar" size="lg" className="hidden md:flex text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
@@ -74,7 +74,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
              </div>
              
              {/* Read Time */}
-             <div className="flex items-center gap-(--space-1) md:gap-(--space-2) color-content-tertiary">
+             <div id="timetoread" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
                 <Icon name="clock" size="md" className="md:hidden text-current" />
                 <Icon name="clock" size="lg" className="hidden md:flex text-current" />
                 <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
