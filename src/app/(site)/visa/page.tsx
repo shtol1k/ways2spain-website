@@ -22,9 +22,6 @@ export const metadata: Metadata = {
 }
 
 import { notFound } from "next/navigation"
-import PayloadFooter from "@/components/PayloadFooter"
-
-export const revalidate = 60
 
 export default async function VisaPage() {
   const payload = await getPayload({ config: configPromise })
@@ -50,9 +47,6 @@ export default async function VisaPage() {
   return (
     <>
       <VisaPageClient initialData={pageData as any} />
-      
-      {/* Temporary Payload Footer for Preview */}
-      <PayloadFooter />
     </>
   )
 }
