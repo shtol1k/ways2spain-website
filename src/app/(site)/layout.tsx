@@ -52,12 +52,12 @@ export default async function SiteLayout({
   const headersList = await headers()
   const { user } = await payload.auth({ headers: headersList })
 
-  const headerGlobal = await payload.findGlobal({
-    slug: 'header',
+  const mainMenu = await payload.findGlobal({
+    slug: 'main-menu',
     depth: 1,
   })
 
-  const navItems = headerGlobal.navItems?.map((item) => {
+  const navItems = mainMenu.navItems?.map((item) => {
     // Check if link is a Page object (populated)
     if (item.link && typeof item.link !== 'string') {
       const page = item.link as any // Using any to avoid strict type checks on 'published' field for now
@@ -73,6 +73,31 @@ export default async function SiteLayout({
     }
     return null
   }).filter((item): item is { path: string, label: string } => item !== null) || undefined
+
+  // Process Logo
+  const logo = mainMenu.logo && typeof mainMenu.logo !== 'string' 
+    ? { url: (mainMenu.logo as any).url, alt: (mainMenu.logo as any).alt } 
+    : undefined
+
+  // Helper to process CTA
+  const processCta = (cta: any) => {
+    if (cta?.link && typeof cta.link !== 'string') {
+      const page = cta.link as any
+      // Filter unpublished pages in CTA for non-authenticated users? 
+      // Assuming if it's unpublished, we probably shouldn't link to it, 
+      // but maybe just hiding it is safer to avoid 404 links.
+      if (!user && page.published === false) return null;
+
+      return {
+        label: cta.label || '',
+        path: page.slug === 'home' ? '/' : `/${page.slug}`
+      }
+    }
+    return null
+  }
+
+  const ctaPrimary = processCta(mainMenu.ctaPrimary)
+  const ctaSecondary = processCta(mainMenu.ctaSecondary)
 
   return (
     <html lang="uk" suppressHydrationWarning>
@@ -91,7 +116,12 @@ export default async function SiteLayout({
           <LoadingBar />
         </Suspense>
         <div className="min-h-screen flex flex-col">
-          <Navbar items={navItems} />
+          <Navbar 
+            items={navItems} 
+            logo={logo}
+            ctaPrimary={ctaPrimary}
+            ctaSecondary={ctaSecondary}
+          />
           <main className="flex-1">
             {children}
           </main>

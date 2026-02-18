@@ -112,12 +112,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     footer: Footer;
-    header: Header;
+    'main-menu': MainMenu;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
-    header: HeaderSelect<false> | HeaderSelect<true>;
+    'main-menu': MainMenuSelect<false> | MainMenuSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1294,10 +1294,6 @@ export interface SiteSetting {
  */
 export interface Footer {
   id: number;
-  /**
-   * Check to display the footer on the website.
-   */
-  enabled?: boolean | null;
   logo?: (number | null) | Media;
   navItems?:
     | {
@@ -1323,10 +1319,11 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header".
+ * via the `definition` "main-menu".
  */
-export interface Header {
+export interface MainMenu {
   id: number;
+  logo?: (number | null) | Media;
   navItems?:
     | {
         label: string;
@@ -1334,7 +1331,11 @@ export interface Header {
         id?: string | null;
       }[]
     | null;
-  ctaButton?: {
+  ctaPrimary?: {
+    label?: string | null;
+    link?: (number | null) | Page;
+  };
+  ctaSecondary?: {
     label?: string | null;
     link?: (number | null) | Page;
   };
@@ -1362,7 +1363,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  enabled?: T;
   logo?: T;
   navItems?:
     | T
@@ -1386,9 +1386,10 @@ export interface FooterSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "header_select".
+ * via the `definition` "main-menu_select".
  */
-export interface HeaderSelect<T extends boolean = true> {
+export interface MainMenuSelect<T extends boolean = true> {
+  logo?: T;
   navItems?:
     | T
     | {
@@ -1396,7 +1397,13 @@ export interface HeaderSelect<T extends boolean = true> {
         link?: T;
         id?: T;
       };
-  ctaButton?:
+  ctaPrimary?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+      };
+  ctaSecondary?:
     | T
     | {
         label?: T;

@@ -12,25 +12,26 @@ interface NavItem {
   label: string
 }
 
-interface NavbarProps {
-  items?: NavItem[]
+interface CtaButton {
+  label: string
+  path: string
 }
 
-const Navbar = ({ items }: NavbarProps) => {
+interface NavbarProps {
+  items?: NavItem[]
+  logo?: {
+    url?: string | null
+    alt?: string | null
+  }
+  ctaPrimary?: CtaButton | null
+  ctaSecondary?: CtaButton | null
+}
+
+const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const defaultNavItems = [
-    { path: "/", label: "Головна" },
-    { path: "/visa", label: "Про візу" },
-    { path: "/services", label: "Послуги" },
-    { path: "/about", label: "Про нас" },
-    { path: "/calculator", label: "Калькулятор" },
-    { path: "/blog", label: "Блог" },
-    { path: "/guides", label: "Гайди" },
-  ];
-
-  const navItems = items && items.length > 0 ? items : defaultNavItems;
+  const navItems = items || [];
 
   const isActive = (path: string) =>
     pathname === path || (path !== "/" && pathname.startsWith(path));
@@ -41,14 +42,25 @@ const Navbar = ({ items }: NavbarProps) => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Image 
-              src="/logo.png" 
-              alt="Ways 2 Spain Logo" 
-              width={120}
-              height={48}
-              priority
-              className="h-12 w-auto"
-            />
+            {logo?.url ? (
+              <Image 
+                src={logo.url} 
+                alt={logo.alt || "Ways 2 Spain Logo"} 
+                width={120}
+                height={48}
+                priority
+                className="h-12 w-auto"
+              />
+            ) : (
+               <Image 
+                src="/logo.png" 
+                alt="Ways 2 Spain Logo" 
+                width={120}
+                height={48}
+                priority
+                className="h-12 w-auto"
+              />
+            )}
           </Link>
 
           {/* Desktop Navigation */}
@@ -69,16 +81,20 @@ const Navbar = ({ items }: NavbarProps) => {
           </div>
 
           <div className="hidden lg:flex items-center space-x-3">
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="shadow-elegant">
-                Контакти
-              </Button>
-            </Link>
-            <Link href="/consultation">
-              <Button variant="secondary" size="lg">
-                Отримати консультацію
-              </Button>
-            </Link>
+            {ctaSecondary && (
+              <Link href={ctaSecondary.path}>
+                <Button variant="outline" size="lg" className="shadow-elegant">
+                  {ctaSecondary.label}
+                </Button>
+              </Link>
+            )}
+            {ctaPrimary && (
+              <Link href={ctaPrimary.path}>
+                 <Button variant="secondary" size="lg">
+                  {ctaPrimary.label}
+                 </Button>
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -112,16 +128,20 @@ const Navbar = ({ items }: NavbarProps) => {
                   {item.label}
                 </Link>
               ))}
-              <Link href="/contact" onClick={() => setIsOpen(false)}>
-                <Button variant="outline" size="lg" className="w-full mt-2 shadow-elegant">
-                  Контакти
-                </Button>
-              </Link>
-              <Link href="/consultation" onClick={() => setIsOpen(false)}>
-                <Button variant="secondary" size="lg" className="w-full mt-2">
-                  Консультація
-                </Button>
-              </Link>
+              {ctaSecondary && (
+                <Link href={ctaSecondary.path} onClick={() => setIsOpen(false)}>
+                  <Button variant="outline" size="lg" className="w-full mt-2 shadow-elegant">
+                    {ctaSecondary.label}
+                  </Button>
+                </Link>
+              )}
+              {ctaPrimary && (
+                 <Link href={ctaPrimary.path} onClick={() => setIsOpen(false)}>
+                  <Button variant="secondary" size="lg" className="w-full mt-2">
+                    {ctaPrimary.label}
+                  </Button>
+                </Link>
+              )}
             </div>
           </div>
         )}

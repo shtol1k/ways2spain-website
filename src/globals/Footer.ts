@@ -10,15 +10,7 @@ export const Footer: GlobalConfig = {
     read: () => true,
   },
   fields: [
-    {
-      name: 'enabled',
-      type: 'checkbox',
-      label: 'Enable Footer',
-      defaultValue: false,
-      admin: {
-        description: 'Check to display the footer on the website.',
-      },
-    },
+
     {
       name: 'logo',
       type: 'upload',
