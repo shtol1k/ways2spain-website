@@ -36,13 +36,7 @@ export const MainMenu: GlobalConfig = {
           required: true,
         },
       ],
-      admin: {
-        components: {
-          RowLabel: ({ data, index }) => {
-            return data?.label || `Item ${String(index).padStart(2, '0')}`
-          },
-        },
-      },
+
     },
     {
       type: 'row',
