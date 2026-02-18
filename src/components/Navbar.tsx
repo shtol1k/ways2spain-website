@@ -7,11 +7,20 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const Navbar = () => {
+interface NavItem {
+  path: string
+  label: string
+}
+
+interface NavbarProps {
+  items?: NavItem[]
+}
+
+const Navbar = ({ items }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const navItems = [
+  const defaultNavItems = [
     { path: "/", label: "Головна" },
     { path: "/visa", label: "Про візу" },
     { path: "/services", label: "Послуги" },
@@ -20,6 +29,8 @@ const Navbar = () => {
     { path: "/blog", label: "Блог" },
     { path: "/guides", label: "Гайди" },
   ];
+
+  const navItems = items && items.length > 0 ? items : defaultNavItems;
 
   const isActive = (path: string) =>
     pathname === path || (path !== "/" && pathname.startsWith(path));

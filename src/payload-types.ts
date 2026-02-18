@@ -112,10 +112,12 @@ export interface Config {
   globals: {
     'site-settings': SiteSetting;
     footer: Footer;
+    header: Header;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
     footer: FooterSelect<false> | FooterSelect<true>;
+    header: HeaderSelect<false> | HeaderSelect<true>;
   };
   locale: null;
   user: User & {
@@ -290,6 +292,10 @@ export interface Page {
     description?: string | null;
     image?: (number | null) | Media;
   };
+  /**
+   * If unchecked, this page will be hidden from public access and menus.
+   */
+  published?: boolean | null;
   updatedAt: string;
   createdAt: string;
   _status?: ('draft' | 'published') | null;
@@ -984,6 +990,7 @@ export interface PagesSelect<T extends boolean = true> {
         description?: T;
         image?: T;
       };
+  published?: T;
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
@@ -1316,6 +1323,26 @@ export interface Footer {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header".
+ */
+export interface Header {
+  id: number;
+  navItems?:
+    | {
+        label: string;
+        link: number | Page;
+        id?: string | null;
+      }[]
+    | null;
+  ctaButton?: {
+    label?: string | null;
+    link?: (number | null) | Page;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "site-settings_select".
  */
 export interface SiteSettingsSelect<T extends boolean = true> {
@@ -1353,6 +1380,28 @@ export interface FooterSelect<T extends boolean = true> {
         id?: T;
       };
   copyright?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "header_select".
+ */
+export interface HeaderSelect<T extends boolean = true> {
+  navItems?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        id?: T;
+      };
+  ctaButton?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

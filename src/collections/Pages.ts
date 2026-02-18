@@ -26,7 +26,19 @@ export const Pages: CollectionConfig = {
     drafts: true,
   },
   access: {
-    read: () => true,
+    read: ({ req: { user } }) => {
+      // If user is logged in, grant full access
+      if (user) {
+        return true
+      }
+      
+      // If not logged in, only return published pages
+      return {
+        published: {
+          equals: true,
+        },
+      }
+    },
   },
   fields: [
     {
@@ -118,6 +130,16 @@ export const Pages: CollectionConfig = {
           ],
         },
       ],
+    },
+    {
+      name: 'published',
+      type: 'checkbox',
+      label: 'Published',
+      defaultValue: true,
+      admin: {
+        position: 'sidebar',
+        description: 'If unchecked, this page will be hidden from public access and menus.',
+      },
     },
   ],
 }
