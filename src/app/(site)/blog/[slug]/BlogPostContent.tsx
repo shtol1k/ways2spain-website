@@ -11,6 +11,7 @@ import { AuthorCard } from "@/components/blog/AuthorCard";
 import { TableOfContents } from "@/components/blog/TableOfContents";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
+import { SmartImage } from "@/components/SmartImage";
 
 interface BlogPostContentProps {
   post: Post;
@@ -81,7 +82,17 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
             {/* LEFT COLUMN */}
             <div className="flex-1 min-w-0 flex flex-col gap-10">
               {/* Intro image */}
-              <div className="w-full aspect-1024/500 bg-muted rounded-2xl" />
+              <div className="relative w-full aspect-1024/500 rounded-2xl overflow-hidden bg-muted">
+                {post.featuredImage && typeof post.featuredImage !== "number" && post.featuredImage.url && (
+                  <SmartImage
+                    src={post.featuredImage.url}
+                    alt={post.featuredImage.alt || post.title}
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                )}
+              </div>
               {/* Article text */}
               {contentHtml ? (
                 <div
