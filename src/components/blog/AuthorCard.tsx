@@ -28,7 +28,7 @@ export interface AuthorCardAuthor {
 
 export interface AuthorCardProps {
   author: AuthorCardAuthor;
-  variant?: "full" | "compact";
+  variant?: "full" | "compact" | "sidebar";
   className?: string;
 }
 
@@ -47,20 +47,24 @@ export function AuthorCard({
     .slice(0, 2);
   const social = author.socialLinks;
 
+  const avatarSize = cn(
+    "shrink-0",
+    variant === "full"    && "h-20 w-20",
+    variant === "sidebar" && "h-20 w-20",
+    variant === "compact" && "h-16 w-16",
+  );
+
   const content = (
     <div
       className={cn(
-        "flex gap-4 rounded-xl border border-border bg-card p-6",
-        variant === "compact" && "p-4",
+        "flex border border-border bg-card",
+        variant === "full"    && "gap-4 rounded-xl p-6 items-start",
+        variant === "sidebar" && "gap-2 rounded-xl p-4 items-start",
+        variant === "compact" && "gap-4 rounded-2xl p-4 items-center",
         className
       )}
     >
-      <Avatar
-        className={cn(
-          "shrink-0",
-          variant === "full" ? "h-20 w-20" : "h-12 w-12"
-        )}
-      >
+      <Avatar className={avatarSize}>
         {photo?.url && (
           <AvatarImage src={photo.url} alt={photo.alt ?? author.name ?? ""} />
         )}
@@ -68,24 +72,24 @@ export function AuthorCard({
           {initials}
         </AvatarFallback>
       </Avatar>
-      <div className="min-w-0 flex-1">
+      <div className="min-w-0 flex-1 flex flex-col gap-1">
         <div className="flex flex-wrap items-center gap-2">
           {author.slug ? (
             <Link
               href={`/blog/author/${author.slug}`}
-              className="font-semibold color-content-primary hover:text-primary hover:underline"
+              className="font-bold color-content-primary hover:underline"
             >
               {author.name}
             </Link>
           ) : (
-            <span className="font-semibold color-content-primary">{author.name}</span>
-          )}
-          {author.role && (
-            <span className="text-body-small color-content-secondary">{author.role}</span>
+            <span className="font-bold color-content-primary">{author.name}</span>
           )}
         </div>
+        {author.role && (
+          <span className="text-sm color-content-tertiary">{author.role}</span>
+        )}
         {variant === "full" && author.bio && (
-          <p className="mt-2 text-body-small color-content-secondary">{author.bio}</p>
+          <p className="mt-1 text-body-small color-content-secondary">{author.bio}</p>
         )}
         {variant === "full" && social && (
           <div className="mt-3 flex flex-wrap gap-3">

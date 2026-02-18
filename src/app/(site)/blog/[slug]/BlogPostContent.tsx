@@ -1,34 +1,26 @@
 "use client";
 
-import { Clock, ArrowLeft, Share2 } from "lucide-react";
 import { Icon } from "@/components/ui/icons";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { format } from "date-fns";
 import { uk } from "date-fns/locale";
-import { SmartImage } from "@/components/SmartImage";
 import { Post } from "@/payload-types";
 import { BlogBreadcrumbs, type BlogBreadcrumbItem } from "@/components/blog/BlogBreadcrumbs";
-import { AuthorCard } from "@/components/blog/AuthorCard";
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
-import { TableOfContents } from "@/components/blog/TableOfContents";
 import { CategoryTag } from "@/components/blog/CategoryTag";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
+import { AuthorCard } from "@/components/blog/AuthorCard";
+import { TableOfContents } from "@/components/blog/TableOfContents";
+import { LatestArticles } from "@/components/blog/LatestArticles";
+import { RelatedArticles } from "@/components/blog/RelatedArticles";
 
 interface BlogPostContentProps {
   post: Post;
   contentHtml: string | null;
   relatedPosts: Post[];
+  latestPosts: Post[];
   breadcrumbItems?: BlogBreadcrumbItem[];
 }
 
-const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: BlogPostContentProps) => {
+const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcrumbItems }: BlogPostContentProps) => {
   return (
     <div className="min-h-screen pt-32 pb-20">
       <ReadingProgress />
@@ -82,51 +74,65 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
           </div>
         </header>
 
-        {/* Existing Content (pushed down) */}
+        {/* Main layout: two-column on desktop, single-column on tablet/mobile */}
+        <div className="max-w-screen-2xl mx-auto mt-10">
+          <div className="flex flex-col lg:flex-row gap-8 lg:items-start">
 
-        {/* Featured Image */}
-        <div className="max-w-5xl mx-auto mb-12">
-          <div className="h-96 md:h-[500px] bg-muted rounded-2xl flex items-center justify-center overflow-hidden relative">
-            {post.featuredImage && typeof post.featuredImage !== 'number' && post.featuredImage.url ? (
-              <SmartImage
-                src={post.featuredImage.url}
-                alt={post.featuredImage.alt || post.title}
-                fill
-                className="object-cover"
-                priority
-              />
-            ) : (
-              <span className="color-content-tertiary text-8xl">📄</span>
-            )}
-          </div>
-        </div>
-
-        {/* Content + ToC */}
-        <div className="max-w-5xl mx-auto grid lg:grid-cols-[1fr_200px] gap-12">
-          <div className="min-w-0">
-          {contentHtml ? (
-            <div
-              className="blog-content prose prose-lg dark:prose-invert max-w-none 
-              prose-headings:color-content-primary prose-headings:scroll-mt-24
-              prose-p:color-content-secondary prose-p:leading-relaxed
-              prose-a:color-content-brand prose-a:no-underline hover:prose-a:underline
-              prose-strong:color-content-primary
-              prose-ul:list-disc prose-ul:pl-6
-              prose-ol:list-decimal prose-ol:pl-6
-              prose-li:color-content-secondary
-              prose-img:rounded-xl prose-img:shadow-lg
-              prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:italic"
-              dangerouslySetInnerHTML={{ __html: contentHtml }}
-            />
-          ) : (
-            <div className="text-center py-10 color-content-tertiary text-body-base">
-              Контент не знайдено або він має неправильний формат.
+            {/* LEFT COLUMN */}
+            <div className="flex-1 min-w-0 flex flex-col gap-10">
+              {/* Intro image */}
+              <div className="w-full aspect-1024/500 bg-muted rounded-2xl" />
+              {/* Article text */}
+              {contentHtml ? (
+                <div
+                  className="blog-content prose prose-lg dark:prose-invert max-w-none
+                  prose-headings:color-content-primary prose-headings:scroll-mt-24
+                  prose-p:color-content-secondary prose-p:leading-relaxed
+                  prose-a:color-content-brand prose-a:no-underline hover:prose-a:underline
+                  prose-strong:color-content-primary
+                  prose-ul:list-disc prose-ul:pl-6
+                  prose-ol:list-decimal prose-ol:pl-6
+                  prose-li:color-content-secondary
+                  prose-img:rounded-xl prose-img:shadow-lg
+                  prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:italic"
+                  dangerouslySetInnerHTML={{ __html: contentHtml }}
+                />
+              ) : (
+                <div className="w-full min-h-96 bg-muted/60 rounded-xl" />
+              )}
+              {/* Related articles */}
+              <RelatedArticles posts={relatedPosts} />
             </div>
-          )}
 
-          {/* Author card */}
-          {post.author && typeof post.author !== "number" && (
-            <div className="mt-12">
+            {/* RIGHT SIDEBAR — desktop only */}
+            <aside className="hidden lg:flex lg:flex-col w-[280px] shrink-0 gap-6 sticky top-24">
+              {/* Author */}
+              {post.author && typeof post.author !== "number" && (
+                <AuthorCard
+                  author={{
+                    id: post.author.id,
+                    name: post.author.name ?? "",
+                    slug: post.author.slug ?? null,
+                    role: post.author.role ?? null,
+                    bio: post.author.bio ?? null,
+                    photo: post.author.photo ?? null,
+                    socialLinks: post.author.socialLinks ?? null,
+                  }}
+                  variant="sidebar"
+                />
+              )}
+              {/* Table of contents */}
+              <TableOfContents selector=".blog-content" />
+              {/* Latest articles */}
+              <LatestArticles posts={latestPosts} layout="sidebar" />
+            </aside>
+
+          </div>
+
+          {/* BELOW CONTENT — tablet/mobile only */}
+          <div className="lg:hidden flex flex-col gap-10 mt-10">
+            {/* Author */}
+            {post.author && typeof post.author !== "number" && (
               <AuthorCard
                 author={{
                   id: post.author.id,
@@ -139,64 +145,10 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, breadcrumbItems }: B
                 }}
                 variant="compact"
               />
-            </div>
-          )}
-
-          {/* Share buttons */}
-          <div className="mt-16 pt-8 border-t border-border">
-            <div className="flex items-center justify-between">
-              <h3 className="text-xl font-bold">Поділитися статтею</h3>
-              <Button variant="outline" size="sm" className="text-ui-btn-m">
-                <Share2 className="w-4 h-4 mr-2" />
-                Поділитися
-              </Button>
-            </div>
+            )}
+            {/* Latest articles */}
+            <LatestArticles posts={latestPosts} layout="below" />
           </div>
-
-          {/* Related posts carousel */}
-          {relatedPosts && relatedPosts.length > 0 && (
-            <div className="mt-16">
-              <h3 className="mb-8">Читайте також</h3>
-              <Carousel opts={{ align: "start", loop: true }} className="w-full">
-                <CarouselContent className="-ml-4">
-                  {relatedPosts.map((relatedPost) => (
-                    <CarouselItem key={relatedPost.id} className="pl-4 md:basis-1/2">
-                      <Link
-                        href={`/blog/${relatedPost.slug}`}
-                        className="bg-card rounded-xl border border-border p-6 hover:shadow-elegant transition-smooth flex flex-col h-full"
-                      >
-                        {relatedPost.category && typeof relatedPost.category !== "number" && (
-                          <span className="inline-block px-3 py-1 rounded-full bg-secondary/10 color-content-brand text-ui-label mb-3 w-fit">
-                            {relatedPost.category.name}
-                          </span>
-                        )}
-                        <h4 className="mb-2 hover:color-content-brand transition-smooth line-clamp-2">
-                          {relatedPost.title}
-                        </h4>
-                        <p className="color-content-secondary text-body-small mb-4 line-clamp-2 grow">
-                          {relatedPost.excerpt}
-                        </p>
-                        <div className="flex items-center text-body-extra-small color-content-tertiary mt-auto">
-                          <Clock className="w-4 h-4 mr-2" />
-                          <span>
-                            {relatedPost.readTime ? `${relatedPost.readTime} хв` : "3 хв"}
-                          </span>
-                        </div>
-                      </Link>
-                    </CarouselItem>
-                  ))}
-                </CarouselContent>
-                <CarouselPrevious className="hidden md:flex" />
-                <CarouselNext className="hidden md:flex" />
-              </Carousel>
-            </div>
-          )}
-          </div>
-          <aside className="hidden lg:block">
-            <div className="sticky top-24">
-              <TableOfContents selector=".blog-content" />
-            </div>
-          </aside>
         </div>
       </article>
     </div>

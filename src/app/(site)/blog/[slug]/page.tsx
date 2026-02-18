@@ -74,8 +74,16 @@ export default async function BlogPage({ params }: BlogPageProps) {
     }
   } catch (error) {
     console.error('Error fetching related posts:', error);
-    // Continue with empty array - related posts are non-critical
     relatedPosts = [];
+  }
+
+  // Fetch latest posts for sidebar / below-content block (always by date, exclude current)
+  let latestPosts = [];
+  try {
+    latestPosts = await getRecentPosts(4, post.id);
+  } catch (error) {
+    console.error('Error fetching latest posts:', error);
+    latestPosts = [];
   }
 
   // Serialize content to HTML if it's available in the special field
@@ -111,11 +119,12 @@ export default async function BlogPage({ params }: BlogPageProps) {
     <>
       <JsonLd data={[articleSchema, breadcrumbSchema, ...(personSchema ? [personSchema] : [])]} />
       <BlogPostContent
-      post={post}
-      contentHtml={contentHtml}
-      relatedPosts={relatedPosts}
-      breadcrumbItems={breadcrumbItems}
-    />
+        post={post}
+        contentHtml={contentHtml}
+        relatedPosts={relatedPosts}
+        latestPosts={latestPosts}
+        breadcrumbItems={breadcrumbItems}
+      />
     </>
   );
 }
