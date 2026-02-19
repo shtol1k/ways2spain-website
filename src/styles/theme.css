@@ -18,7 +18,7 @@
 
     /* Background Colors */
     --color-fill-primary: var(--color-white);
-    --color-fill-primary-hover: var(--slate-100);
+    --color-fill-primary-hover: var(--color-slate-100);
     --color-fill-secondary: var(--color-slate-100);
     --color-fill-tertiary: var(--color-slate-200);
     --color-fill-brand: var(--color-orange-600);
@@ -46,50 +46,22 @@
 
 }
 
-@layer utilities {
-  /* Utility Classes for Content Colors */
-  
-  .color-content-primary {
-    color: var(--content-primary);
-  }
+/* Content color utilities — registered via @utility to support Tailwind variants (hover:, focus:, etc.) */
 
-  .color-content-secondary {
-    color: var(--content-secondary);
-  }
+@utility color-content-primary   { color: var(--content-primary);   }
+@utility color-content-secondary { color: var(--content-secondary);  }
+@utility color-content-tertiary  { color: var(--content-tertiary);   }
+@utility color-content-disable   { color: var(--content-disable);    }
+@utility color-content-brand     { color: var(--content-brand);      }
+@utility color-content-link      { color: var(--content-link);       }
+@utility color-content-info      { color: var(--content-info);       }
+@utility color-content-notice    { color: var(--content-notice);     }
+@utility color-content-negative  { color: var(--content-negative);   }
+@utility color-content-positive  { color: var(--content-positive);   }
 
-  .color-content-tertiary {
-    color: var(--content-tertiary);
-  }
-
-  .color-content-disable {
-    color: var(--content-disable);
-  }
-
-  .color-content-brand {
-    color: var(--content-brand);
-  }
-
-  .color-content-link {
-    color: var(--content-link);
-  }
-
-  .color-content-info {
-    color: var(--content-info);
-  }
-
-  .color-content-notice {
-    color: var(--content-notice);
-  }
-
-  .color-content-negative {
-    color: var(--content-negative);
-  }
-
-  .color-content-positive {
-    color: var(--content-positive);
-  }
-
-  .hover-color-content-link:hover {
-    color: var(--content-link);
-  }
-}
+/* Background fill utilities */
+@utility bg-fill-primary         { background-color: var(--color-fill-primary);        }
+@utility bg-fill-primary-hover   { background-color: var(--color-fill-primary-hover);  }
+@utility bg-fill-secondary       { background-color: var(--color-fill-secondary);      }
+@utility bg-fill-tertiary        { background-color: var(--color-fill-tertiary);       }
+@utility bg-fill-brand           { background-color: var(--color-fill-brand);          }
