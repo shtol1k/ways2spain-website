@@ -110,7 +110,7 @@ export default async function SiteLayout({
           title="RSS Блог - Ways2Spain"
         />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
         <GoogleTagManagerBody />
         <Suspense fallback={null}>
           <LoadingBar />

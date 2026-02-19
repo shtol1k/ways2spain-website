@@ -31,7 +31,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
           {/* Top Row: Breadcrumbs + Share */}
           <div id="nav" className="flex items-center justify-between w-full h-5 md:h-10 mb-6">
             <div className="flex-1 min-w-0 md:mr-8 overflow-hidden">
-              {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} className="mb-0 [&>ol]:p-0 [&>ol]:m-0" /> : null}
+              {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} /> : null}
             </div>
             
             {/* Share Button Placeholder (Desktop/Tablet only) */}

@@ -107,7 +107,8 @@
       list-style-type: decimal;
     }
 
-    li {
+    .rich-text li,
+    .prose li {
       font-size: var(--text-base); /* 16px */
       line-height: var(--leading-6); /* 24px */
       font-weight: var(--font-weight-normal);
@@ -270,7 +271,8 @@
       list-style-type: decimal;
     }
 
-    li {
+    .rich-text li,
+    .prose li {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
@@ -433,7 +435,8 @@
       list-style-type: decimal;
     }
 
-    li {
+    .rich-text li,
+    .prose li {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
@@ -458,28 +461,24 @@
       font-size: var(--text-lg);
       line-height: var(--leading-7);
       font-weight: var(--font-weight-normal);
-      margin-bottom: 1.5rem; /* 24px */
     }
 
     .text-body-base {
       font-size: var(--text-base);
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
-      margin-bottom: 1.5rem; /* 24px */
     }
 
     .text-body-small {
       font-size: var(--text-sm);
       line-height: var(--leading-5);
       font-weight: var(--font-weight-normal);
-      margin-bottom: 1.5rem; /* 24px */
     }
 
     .text-body-extra-small {
       font-size: var(--text-xs);
       line-height: var(--leading-4);
       font-weight: var(--font-weight-normal);
-      margin-bottom: 1.5rem; /* 24px */
     }
 
     /* UI */

@@ -7,6 +7,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Icon } from "@/components/ui/icons";
 
 export interface BlogBreadcrumbItem {
   label: string;
@@ -22,13 +23,14 @@ export function BlogBreadcrumbs({ items, className }: BlogBreadcrumbsProps) {
   if (!items?.length) return null;
 
   return (
-    <Breadcrumb className={`mb-6 ${className || ''}`}>
+    <Breadcrumb className={className}>
       <BreadcrumbList>
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
+          const isSecondToLast = index === items.length - 2;
           return (
             <span key={index} className="contents">
-              <BreadcrumbItem>
+              <BreadcrumbItem className={isLast ? "hidden md:flex" : ""}>
                 {isLast ? (
                   <BreadcrumbPage>{item.label}</BreadcrumbPage>
                 ) : item.href ? (
@@ -39,7 +41,11 @@ export function BlogBreadcrumbs({ items, className }: BlogBreadcrumbsProps) {
                   <BreadcrumbPage>{item.label}</BreadcrumbPage>
                 )}
               </BreadcrumbItem>
-              {!isLast && <BreadcrumbSeparator />}
+              {!isLast && (
+                <BreadcrumbSeparator className={isSecondToLast ? "hidden md:flex" : ""}>
+                  <Icon name="angleRight" size="md" />
+                </BreadcrumbSeparator>
+              )}
             </span>
           );
         })}

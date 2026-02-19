@@ -1,9 +1,10 @@
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
-import { 
+import {
   faCalendar,
   faClock,
   faUser,
   faArrowRight,
+  faAngleRight,
   faGrip, // menu/layout-grid
   faXmark, // close/x
   faInfoCircle,
@@ -13,16 +14,17 @@ import {
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
 
 // Define a type for the registry that maps our internal names to FA icons
-export type IconName = 
-  | 'calendar' 
-  | 'clock' 
-  | 'user' 
-  | 'arrowRight' 
-  | 'menu' 
-  | 'close' 
-  | 'info' 
-  | 'success' 
-  | 'error' 
+export type IconName =
+  | 'calendar'
+  | 'clock'
+  | 'user'
+  | 'arrowRight'
+  | 'angleRight'
+  | 'menu'
+  | 'close'
+  | 'info'
+  | 'success'
+  | 'error'
   | 'warning'
   | 'share';
 
@@ -32,6 +34,7 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   clock: faClock,
   user: faUser,
   arrowRight: faArrowRight,
+  angleRight: faAngleRight,
   menu: faGrip,
   close: faXmark,
   info: faInfoCircle,

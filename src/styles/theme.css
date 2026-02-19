@@ -10,7 +10,7 @@
     --content-tertiary: var(--color-slate-500);
     --content-disable: var(--color-black);
     --content-brand: var(--color-orange-600);
-    --content-link: var(--color-black);
+    --content-link: var(--color-orange-600);
     --content-info: var(--color-sky-600);
     --content-notice: var(--color-yellow-600);
     --content-negative: var(--color-red-600);
@@ -28,8 +28,17 @@
     --color-fill-info: var(--color-sky-600);
     --color-fill-info-subtle: var(--color-sky-50);
     --color-fill-notice: var(--color-yellow-600);
-    --color-fill-notice-subtle: var(--color-yellow-50);
-    
+    --color-fill-notice-subtle: var(--color-yellow-50);    
+
+    /* Border Colors */
+    --color-border-primary: var(--color-slate-200);
+    --color-border-secondary: var(--color-slate-300);
+    --color-border-tertiary: var(--color-slate-400);
+    --color-border-brand: var(--color-orange-600);
+    --color-border-negative: var(--color-red-600);
+    --color-border-positive: var(--color-green-600);
+    --color-border-info: var(--color-sky-600);
+    --color-border-notice: var(--color-yellow-600);
   }
 
   /* Dark Theme (not used yet) */
@@ -77,5 +86,9 @@
 
   .color-content-positive {
     color: var(--content-positive);
+  }
+
+  .hover-color-content-link:hover {
+    color: var(--content-link);
   }
 }
