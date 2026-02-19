@@ -12,6 +12,8 @@ import { TableOfContents } from "@/components/blog/TableOfContents";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
 import { SmartImage } from "@/components/SmartImage";
+import { ShareButton } from "@/components/blog/ShareButton";
+import { getCanonicalUrl } from "@/lib/utils";
 
 interface BlogPostContentProps {
   post: Post;
@@ -34,8 +36,13 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
               {breadcrumbItems?.length ? <BlogBreadcrumbs items={breadcrumbItems} /> : null}
             </div>
             
-            {/* Share Button Placeholder (Desktop/Tablet only) */}
-            <div className="hidden md:block h-full w-32 bg-muted/50 rounded-md animate-pulse shrink-0" />
+            {/* Share Button (Desktop/Tablet only) */}
+            <div className="hidden md:block shrink-0">
+              <ShareButton
+                url={getCanonicalUrl(`/blog/${post.slug}`)}
+                title={post.title}
+              />
+            </div>
           </div>
 
           {/* Title Section */}
