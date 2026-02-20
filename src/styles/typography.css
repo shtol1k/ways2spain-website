@@ -483,8 +483,8 @@
 
     /* UI */
     .text-ui-nav {
-      font-size: var(--text-base);
-      line-height: var(--leading-none);
+      font-size: var(--text-sm);
+      line-height: var(--leading-5);
       font-weight: var(--font-weight-medium);
     }
 

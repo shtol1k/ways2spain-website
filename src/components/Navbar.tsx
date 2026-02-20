@@ -39,7 +39,7 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-md border-b border-border shadow-elegant">
       <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between h-20 lg:h-[72px] lg:justify-normal lg:gap-2 xl:h-20 xl:justify-between xl:gap-0">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
             {logo?.url ? (
@@ -49,15 +49,15 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
                 width={200}
                 height={48}
                 priority
-                className="h-12 w-auto"
+                className="h-12 w-auto lg:h-10 xl:h-12"
               />
             ) : (
-              <div className="bg-slate-200 rounded-sm h-12 w-[200px]" />
+              <div className="bg-slate-200 rounded-sm h-12 w-[200px] lg:h-10 lg:w-44 xl:h-12 xl:w-[200px]" />
             )}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-6">
+          <div className="hidden lg:flex items-center gap-4 flex-1 justify-center xl:flex-none xl:gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -66,24 +66,24 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
                   isActive(item.path)
                     ? "color-content-primary after:scale-x-100"
                     : "color-content-tertiary after:scale-x-0 hover:color-content-primary hover:after:scale-x-100"
-                }`}
+                } ${item.path === "/" ? "hidden xl:flex" : ""}`}
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center space-x-3">
+          <div className="hidden lg:flex items-center gap-2 xl:gap-3">
             {ctaSecondary && (
               <Link href={ctaSecondary.path}>
-                <Button variant="outline" size="lg" className="shadow-elegant">
+                <Button variant="outline" size="lg" className="shadow-elegant lg:h-10 lg:px-3 xl:h-12 xl:px-8">
                   {ctaSecondary.label}
                 </Button>
               </Link>
             )}
             {ctaPrimary && (
               <Link href={ctaPrimary.path}>
-                <Button variant="amber" size="lg">
+                <Button variant="amber" size="lg" className="lg:h-10 lg:px-3 xl:h-12 xl:px-8">
                   {ctaPrimary.label}
                 </Button>
               </Link>
