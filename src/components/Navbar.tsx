@@ -41,38 +41,31 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
       <div className="container mx-auto px-4 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex items-center shrink-0">
             {logo?.url ? (
-              <Image 
-                src={logo.url} 
-                alt={logo.alt || "Ways 2 Spain Logo"} 
-                width={120}
+              <Image
+                src={logo.url}
+                alt={logo.alt || "Ways 2 Spain Logo"}
+                width={200}
                 height={48}
                 priority
                 className="h-12 w-auto"
               />
             ) : (
-               <Image 
-                src="/logo.png" 
-                alt="Ways 2 Spain Logo" 
-                width={120}
-                height={48}
-                priority
-                className="h-12 w-auto"
-              />
+              <div className="bg-slate-200 rounded-sm h-12 w-[200px]" />
             )}
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 href={item.path}
-                className={`px-4 py-2 rounded-md text-sm font-medium transition-smooth ${
+                className={`relative h-10 flex items-center justify-center text-ui-nav transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 after:origin-left after:transition-transform after:duration-300 ${
                   isActive(item.path)
-                    ? "text-accent bg-muted"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                    ? "color-content-primary after:scale-x-100"
+                    : "color-content-tertiary after:scale-x-0 hover:color-content-primary hover:after:scale-x-100"
                 }`}
               >
                 {item.label}
@@ -90,9 +83,9 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
             )}
             {ctaPrimary && (
               <Link href={ctaPrimary.path}>
-                 <Button variant="secondary" size="lg">
+                <Button variant="amber" size="lg">
                   {ctaPrimary.label}
-                 </Button>
+                </Button>
               </Link>
             )}
           </div>
@@ -119,10 +112,10 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
                   key={item.path}
                   href={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-md text-sm font-medium transition-smooth ${
+                  className={`px-4 py-3 rounded-md text-ui-nav transition-colors duration-300 ${
                     isActive(item.path)
-                      ? "text-accent bg-muted"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      ? "color-content-primary border-l-2 border-amber-400"
+                      : "color-content-tertiary hover:color-content-primary hover:bg-muted/50"
                   }`}
                 >
                   {item.label}
@@ -136,8 +129,8 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
                 </Link>
               )}
               {ctaPrimary && (
-                 <Link href={ctaPrimary.path} onClick={() => setIsOpen(false)}>
-                  <Button variant="secondary" size="lg" className="w-full mt-2">
+                <Link href={ctaPrimary.path} onClick={() => setIsOpen(false)}>
+                  <Button variant="amber" size="lg" className="w-full mt-2">
                     {ctaPrimary.label}
                   </Button>
                 </Link>
