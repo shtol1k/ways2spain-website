@@ -133,7 +133,7 @@ const Footer = async () => {
 
   return (
     <footer className="bg-fill-primary-inverse py-16">
-      <div className="mx-auto w-full px-4 lg:px-8 lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
+      <div className="mx-auto w-full px-4 md:max-w-[768px] lg:px-8 lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
 
         {/* ── Desktop (lg+): 3-column layout ── */}
         <div className="hidden lg:flex gap-12 xl:gap-10 items-start mb-10">
@@ -188,9 +188,9 @@ const Footer = async () => {
           <div className="flex items-start gap-4">
             <div className="flex-1 flex flex-col gap-4 min-w-0">
               {logoUrl ? (
-                <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto self-start" />
+                <Image src={logoUrl} alt={logoAlt} width={200} height={48} className="h-12 w-auto self-start" />
               ) : (
-                <div className="bg-slate-700 h-10 w-[176px] rounded-sm" />
+                <div className="bg-slate-700 h-12 w-[200px] rounded-sm" />
               )}
               {subtitle}
             </div>
@@ -223,7 +223,7 @@ const Footer = async () => {
 
           {/* Service links then copyright (stacked at tablet) */}
           <div className="flex flex-col gap-4 text-sm">
-            <div className="flex flex-wrap gap-6 color-content-secondary-inverse">
+            <div className="flex gap-6 items-center color-content-secondary-inverse">
               {serviceLinks?.map((link, index) =>
                 renderServiceLink(link, index, "leading-5 color-content-secondary-inverse hover:underline hover:color-content-primary-inverse transition-colors duration-300")
               )}
