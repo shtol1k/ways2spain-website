@@ -10,7 +10,8 @@ import {
   faInfoCircle,
   faCheckCircle,
   faExclamationCircle, // warning/error
-  faShareNodes // share
+  faShareNodes, // share
+  faCookieBite // cookie consent
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
 import {
   faTelegram,
@@ -28,11 +29,13 @@ export type IconName =
   | 'angleRight'
   | 'menu'
   | 'close'
+  | 'xmark'
   | 'info'
   | 'success'
   | 'error'
   | 'warning'
   | 'share'
+  | 'cookieBite'
   | 'telegram'
   | 'instagram'
   | 'facebook'
@@ -47,11 +50,13 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   angleRight: faAngleRight,
   menu: faGrip,
   close: faXmark,
+  xmark: faXmark,
   info: faInfoCircle,
   success: faCheckCircle,
   error: faExclamationCircle,
   warning: faExclamationCircle,
   share: faShareNodes,
+  cookieBite: faCookieBite,
   // Social / brand icons
   telegram: faTelegram,
   instagram: faInstagram,

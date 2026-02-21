@@ -14,6 +14,7 @@ import Footer from '@/components/Footer'
 import LoadingBar from '@/components/LoadingBar'
 import { Toaster } from '@/components/ui/sonner'
 import { GoogleTagManagerHead, GoogleTagManagerBody } from '@/components/GoogleTagManager'
+import { CookieConsentBanner } from '@/components/CookieConsent'
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'],
@@ -127,6 +128,7 @@ export default async function SiteLayout({
           </main>
           <Footer />
           <Toaster />
+          <CookieConsentBanner />
         </div>
       </body>
     </html>
