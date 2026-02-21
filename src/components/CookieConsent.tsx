@@ -78,23 +78,41 @@ export function CookieConsentBanner() {
       {/* Banner */}
       <div
         className={cn(
-          'fixed bottom-0 inset-x-0 z-[60] flex justify-center items-end pb-4 px-4 sm:px-6',
+          'fixed bottom-0 inset-x-0 z-[60] flex justify-center items-end pb-6 px-4 sm:px-6',
           'transition-transform duration-500 ease-in-out',
           isVisible ? 'translate-y-0' : 'translate-y-[calc(100%+2rem)]',
         )}
         role="region"
         aria-label="Сповіщення про cookies"
       >
-        <div
-          className="relative w-full max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px] rounded-2xl overflow-hidden"
-          style={{
-            background: 'rgba(15, 23, 42, 0.88)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
-            boxShadow:
-              '0 -4px 20px rgba(0,0,0,0.12), 0 8px 32px rgba(0,0,0,0.28)',
-          }}
-        >
+        {/* Outer wrapper — relative anchor for the floating close button */}
+        <div className="relative w-full max-w-[640px] md:max-w-[768px] lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px]">
+
+          {/* Close button — center hangs at top-right corner of the card */}
+          <button
+            onClick={dismiss}
+            className="absolute -top-4 -right-4 z-10 w-8 h-8 rounded-full flex items-center justify-center text-white/60 hover:text-white/95 transition-colors cursor-pointer"
+            style={{ background: 'rgba(30, 41, 59, 0.72)' }}
+            aria-label="Закрити банер"
+          >
+            <Icon name="xmark" size="md" />
+          </button>
+
+          {/* Glass card */}
+          <div
+            className="relative rounded-2xl overflow-hidden"
+            style={{
+              background: 'rgba(30, 41, 59, 0.72)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              boxShadow:
+                '0 -4px 20px rgba(0,0,0,0.10), 0 8px 32px rgba(0,0,0,0.22)',
+              maskImage:
+                'radial-gradient(circle 18px at 100% 0px, transparent 17px, black 18px)',
+              WebkitMaskImage:
+                'radial-gradient(circle 18px at 100% 0px, transparent 17px, black 18px)',
+            }}
+          >
           {/* Noise overlay */}
           <div
             aria-hidden="true"
@@ -102,23 +120,14 @@ export function CookieConsentBanner() {
             style={{ backgroundImage: NOISE_BG, backgroundSize: '256px 256px' }}
           />
 
-          {/* Close button */}
-          <button
-            onClick={dismiss}
-            className="absolute top-3 right-3 text-white/50 hover:text-white/90 transition-colors cursor-pointer"
-            aria-label="Закрити банер"
-          >
-            <Icon name="xmark" size="lg" />
-          </button>
-
           {/* Content */}
-          <div className="relative px-5 py-5 sm:px-6 flex flex-col md:flex-row md:items-center gap-4 pr-10 md:pr-6">
+          <div className="relative px-5 py-5 sm:px-6 flex flex-col md:flex-row md:items-center gap-4">
             {/* Left: icon + text */}
             <div className="flex items-start gap-3 flex-1 min-w-0">
               <Icon
                 name="cookieBite"
                 size="xl"
-                className="text-amber-500 shrink-0 mt-0.5"
+                className="text-amber-400 shrink-0 mt-0.5"
               />
               <div className="min-w-0">
                 <h5 className="text-white/95 first:mt-0 mb-1">
@@ -159,12 +168,21 @@ export function CookieConsentBanner() {
               </Button>
             </div>
           </div>
-        </div>
+          </div>{/* /glass card */}
+        </div>{/* /outer wrapper */}
       </div>
 
       {/* Settings Dialog */}
       <Dialog open={settingsOpen} onOpenChange={setSettingsOpen}>
-        <DialogContent className="max-w-lg">
+        <DialogContent
+          className="max-w-lg"
+          style={
+            {
+              '--tw-enter-translate-x': '0%',
+              '--tw-exit-translate-x': '0%',
+            } as React.CSSProperties
+          }
+        >
           <DialogHeader>
             <DialogTitle>Налаштування cookies</DialogTitle>
             <DialogDescription>
