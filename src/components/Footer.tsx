@@ -238,7 +238,7 @@ const Footer = async () => {
           {/* Brand block */}
           <div className="flex flex-col gap-4">
             {logoUrl ? (
-              <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto" />
+              <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto self-start" />
             ) : (
               <div className="bg-slate-700 h-10 w-[176px] rounded-sm" />
             )}
