@@ -128,7 +128,7 @@ const Footer = async () => {
   );
 
   const subtitle = slogan ? (
-    <p className="color-content-secondary-inverse text-base leading-6">{slogan}</p>
+    <span className="text-body-base color-content-secondary-inverse block 2xl:max-w-[460px]">{slogan}</span>
   ) : null;
 
   return (
@@ -142,7 +142,7 @@ const Footer = async () => {
           <div className="flex-1 flex flex-col gap-4 min-w-0">
             {/* Logo */}
             {logoUrl ? (
-              <Image src={logoUrl} alt={logoAlt} width={200} height={48} className="h-12 w-auto" />
+              <Image src={logoUrl} alt={logoAlt} width={200} height={48} className="h-12 w-auto self-start" />
             ) : (
               <div className="bg-slate-700 h-12 w-[200px] rounded-sm" />
             )}
@@ -173,10 +173,10 @@ const Footer = async () => {
 
         {/* Desktop bottom bar */}
         <div className="hidden lg:flex items-center justify-between border-t border-white/10 pt-10 text-sm">
-          <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
+          <span className="text-body-small color-content-tertiary-inverse">{copyrightText}</span>
           <div className="flex gap-6 items-center color-content-secondary-inverse">
             {serviceLinks?.map((link, index) =>
-              renderServiceLink(link, index, "leading-5 whitespace-nowrap hover:color-content-primary-inverse transition-colors duration-300")
+              renderServiceLink(link, index, "leading-5 whitespace-nowrap color-content-secondary-inverse hover:underline hover:color-content-primary-inverse transition-colors duration-300")
             )}
           </div>
         </div>
@@ -188,7 +188,7 @@ const Footer = async () => {
           <div className="flex items-start gap-4">
             <div className="flex-1 flex flex-col gap-4 min-w-0">
               {logoUrl ? (
-                <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto" />
+                <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto self-start" />
               ) : (
                 <div className="bg-slate-700 h-10 w-[176px] rounded-sm" />
               )}
@@ -225,10 +225,10 @@ const Footer = async () => {
           <div className="flex flex-col gap-4 text-sm">
             <div className="flex flex-wrap gap-6 color-content-secondary-inverse">
               {serviceLinks?.map((link, index) =>
-                renderServiceLink(link, index, "leading-5 hover:color-content-primary-inverse transition-colors duration-300")
+                renderServiceLink(link, index, "leading-5 color-content-secondary-inverse hover:underline hover:color-content-primary-inverse transition-colors duration-300")
               )}
             </div>
-            <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
+            <span className="text-body-small color-content-tertiary-inverse">{copyrightText}</span>
           </div>
         </div>
 
@@ -272,10 +272,10 @@ const Footer = async () => {
           <div className="flex flex-col gap-6 text-sm">
             <div className="flex flex-col gap-6 color-content-secondary-inverse">
               {serviceLinks?.map((link, index) =>
-                renderServiceLink(link, index, "leading-5 hover:color-content-primary-inverse transition-colors duration-300")
+                renderServiceLink(link, index, "leading-5 color-content-secondary-inverse hover:underline hover:color-content-primary-inverse transition-colors duration-300")
               )}
             </div>
-            <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
+            <span className="text-body-small color-content-tertiary-inverse">{copyrightText}</span>
           </div>
         </div>
 
