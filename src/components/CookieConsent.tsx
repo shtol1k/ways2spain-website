@@ -78,7 +78,7 @@ export function CookieConsentBanner() {
       {/* Banner */}
       <div
         className={cn(
-          'fixed bottom-0 inset-x-0 z-[60] flex justify-center items-end pb-6 px-4 sm:px-6',
+          'fixed bottom-0 inset-x-0 z-60 flex justify-center items-end pb-6 px-4 sm:px-6',
           'transition-transform duration-500 ease-in-out',
           isVisible ? 'translate-y-0' : 'translate-y-[calc(100%+2rem)]',
         )}
