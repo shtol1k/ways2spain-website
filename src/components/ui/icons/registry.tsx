@@ -12,6 +12,12 @@ import {
   faExclamationCircle, // warning/error
   faShareNodes // share
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
+import {
+  faTelegram,
+  faInstagram,
+  faFacebook,
+  faXTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 
 // Define a type for the registry that maps our internal names to FA icons
 export type IconName =
@@ -26,7 +32,11 @@ export type IconName =
   | 'success'
   | 'error'
   | 'warning'
-  | 'share';
+  | 'share'
+  | 'telegram'
+  | 'instagram'
+  | 'facebook'
+  | 'xTwitter';
 
 export const iconsRegistry: Record<IconName, IconDefinition> = {
   // Mapping internal names to Font Awesome icons
@@ -41,5 +51,10 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   success: faCheckCircle,
   error: faExclamationCircle,
   warning: faExclamationCircle,
-  share: faShareNodes
+  share: faShareNodes,
+  // Social / brand icons
+  telegram: faTelegram,
+  instagram: faInstagram,
+  facebook: faFacebook,
+  xTwitter: faXTwitter,
 };

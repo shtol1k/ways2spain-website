@@ -1306,9 +1306,27 @@ export interface Footer {
         id?: string | null;
       }[]
     | null;
+  resourceItems?:
+    | {
+        label: string;
+        link?: (number | null) | Page;
+        /**
+         * Use this only if not linking to an internal page.
+         */
+        externalLink?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   socialLinks?:
     | {
-        platform: 'facebook' | 'instagram' | 'twitter' | 'linkedin' | 'youtube' | 'telegram' | 'tiktok';
+        platform: 'facebook' | 'instagram' | 'xTwitter' | 'twitter' | 'linkedin' | 'youtube' | 'telegram' | 'tiktok';
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  serviceLinks?:
+    | {
+        label: string;
         url: string;
         id?: string | null;
       }[]
@@ -1372,10 +1390,25 @@ export interface FooterSelect<T extends boolean = true> {
         externalLink?: T;
         id?: T;
       };
+  resourceItems?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        externalLink?: T;
+        id?: T;
+      };
   socialLinks?:
     | T
     | {
         platform?: T;
+        url?: T;
+        id?: T;
+      };
+  serviceLinks?:
+    | T
+    | {
+        label?: T;
         url?: T;
         id?: T;
       };

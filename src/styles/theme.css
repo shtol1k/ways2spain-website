@@ -6,8 +6,11 @@
 
     /* Content Colors (Text & Icons) */
     --content-primary: var(--color-slate-900);
+    --content-primary-inverse: var(--color-white);
     --content-secondary: var(--color-slate-600);
+    --content-secondary-inverse: var(--color-slate-300);
     --content-tertiary: var(--color-slate-500);
+    --content-tertiary-inverse: var(--color-slate-400);
     --content-disable: var(--color-black);
     --content-brand: var(--color-orange-600);
     --content-link: var(--color-orange-600);
@@ -19,8 +22,10 @@
     /* Background Colors */
     --color-fill-primary: var(--color-white);
     --color-fill-primary-hover: var(--color-slate-100);
+    --color-fill-primary-inverse: var(--color-slate-800);
     --color-fill-secondary: var(--color-slate-100);
     --color-fill-tertiary: var(--color-slate-200);
+    --color-fill-tertiary-inverse: var(--color-slate-600);
     --color-fill-brand: var(--color-orange-600);
     --color-fill-negative: var(--color-red-600);
     --color-fill-negative-subtle: var(--color-red-50);
@@ -59,9 +64,15 @@
 @utility color-content-negative  { color: var(--content-negative);   }
 @utility color-content-positive  { color: var(--content-positive);   }
 
+/* Inverse content color utilities (for use on dark backgrounds) */
+@utility color-content-primary-inverse   { color: var(--content-primary-inverse);   }
+@utility color-content-secondary-inverse { color: var(--content-secondary-inverse); }
+@utility color-content-tertiary-inverse  { color: var(--content-tertiary-inverse);  }
+
 /* Background fill utilities */
-@utility bg-fill-primary         { background-color: var(--color-fill-primary);        }
-@utility bg-fill-primary-hover   { background-color: var(--color-fill-primary-hover);  }
-@utility bg-fill-secondary       { background-color: var(--color-fill-secondary);      }
-@utility bg-fill-tertiary        { background-color: var(--color-fill-tertiary);       }
-@utility bg-fill-brand           { background-color: var(--color-fill-brand);          }
+@utility bg-fill-primary         { background-color: var(--color-fill-primary);         }
+@utility bg-fill-primary-hover   { background-color: var(--color-fill-primary-hover);   }
+@utility bg-fill-primary-inverse { background-color: var(--color-fill-primary-inverse); }
+@utility bg-fill-secondary       { background-color: var(--color-fill-secondary);       }
+@utility bg-fill-tertiary        { background-color: var(--color-fill-tertiary);        }
+@utility bg-fill-brand           { background-color: var(--color-fill-brand);           }

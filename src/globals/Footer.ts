@@ -46,6 +46,34 @@ export const Footer: GlobalConfig = {
       ],
     },
     {
+      name: 'resourceItems',
+      type: 'array',
+      label: 'Resource Items',
+      maxRows: 8,
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+          label: 'Label',
+        },
+        {
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'pages',
+          label: 'Page Link',
+        },
+        {
+          name: 'externalLink',
+          type: 'text',
+          label: 'External Link (Optional)',
+          admin: {
+            description: 'Use this only if not linking to an internal page.',
+          },
+        },
+      ],
+    },
+    {
       name: 'socialLinks',
       type: 'array',
       label: 'Social Media Links',
@@ -57,13 +85,34 @@ export const Footer: GlobalConfig = {
           options: [
             { label: 'Facebook', value: 'facebook' },
             { label: 'Instagram', value: 'instagram' },
-            { label: 'Twitter', value: 'twitter' },
+            { label: 'X (Twitter)', value: 'xTwitter' },
+            { label: 'Twitter (legacy)', value: 'twitter' },
             { label: 'LinkedIn', value: 'linkedin' },
             { label: 'YouTube', value: 'youtube' },
             { label: 'Telegram', value: 'telegram' },
             { label: 'TikTok', value: 'tiktok' },
           ],
           required: true,
+        },
+        {
+          name: 'url',
+          type: 'text',
+          label: 'URL',
+          required: true,
+        },
+      ],
+    },
+    {
+      name: 'serviceLinks',
+      type: 'array',
+      label: 'Service Links (bottom bar)',
+      maxRows: 6,
+      fields: [
+        {
+          name: 'label',
+          type: 'text',
+          required: true,
+          label: 'Label',
         },
         {
           name: 'url',

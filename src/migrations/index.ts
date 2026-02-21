@@ -27,47 +27,48 @@ import * as migration_20260210_191200_hero_cta_unified_group from './20260210_19
 import * as migration_20260211_132543 from './20260211_132543';
 import * as migration_20260218_135917 from './20260218_135917';
 import * as migration_20260218_152352 from './20260218_152352';
+import * as migration_20260220_222929 from './20260220_222929';
 
 export const migrations = [
   {
     up: migration_20260202_120000_rollback_folder_system.up,
     down: migration_20260202_120000_rollback_folder_system.down,
-    name: '20260202_120000_rollback-folder-system',
+    name: '20260202_120000_rollback_folder_system',
   },
   {
     up: migration_20260202_120100_fix_empty_size_urls.up,
     down: migration_20260202_120100_fix_empty_size_urls.down,
-    name: '20260202_120100_fix-empty-size-urls',
+    name: '20260202_120100_fix_empty_size_urls',
   },
   {
     up: migration_20260202_140000_add_folders_support.up,
     down: migration_20260202_140000_add_folders_support.down,
-    name: '20260202_140000_add-folders-support',
+    name: '20260202_140000_add_folders_support',
   },
   {
     up: migration_20260202_150000_add_folders_to_locked_docs.up,
     down: migration_20260202_150000_add_folders_to_locked_docs.down,
-    name: '20260202_150000_add-folders-to-locked-docs',
+    name: '20260202_150000_add_folders_to_locked_docs',
   },
   {
     up: migration_20260203_180000_create_categories_table.up,
     down: migration_20260203_180000_create_categories_table.down,
-    name: '20260203_180000_create-categories-table',
+    name: '20260203_180000_create_categories_table',
   },
   {
     up: migration_20260203_180100_seed_blog_categories.up,
     down: migration_20260203_180100_seed_blog_categories.down,
-    name: '20260203_180100_seed-blog-categories',
+    name: '20260203_180100_seed_blog_categories',
   },
   {
     up: migration_20260203_180200_add_categories_to_locked_docs.up,
     down: migration_20260203_180200_add_categories_to_locked_docs.down,
-    name: '20260203_180200_add-categories-to-locked-docs',
+    name: '20260203_180200_add_categories_to_locked_docs',
   },
   {
     up: migration_20260203_180300_remove_categories_locales.up,
     down: migration_20260203_180300_remove_categories_locales.down,
-    name: '20260203_180300_remove-categories-locales',
+    name: '20260203_180300_remove_categories_locales',
   },
   {
     up: migration_20260203_204436.up,
@@ -82,12 +83,12 @@ export const migrations = [
   {
     up: migration_20260203_212300_create_tags_table.up,
     down: migration_20260203_212300_create_tags_table.down,
-    name: '20260203_212300_create-tags-table',
+    name: '20260203_212300_create_tags_table',
   },
   {
     up: migration_20260203_213800_create_authors_table.up,
     down: migration_20260203_213800_create_authors_table.down,
-    name: '20260203_213800_create-authors-table',
+    name: '20260203_213800_create_authors_table',
   },
   {
     up: migration_20260204_114317.up,
@@ -172,6 +173,11 @@ export const migrations = [
   {
     up: migration_20260218_152352.up,
     down: migration_20260218_152352.down,
-    name: '20260218_152352'
+    name: '20260218_152352',
+  },
+  {
+    up: migration_20260220_222929.up,
+    down: migration_20260220_222929.down,
+    name: '20260220_222929'
   },
 ];
