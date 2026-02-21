@@ -111,13 +111,13 @@ export interface Config {
   fallbackLocale: null;
   globals: {
     'site-settings': SiteSetting;
-    footer: Footer;
     'main-menu': MainMenu;
+    footer: Footer;
   };
   globalsSelect: {
     'site-settings': SiteSettingsSelect<false> | SiteSettingsSelect<true>;
-    footer: FooterSelect<false> | FooterSelect<true>;
     'main-menu': MainMenuSelect<false> | MainMenuSelect<true>;
+    footer: FooterSelect<false> | FooterSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1290,11 +1290,40 @@ export interface SiteSetting {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "main-menu".
+ */
+export interface MainMenu {
+  id: number;
+  logo?: (number | null) | Media;
+  navItems?:
+    | {
+        label: string;
+        link: number | Page;
+        id?: string | null;
+      }[]
+    | null;
+  ctaPrimary?: {
+    label?: string | null;
+    link?: (number | null) | Page;
+  };
+  ctaSecondary?: {
+    label?: string | null;
+    link?: (number | null) | Page;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "footer".
  */
 export interface Footer {
   id: number;
   logo?: (number | null) | Media;
+  /**
+   * Text displayed below the logo in the footer.
+   */
+  slogan?: string | null;
   navItems?:
     | {
         label: string;
@@ -1327,36 +1356,15 @@ export interface Footer {
   serviceLinks?:
     | {
         label: string;
-        url: string;
+        link?: (number | null) | Page;
+        /**
+         * Use this only if not linking to an internal page.
+         */
+        externalLink?: string | null;
         id?: string | null;
       }[]
     | null;
   copyright?: string | null;
-  updatedAt?: string | null;
-  createdAt?: string | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "main-menu".
- */
-export interface MainMenu {
-  id: number;
-  logo?: (number | null) | Media;
-  navItems?:
-    | {
-        label: string;
-        link: number | Page;
-        id?: string | null;
-      }[]
-    | null;
-  ctaPrimary?: {
-    label?: string | null;
-    link?: (number | null) | Page;
-  };
-  ctaSecondary?: {
-    label?: string | null;
-    link?: (number | null) | Page;
-  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1372,47 +1380,6 @@ export interface SiteSettingsSelect<T extends boolean = true> {
         title?: T;
         description?: T;
       };
-  updatedAt?: T;
-  createdAt?: T;
-  globalType?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "footer_select".
- */
-export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
-  navItems?:
-    | T
-    | {
-        label?: T;
-        link?: T;
-        externalLink?: T;
-        id?: T;
-      };
-  resourceItems?:
-    | T
-    | {
-        label?: T;
-        link?: T;
-        externalLink?: T;
-        id?: T;
-      };
-  socialLinks?:
-    | T
-    | {
-        platform?: T;
-        url?: T;
-        id?: T;
-      };
-  serviceLinks?:
-    | T
-    | {
-        label?: T;
-        url?: T;
-        id?: T;
-      };
-  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
@@ -1442,6 +1409,49 @@ export interface MainMenuSelect<T extends boolean = true> {
         label?: T;
         link?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "footer_select".
+ */
+export interface FooterSelect<T extends boolean = true> {
+  logo?: T;
+  slogan?: T;
+  navItems?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        externalLink?: T;
+        id?: T;
+      };
+  resourceItems?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        externalLink?: T;
+        id?: T;
+      };
+  socialLinks?:
+    | T
+    | {
+        platform?: T;
+        url?: T;
+        id?: T;
+      };
+  serviceLinks?:
+    | T
+    | {
+        label?: T;
+        link?: T;
+        externalLink?: T;
+        id?: T;
+      };
+  copyright?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

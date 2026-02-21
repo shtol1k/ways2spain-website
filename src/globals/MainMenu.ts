@@ -4,7 +4,7 @@ export const MainMenu: GlobalConfig = {
   slug: 'main-menu',
   label: 'Main Menu',
   admin: {
-    group: 'Layout',
+    group: 'Structure',
   },
   access: {
     read: () => true,

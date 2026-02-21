@@ -4,13 +4,12 @@ export const Footer: GlobalConfig = {
   slug: 'footer',
   label: 'Footer',
   admin: {
-    group: 'Layout',
+    group: 'Structure',
   },
   access: {
     read: () => true,
   },
   fields: [
-
     {
       name: 'logo',
       type: 'upload',
@@ -18,16 +17,30 @@ export const Footer: GlobalConfig = {
       label: 'Footer Logo',
     },
     {
+      name: 'slogan',
+      type: 'textarea',
+      label: 'Slogan',
+      admin: {
+        description: 'Text displayed below the logo in the footer.',
+      },
+    },
+    {
       name: 'navItems',
       type: 'array',
       label: 'Navigation Items',
       maxRows: 6,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/admin/FooterRowLabels#LabelRowLabel',
+        },
+      },
       fields: [
         {
           name: 'label',
           type: 'text',
           required: true,
-          label: 'Label',
+          label: 'Title',
         },
         {
           name: 'link',
@@ -50,12 +63,18 @@ export const Footer: GlobalConfig = {
       type: 'array',
       label: 'Resource Items',
       maxRows: 8,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/admin/FooterRowLabels#LabelRowLabel',
+        },
+      },
       fields: [
         {
           name: 'label',
           type: 'text',
           required: true,
-          label: 'Label',
+          label: 'Title',
         },
         {
           name: 'link',
@@ -77,6 +96,12 @@ export const Footer: GlobalConfig = {
       name: 'socialLinks',
       type: 'array',
       label: 'Social Media Links',
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/admin/FooterRowLabels#PlatformRowLabel',
+        },
+      },
       fields: [
         {
           name: 'platform',
@@ -105,20 +130,34 @@ export const Footer: GlobalConfig = {
     {
       name: 'serviceLinks',
       type: 'array',
-      label: 'Service Links (bottom bar)',
+      label: 'Service Links',
       maxRows: 6,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/admin/FooterRowLabels#LabelRowLabel',
+        },
+      },
       fields: [
         {
           name: 'label',
           type: 'text',
           required: true,
-          label: 'Label',
+          label: 'Title',
         },
         {
-          name: 'url',
+          name: 'link',
+          type: 'relationship',
+          relationTo: 'pages',
+          label: 'Page Link',
+        },
+        {
+          name: 'externalLink',
           type: 'text',
-          label: 'URL',
-          required: true,
+          label: 'External Link (Optional)',
+          admin: {
+            description: 'Use this only if not linking to an internal page.',
+          },
         },
       ],
     },

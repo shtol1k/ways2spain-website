@@ -13,7 +13,7 @@ export const Pages: CollectionConfig = {
   admin: {
     useAsTitle: 'title',
     defaultColumns: ['title', 'slug', 'updatedAt'],
-    group: 'Layout',
+    group: 'Structure',
     livePreview: {
       url: ({ data }) => {
         const path = data.slug !== 'home' ? `/${data.slug}` : '/'

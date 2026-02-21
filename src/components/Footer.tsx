@@ -31,7 +31,34 @@ const footerLinkClass = [
 ].join(" ");
 
 type NavItem = { label: string; link?: unknown; externalLink?: string | null };
-type ServiceLink = { label: string; url: string };
+type ServiceLink = { label: string; link?: unknown; externalLink?: string | null; url?: string | null };
+
+function resolveHref(item: { link?: unknown; externalLink?: string | null; url?: string | null }) {
+  const page =
+    item.link && typeof item.link !== "string"
+      ? (item.link as { slug?: string })
+      : null;
+  if (page) return page.slug === "home" ? "/" : `/${page.slug}`;
+  return item.externalLink || item.url || "#";
+}
+
+function renderServiceLink(
+  item: ServiceLink,
+  index: number,
+  className: string,
+) {
+  const href = resolveHref(item);
+  const isInternal = !!(item.link && typeof item.link !== "string");
+  return isInternal ? (
+    <Link key={index} href={href} className={className}>
+      {item.label}
+    </Link>
+  ) : (
+    <a key={index} href={href} className={className}>
+      {item.label}
+    </a>
+  );
+}
 
 function renderNavItem(item: NavItem, index: number, user: unknown) {
   const page =
@@ -70,6 +97,7 @@ const Footer = async () => {
   const footerData = await payload.findGlobal({ slug: "footer", depth: 1 });
 
   const { logo, navItems, socialLinks, copyright } = footerData;
+  const slogan = (footerData as any).slogan as string | null;
   const resourceItems = (footerData as any).resourceItems as NavItem[] | null;
   const serviceLinks = (footerData as any).serviceLinks as ServiceLink[] | null;
 
@@ -99,11 +127,9 @@ const Footer = async () => {
     </div>
   );
 
-  const subtitle = (
-    <p className="color-content-secondary-inverse text-base leading-6">
-      Допомагаємо віддаленим спеціалістам з родинами жити і працювати в Іспанії з Digital Nomad Visa.
-    </p>
-  );
+  const subtitle = slogan ? (
+    <p className="color-content-secondary-inverse text-base leading-6">{slogan}</p>
+  ) : null;
 
   return (
     <footer className="bg-fill-primary-inverse py-16">
@@ -149,15 +175,9 @@ const Footer = async () => {
         <div className="hidden lg:flex items-center justify-between border-t border-white/10 pt-10 text-sm">
           <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
           <div className="flex gap-6 items-center color-content-secondary-inverse">
-            {serviceLinks?.map((link, index) => (
-              <a
-                key={index}
-                href={link.url}
-                className="leading-5 whitespace-nowrap hover:color-content-primary-inverse transition-colors duration-300"
-              >
-                {link.label}
-              </a>
-            ))}
+            {serviceLinks?.map((link, index) =>
+              renderServiceLink(link, index, "leading-5 whitespace-nowrap hover:color-content-primary-inverse transition-colors duration-300")
+            )}
           </div>
         </div>
 
@@ -204,15 +224,9 @@ const Footer = async () => {
           {/* Service links then copyright (stacked at tablet) */}
           <div className="flex flex-col gap-4 text-sm">
             <div className="flex flex-wrap gap-6 color-content-secondary-inverse">
-              {serviceLinks?.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  className="leading-5 hover:color-content-primary-inverse transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {serviceLinks?.map((link, index) =>
+                renderServiceLink(link, index, "leading-5 hover:color-content-primary-inverse transition-colors duration-300")
+              )}
             </div>
             <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
           </div>
@@ -257,15 +271,9 @@ const Footer = async () => {
           {/* Service links + copyright */}
           <div className="flex flex-col gap-6 text-sm">
             <div className="flex flex-col gap-6 color-content-secondary-inverse">
-              {serviceLinks?.map((link, index) => (
-                <a
-                  key={index}
-                  href={link.url}
-                  className="leading-5 hover:color-content-primary-inverse transition-colors duration-300"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {serviceLinks?.map((link, index) =>
+                renderServiceLink(link, index, "leading-5 hover:color-content-primary-inverse transition-colors duration-300")
+              )}
             </div>
             <p className="color-content-tertiary-inverse leading-5">{copyrightText}</p>
           </div>

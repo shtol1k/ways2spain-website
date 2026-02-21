@@ -86,8 +86,8 @@ export default buildConfig({
   // Globals
   globals: [
     SiteSettings,
-    Footer,
     MainMenu,
+    Footer,
   ],
 
   // Collections — ordered by sidebar group appearance
