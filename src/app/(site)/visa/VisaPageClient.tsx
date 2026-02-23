@@ -19,7 +19,7 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
   })
 
   return (
-    <div className="min-h-screen pt-32 pb-20">
+    <div className="min-h-screen pb-20">
       <div className="container mx-auto px-4 lg:px-8">
         {/* Header - Connected to Live Preview */}
         {data.layout && Array.isArray(data.layout) && data.layout.length > 0 && (
