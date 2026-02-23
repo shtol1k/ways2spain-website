@@ -1,5 +1,4 @@
 
-import Testimonials from '@/components/Testimonials'
 import ProcessSection from '@/components/ProcessSection'
 import CTASection from '@/components/CTASection'
 import { JsonLd } from '@/components/JsonLd'
@@ -127,7 +126,6 @@ export default async function HomePage() {
         )}
 
 
-        <Testimonials />
         <ProcessSection />
         <CTASection />
       </div>

@@ -3,11 +3,13 @@ import { Page } from '@/payload-types'
 import { PageHeaderBlock } from './PageHeaderBlock'
 import { HeroBlock } from './HeroBlock'
 import { FeaturesBlock } from './FeaturesBlock'
+import { TestimonialsBlock } from './TestimonialsBlock'
 
 const blockComponents = {
   pageHeader: PageHeaderBlock,
   hero: HeroBlock,
   features: FeaturesBlock,
+  testimonials: TestimonialsBlock,
 }
 
 export const RenderBlocks: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {

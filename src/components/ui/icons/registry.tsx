@@ -18,6 +18,7 @@ import {
   faInstagram,
   faFacebook,
   faXTwitter,
+  faLinkedin,
 } from '@fortawesome/free-brands-svg-icons';
 
 // Define a type for the registry that maps our internal names to FA icons
@@ -39,7 +40,8 @@ export type IconName =
   | 'telegram'
   | 'instagram'
   | 'facebook'
-  | 'xTwitter';
+  | 'xTwitter'
+  | 'linkedin';
 
 export const iconsRegistry: Record<IconName, IconDefinition> = {
   // Mapping internal names to Font Awesome icons
@@ -62,4 +64,5 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   instagram: faInstagram,
   facebook: faFacebook,
   xTwitter: faXTwitter,
+  linkedin: faLinkedin,
 };

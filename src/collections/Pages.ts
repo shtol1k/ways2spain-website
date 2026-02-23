@@ -2,6 +2,7 @@ import { CollectionConfig } from 'payload'
 import { PageHeaderBlock } from '../blocks/PageHeaderBlock'
 import { HeroBlock } from '../blocks/HeroBlock'
 import { FeaturesBlock } from '../blocks/FeaturesBlock'
+import { TestimonialsBlock } from '../blocks/TestimonialsBlock'
 import { revalidatePage } from '../hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
@@ -82,6 +83,7 @@ export const Pages: CollectionConfig = {
                 PageHeaderBlock,
                 HeroBlock,
                 FeaturesBlock,
+                TestimonialsBlock,
               ],
               // Limit Hero block to maximum 1 per page
               validate: (value) => {

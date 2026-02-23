@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import { FacebookIcon, LinkedInIcon } from "@/components/ui/social-icons";
+import { Icon } from "@/components/ui/icons";
 
 // Testimonial interface
 export interface Testimonial {
@@ -18,8 +18,11 @@ export interface Testimonial {
   title: string;
   testimonial: string;
   date: string;
-  facebook?: string;
   linkedin?: string;
+  facebook?: string;
+  xTwitter?: string;
+  instagram?: string;
+  telegram?: string;
   photo?: string;
 }
 
@@ -76,7 +79,7 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
                             className="text-muted-foreground hover:text-primary transition-smooth"
                             aria-label="LinkedIn"
                           >
-                            <LinkedInIcon />
+                            <Icon name="linkedin" size="lg" />
                           </a>
                         )}
                         {testimonial.facebook && (
@@ -87,7 +90,40 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
                             className="text-muted-foreground hover:text-primary transition-smooth"
                             aria-label="Facebook"
                           >
-                            <FacebookIcon />
+                            <Icon name="facebook" size="lg" />
+                          </a>
+                        )}
+                        {testimonial.xTwitter && (
+                          <a
+                            href={testimonial.xTwitter}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-primary transition-smooth"
+                            aria-label="X (Twitter)"
+                          >
+                            <Icon name="xTwitter" size="lg" />
+                          </a>
+                        )}
+                        {testimonial.instagram && (
+                          <a
+                            href={testimonial.instagram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-primary transition-smooth"
+                            aria-label="Instagram"
+                          >
+                            <Icon name="instagram" size="lg" />
+                          </a>
+                        )}
+                        {testimonial.telegram && (
+                          <a
+                            href={testimonial.telegram}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-muted-foreground hover:text-primary transition-smooth"
+                            aria-label="Telegram"
+                          >
+                            <Icon name="telegram" size="lg" />
                           </a>
                         )}
                       </div>
@@ -100,8 +136,8 @@ export function TestimonialsCarousel({ testimonials }: TestimonialsCarouselProps
                   </p>
 
                   {/* Date */}
-                  <time 
-                    className="text-sm text-muted-foreground mt-4 block" 
+                  <time
+                    className="text-sm text-muted-foreground mt-4 block"
                     dateTime={testimonial.date}
                   >
                     {new Date(testimonial.date).toLocaleDateString('uk-UA', {

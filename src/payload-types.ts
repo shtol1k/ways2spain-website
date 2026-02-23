@@ -75,7 +75,6 @@ export interface Config {
     tags: Tag;
     guides: Guide;
     'guide-categories': GuideCategory;
-    testimonials: Testimonial;
     users: User;
     'payload-kv': PayloadKv;
     'payload-folders': FolderInterface;
@@ -97,7 +96,6 @@ export interface Config {
     tags: TagsSelect<false> | TagsSelect<true>;
     guides: GuidesSelect<false> | GuidesSelect<true>;
     'guide-categories': GuideCategoriesSelect<false> | GuideCategoriesSelect<true>;
-    testimonials: TestimonialsSelect<false> | TestimonialsSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-folders': PayloadFoldersSelect<false> | PayloadFoldersSelect<true>;
@@ -284,6 +282,28 @@ export interface Page {
             id?: string | null;
             blockName?: string | null;
             blockType: 'features';
+          }
+        | {
+            title: string;
+            subtitle?: string | null;
+            testimonials?:
+              | {
+                  name: string;
+                  title: string;
+                  testimonial: string;
+                  date: string;
+                  photo?: (number | null) | Media;
+                  linkedin?: string | null;
+                  facebook?: string | null;
+                  xTwitter?: string | null;
+                  instagram?: string | null;
+                  telegram?: string | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'testimonials';
           }
       )[]
     | null;
@@ -707,52 +727,6 @@ export interface GuideCategory {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials".
- */
-export interface Testimonial {
-  id: number;
-  name: string;
-  title: string;
-  /**
-   * Client testimonial text
-   */
-  testimonial: string;
-  date: string;
-  /**
-   * Client photo (optional)
-   */
-  photo?: (number | null) | Media;
-  socialLinks?: {
-    /**
-     * LinkedIn profile URL
-     */
-    linkedin?: string | null;
-    /**
-     * Facebook profile URL
-     */
-    facebook?: string | null;
-    /**
-     * Twitter/X profile URL
-     */
-    twitter?: string | null;
-    /**
-     * Instagram profile URL
-     */
-    instagram?: string | null;
-    /**
-     * Telegram profile URL
-     */
-    telegram?: string | null;
-  };
-  /**
-   * Show on website
-   */
-  published?: boolean | null;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -806,10 +780,6 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'guide-categories';
         value: number | GuideCategory;
-      } | null)
-    | ({
-        relationTo: 'testimonials';
-        value: number | Testimonial;
       } | null)
     | ({
         relationTo: 'users';
@@ -977,6 +947,29 @@ export interface PagesSelect<T extends boolean = true> {
                     icon?: T;
                     title?: T;
                     description?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        testimonials?:
+          | T
+          | {
+              title?: T;
+              subtitle?: T;
+              testimonials?:
+                | T
+                | {
+                    name?: T;
+                    title?: T;
+                    testimonial?: T;
+                    date?: T;
+                    photo?: T;
+                    linkedin?: T;
+                    facebook?: T;
+                    xTwitter?: T;
+                    instagram?: T;
+                    telegram?: T;
                     id?: T;
                   };
               id?: T;
@@ -1169,29 +1162,6 @@ export interface GuideCategoriesSelect<T extends boolean = true> {
   icon?: T;
   order?: T;
   color?: T;
-  updatedAt?: T;
-  createdAt?: T;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "testimonials_select".
- */
-export interface TestimonialsSelect<T extends boolean = true> {
-  name?: T;
-  title?: T;
-  testimonial?: T;
-  date?: T;
-  photo?: T;
-  socialLinks?:
-    | T
-    | {
-        linkedin?: T;
-        facebook?: T;
-        twitter?: T;
-        instagram?: T;
-        telegram?: T;
-      };
-  published?: T;
   updatedAt?: T;
   createdAt?: T;
 }

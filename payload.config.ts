@@ -5,7 +5,6 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import { Users } from './src/collections/Users'
-import { Testimonials } from './src/collections/Testimonials'
 import { Media } from './src/collections/Media'
 import { Categories } from './src/collections/Categories'
 import { Tags } from './src/collections/Tags'
@@ -104,8 +103,6 @@ export default buildConfig({
     // Guides
     Guides,
     GuideCategories,
-    // Testimonials
-    Testimonials,
     // Settings
     Users,
   ],

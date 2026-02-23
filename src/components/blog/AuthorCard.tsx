@@ -1,13 +1,7 @@
 import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import {
-  LinkedInIcon,
-  XIcon,
-  InstagramIcon,
-  FacebookIcon,
-  TelegramIcon,
-} from "@/components/ui/social-icons";
+import { Icon } from "@/components/ui/icons";
 import { cn } from "@/lib/utils";
 
 export interface AuthorCardAuthor {
@@ -101,7 +95,7 @@ export function AuthorCard({
                 className="color-content-secondary hover:color-content-primary"
                 aria-label="LinkedIn"
               >
-                <LinkedInIcon className="h-5 w-5" />
+                <Icon name="linkedin" size="md" />
               </a>
             )}
             {social.twitter && (
@@ -112,7 +106,7 @@ export function AuthorCard({
                 className="color-content-secondary hover:color-content-primary"
                 aria-label="Twitter / X"
               >
-                <XIcon className="h-5 w-5" />
+                <Icon name="xTwitter" size="md" />
               </a>
             )}
             {social.instagram && (
@@ -123,7 +117,7 @@ export function AuthorCard({
                 className="color-content-secondary hover:color-content-primary"
                 aria-label="Instagram"
               >
-                <InstagramIcon className="h-5 w-5" />
+                <Icon name="instagram" size="md" />
               </a>
             )}
             {social.facebook && (
@@ -134,7 +128,7 @@ export function AuthorCard({
                 className="color-content-secondary hover:color-content-primary"
                 aria-label="Facebook"
               >
-                <FacebookIcon className="h-5 w-5" />
+                <Icon name="facebook" size="md" />
               </a>
             )}
             {social.telegram && (
@@ -149,7 +143,7 @@ export function AuthorCard({
                 className="color-content-secondary hover:color-content-primary"
                 aria-label="Telegram"
               >
-                <TelegramIcon className="h-5 w-5" />
+                <Icon name="telegram" size="md" />
               </a>
             )}
           </div>
