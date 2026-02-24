@@ -126,6 +126,18 @@
       list-style-type: decimal;
     }
 
+    .rich-text p,
+    .prose p {
+      font-size: var(--text-base); /* 16px */
+      line-height: var(--leading-7); /* 28px */
+      margin-bottom: 1rem; /* 16px */
+    }
+
+    .rich-text p:last-child,
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
     .rich-text li,
     .prose li {
       font-size: var(--text-base); /* 16px */
@@ -305,6 +317,18 @@
       list-style-type: decimal;
     }
 
+    .rich-text p,
+    .prose p {
+      font-size: var(--text-lg); /* 18px */
+      line-height: var(--leading-7); /* 28px */
+      margin-bottom: 1rem; /* 16px */
+    }
+
+    .rich-text p:last-child,
+    .prose p:last-child {
+      margin-bottom: 0;
+    }
+
     .rich-text li,
     .prose li {
       font-size: var(--text-base);
@@ -482,6 +506,18 @@
       margin-bottom: 1.5rem; /* 24px */
       padding-left: 1.625rem; /* 26px */
       list-style-type: decimal;
+    }
+
+    .rich-text p,
+    .prose p {
+      font-size: var(--text-lg); /* 18px */
+      line-height: var(--leading-7); /* 28px */
+      margin-bottom: 1rem; /* 16px */
+    }
+
+    .rich-text p:last-child,
+    .prose p:last-child {
+      margin-bottom: 0;
     }
 
     .rich-text li,

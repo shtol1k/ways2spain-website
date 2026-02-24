@@ -1,9 +1,8 @@
 'use client'
 
 import { useLivePreview } from '@payloadcms/live-preview-react'
-import { CheckCircle2, FileText, Clock, Users, CalendarDays } from "lucide-react"
+import { CheckCircle2, FileText, Clock, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Page } from '@/payload-types'
 import { RenderBlocks } from '@/components/blocks/RenderBlocks'
@@ -26,37 +25,6 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
         {data.layout && Array.isArray(data.layout) && data.layout.length > 0 && (
            <RenderBlocks blocks={data.layout} />
         )}
-
-        {/* DNV Intro — editorial text */}
-        <div className="max-w-2xl mx-auto mb-20 text-center">
-          <div className="flex justify-center mb-6">
-            <Badge variant="outline" className="flex items-center gap-1.5 text-ui-label border-(--color-border-brand) color-content-brand px-3 py-1">
-              <CalendarDays className="w-3.5 h-3.5" />
-              Іспанія · З 2022 року
-            </Badge>
-          </div>
-
-          <p className="text-body-large color-content-secondary mb-4">
-            Digital Nomad Visa — офіційний резиденційний дозвіл Іспанії для іноземних
-            громадян, які працюють дистанційно на роботодавців або клієнтів за межами
-            країни. Дозволяє легально жити та працювати в Іспанії, не будучи прив&apos;язаним
-            до місцевого ринку праці.
-          </p>
-
-          <p className="text-body-base color-content-secondary mb-4">
-            Віза запроваджена в рамках іспанського «Закону про стартапи» (Ley de
-            Startups), ухваленого у грудні 2022 року. Перші дозволи за новою програмою
-            почали видавати на початку 2023-го. Програма орієнтована на фахівців із
-            вищою освітою або досвідом від трьох років у своїй галузі.
-          </p>
-
-          <p className="text-body-base color-content-tertiary mb-0">
-            Самозайняті можуть залучати іспанських клієнтів — за умови, що їхня частка
-            не перевищує 20% загального доходу. Заява подається разом із членами
-            родини: чоловіком або дружиною, неповнолітніми дітьми і залежними
-            родичами.
-          </p>
-        </div>
 
         {/* Main Info Grid - Static for now */}
         <div className="grid lg:grid-cols-2 gap-8 mb-20">
