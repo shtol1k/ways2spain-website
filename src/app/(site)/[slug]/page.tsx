@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import { getPayload } from 'payload'
 import configPromise from '@payload-config'
 import type { Metadata } from 'next'
-import { RenderBlocks } from '@/components/blocks/RenderBlocks'
+import { headers } from 'next/headers'
+import { CmsPageClient } from './CmsPageClient'
 
 type Props = {
   params: Promise<{ slug: string }>
@@ -32,19 +33,20 @@ export default async function CmsPage({ params }: Props) {
   const { slug } = await params
   const payload = await getPayload({ config: configPromise })
 
+  const headersList = await headers()
+  const { user } = await payload.auth({ headers: headersList })
+
   const { docs } = await payload.find({
     collection: 'pages',
     where: { slug: { equals: slug } },
     limit: 1,
     depth: 2,
+    draft: true,
+    overrideAccess: !!user,
   })
 
   const page = docs[0]
   if (!page) notFound()
 
-  return (
-    <div className="min-h-screen">
-      <RenderBlocks blocks={page.layout} />
-    </div>
-  )
+  return <CmsPageClient initialData={page} />
 }
