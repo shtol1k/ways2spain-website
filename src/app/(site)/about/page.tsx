@@ -41,7 +41,7 @@ export default function AboutPage() {
 
         {/* Main Content */}
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
-          <div className="relative w-full aspect-[4/3]">
+          <div className="relative w-full aspect-4/3">
             <Image
               src="/documents.jpg"
               alt="Spanish immigration documents and passport"
@@ -67,7 +67,7 @@ export default function AboutPage() {
                 "Фокус на результат без зайвої бюрократії",
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                   <p className="text-lg">{item}</p>
                 </div>
               ))}
@@ -123,7 +123,7 @@ export default function AboutPage() {
         </div>
 
         {/* Experience Section */}
-        <div className="bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-primary-foreground mb-20">
+        <div className="bg-linear-to-br from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-primary-foreground mb-20">
           <div className="max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-center">Наш досвід</h2>
             <p className="text-lg text-primary-foreground/90 mb-6 text-center">
@@ -137,7 +137,7 @@ export default function AboutPage() {
                 "Експертиза в оформленні родинних віз",
               ].map((item, index) => (
                 <div key={index} className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-6 h-6 text-secondary flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                   <p className="text-primary-foreground/90">{item}</p>
                 </div>
               ))}

@@ -64,7 +64,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
              {/* Date */}
              <div id="published" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
                 <Icon name="calendar" size="responsive" className="w-5 h-5 md:w-6 md:h-6 text-current" />
-                <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
+                <span className="text-sm md:text-base leading-(--leading-5) md:leading-(--leading-6) whitespace-nowrap">
                   {post.publishedAt 
                     ? format(new Date(post.publishedAt), 'd MMMM yyyy', { locale: uk }) 
                     : format(new Date(post.createdAt), 'd MMMM yyyy', { locale: uk })
@@ -75,7 +75,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
              {/* Read Time */}
              <div id="timetoread" className="flex items-center gap-1 md:gap-2 color-content-tertiary">
                 <Icon name="clock" size="responsive" className="w-5 h-5 md:w-6 md:h-6 text-current" />
-                <span className="text-sm md:text-base leading-[var(--leading-5)] md:leading-[var(--leading-6)] whitespace-nowrap">
+                <span className="text-sm md:text-base leading-(--leading-5) md:leading-(--leading-6) whitespace-nowrap">
                    {post.readTime ? `${post.readTime} хв читання` : "3 хв читання"}
                 </span>
              </div>

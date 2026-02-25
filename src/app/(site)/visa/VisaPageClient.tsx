@@ -67,7 +67,7 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
                 className="bg-card rounded-xl p-6 shadow-elegant border border-border hover:shadow-strong transition-smooth"
               >
                 <div className="flex items-start space-x-6">
-                  <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center flex-shrink-0">
+                  <div className="w-12 h-12 rounded-full gradient-accent flex items-center justify-center shrink-0">
                     <span className="text-xl font-bold text-accent-foreground">
                       {item.step}
                     </span>
@@ -90,7 +90,7 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
 
         {/* Duration and Benefits */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gradient-to-br from-primary to-primary/80 rounded-xl p-8 text-primary-foreground">
+          <div className="bg-linear-to-br from-primary to-primary/80 rounded-xl p-8 text-primary-foreground">
             <h3 className="text-2xl font-bold mb-4">Строк дії візи</h3>
             <p className="text-primary-foreground/90 mb-6">
               Віза видається на термін 3 роки (при подачі з Іспанії) з можливістю продовження до 5 років.
@@ -110,7 +110,7 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
             </ul>
           </div>
 
-          <div className="bg-gradient-to-br from-secondary to-secondary/80 rounded-xl p-8 text-secondary-foreground">
+          <div className="bg-linear-to-br from-secondary to-secondary/80 rounded-xl p-8 text-secondary-foreground">
             <h3 className="text-2xl font-bold mb-4">Переваги візи</h3>
             <p className="text-secondary-foreground/90 mb-6">
               Digital Nomad Visa надає повний легальний статус для життя та роботи в Іспанії. Термін перебування зараховується у загальний стаж для отримання громадянства.
