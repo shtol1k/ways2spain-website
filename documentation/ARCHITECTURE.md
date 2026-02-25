@@ -453,7 +453,6 @@ GitHub Repository
 - [ ] Advanced analytics
 
 ### Phase 3 (Long-term)
-- [ ] TailwindCSS v4.1 migration
 - [ ] A/B testing framework
 - [ ] Progressive Web App (PWA)
 

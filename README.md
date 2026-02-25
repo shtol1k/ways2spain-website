@@ -30,7 +30,7 @@
 - **Next.js 16** з App Router
 - **React 19** з Server Components
 - **TypeScript** 5.8+
-- **TailwindCSS** 3.4+
+- **TailwindCSS** 4.1+
 - **shadcn/ui** компоненти
 
 ### Backend/CMS
