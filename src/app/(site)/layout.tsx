@@ -75,9 +75,12 @@ export default async function SiteLayout({
     return null
   }).filter((item): item is { path: string, label: string } => item !== null) || undefined
 
-  // Process Logo
-  const logo = mainMenu.logo && typeof mainMenu.logo !== 'string' 
-    ? { url: (mainMenu.logo as any).url, alt: (mainMenu.logo as any).alt } 
+  // Process Logos
+  const logoLarge = mainMenu.logoLarge && typeof mainMenu.logoLarge !== 'number'
+    ? { url: (mainMenu.logoLarge as any).url as string | null, alt: (mainMenu.logoLarge as any).alt as string | null }
+    : undefined
+  const logoMedium = mainMenu.logoMedium && typeof mainMenu.logoMedium !== 'number'
+    ? { url: (mainMenu.logoMedium as any).url as string | null, alt: (mainMenu.logoMedium as any).alt as string | null }
     : undefined
 
   // Helper to process CTA
@@ -117,9 +120,10 @@ export default async function SiteLayout({
           <LoadingBar />
         </Suspense>
         <div className="min-h-screen flex flex-col">
-          <Navbar 
-            items={navItems} 
-            logo={logo}
+          <Navbar
+            items={navItems}
+            logoLarge={logoLarge}
+            logoMedium={logoMedium}
             ctaPrimary={ctaPrimary}
             ctaSecondary={ctaSecondary}
           />

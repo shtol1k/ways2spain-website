@@ -96,13 +96,16 @@ const Footer = async () => {
 
   const footerData = await payload.findGlobal({ slug: "footer", depth: 1 });
 
-  const { logo, navItems, socialLinks, copyright } = footerData;
+  const { navItems, socialLinks, copyright } = footerData;
+  const logoLarge = (footerData as any).logoLarge as Media | null;
+  const logoMedium = (footerData as any).logoMedium as Media | null;
   const slogan = (footerData as any).slogan as string | null;
   const resourceItems = (footerData as any).resourceItems as NavItem[] | null;
   const serviceLinks = (footerData as any).serviceLinks as ServiceLink[] | null;
 
-  const logoUrl = (logo as Media)?.url;
-  const logoAlt = (logo as Media)?.alt || "Ways 2 Spain";
+  const logoLargeUrl = logoLarge?.url;
+  const logoMediumUrl = logoMedium?.url;
+  const logoAlt = logoLarge?.alt || logoMedium?.alt || "Ways 2 Spain";
   const copyrightText = copyright || `© ${CURRENT_YEAR} Ways 2 Spain. Всі права захищені.`;
 
   // Social icons row (reused across breakpoints)
@@ -140,11 +143,11 @@ const Footer = async () => {
 
           {/* Brand column: flex-1 */}
           <div className="flex-1 flex flex-col gap-4 min-w-0">
-            {/* Logo */}
-            {logoUrl ? (
-              <Image src={logoUrl} alt={logoAlt} width={200} height={48} className="h-12 w-auto self-start" />
+            {/* Logo large — LG+ (240×48) */}
+            {logoLargeUrl ? (
+              <Image src={logoLargeUrl} alt={logoAlt} width={240} height={48} className="h-12 w-auto self-start" />
             ) : (
-              <div className="bg-slate-700 h-12 w-[200px] rounded-sm" />
+              <div className="bg-slate-700 h-12 w-[240px] rounded-sm" />
             )}
             {subtitle}
             {socialRow}
@@ -187,10 +190,11 @@ const Footer = async () => {
           {/* Top row: logo+description (flex-1) | social icons */}
           <div className="flex items-start gap-4">
             <div className="flex-1 flex flex-col gap-4 min-w-0">
-              {logoUrl ? (
-                <Image src={logoUrl} alt={logoAlt} width={200} height={48} className="h-12 w-auto self-start" />
+              {/* Logo medium — MD (170×40) */}
+              {logoMediumUrl ? (
+                <Image src={logoMediumUrl} alt={logoAlt} width={170} height={40} className="h-10 w-auto self-start" />
               ) : (
-                <div className="bg-slate-700 h-12 w-[200px] rounded-sm" />
+                <div className="bg-slate-700 h-10 w-[170px] rounded-sm" />
               )}
               {subtitle}
             </div>
@@ -237,10 +241,11 @@ const Footer = async () => {
 
           {/* Brand block */}
           <div className="flex flex-col gap-4">
-            {logoUrl ? (
-              <Image src={logoUrl} alt={logoAlt} width={176} height={40} className="h-10 w-auto self-start" />
+            {/* Logo medium — SM (170×40) */}
+            {logoMediumUrl ? (
+              <Image src={logoMediumUrl} alt={logoAlt} width={170} height={40} className="h-10 w-auto self-start" />
             ) : (
-              <div className="bg-slate-700 h-10 w-[176px] rounded-sm" />
+              <div className="bg-slate-700 h-10 w-[170px] rounded-sm" />
             )}
             {subtitle}
             {socialRow}

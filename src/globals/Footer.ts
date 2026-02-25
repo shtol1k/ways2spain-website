@@ -11,10 +11,22 @@ export const Footer: GlobalConfig = {
   },
   fields: [
     {
-      name: 'logo',
+      name: 'logoLarge',
       type: 'upload',
       relationTo: 'media',
-      label: 'Footer Logo',
+      label: 'Logo Large',
+      admin: {
+        description: 'Displayed at LG, XL and 2XL breakpoints (240×48 px). Use SVG or PNG with a transparent background.',
+      },
+    },
+    {
+      name: 'logoMedium',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Logo Medium',
+      admin: {
+        description: 'Displayed at SM and MD breakpoints (170×40 px). Use SVG or PNG with a transparent background.',
+      },
     },
     {
       name: 'slogan',

@@ -1346,7 +1346,14 @@ export interface SiteSetting {
  */
 export interface MainMenu {
   id: number;
-  logo?: (number | null) | Media;
+  /**
+   * Displayed at XL and 2XL breakpoints (240×48 px). Use SVG or PNG with a transparent background.
+   */
+  logoLarge?: (number | null) | Media;
+  /**
+   * Displayed at SM, MD and LG breakpoints (170×40 px). Use SVG or PNG with a transparent background.
+   */
+  logoMedium?: (number | null) | Media;
   navItems?:
     | {
         label: string;
@@ -1371,7 +1378,14 @@ export interface MainMenu {
  */
 export interface Footer {
   id: number;
-  logo?: (number | null) | Media;
+  /**
+   * Displayed at LG, XL and 2XL breakpoints (240×48 px). Use SVG or PNG with a transparent background.
+   */
+  logoLarge?: (number | null) | Media;
+  /**
+   * Displayed at SM and MD breakpoints (170×40 px). Use SVG or PNG with a transparent background.
+   */
+  logoMedium?: (number | null) | Media;
   /**
    * Text displayed below the logo in the footer.
    */
@@ -1441,7 +1455,8 @@ export interface SiteSettingsSelect<T extends boolean = true> {
  * via the `definition` "main-menu_select".
  */
 export interface MainMenuSelect<T extends boolean = true> {
-  logo?: T;
+  logoLarge?: T;
+  logoMedium?: T;
   navItems?:
     | T
     | {
@@ -1470,7 +1485,8 @@ export interface MainMenuSelect<T extends boolean = true> {
  * via the `definition` "footer_select".
  */
 export interface FooterSelect<T extends boolean = true> {
-  logo?: T;
+  logoLarge?: T;
+  logoMedium?: T;
   slogan?: T;
   navItems?:
     | T

@@ -11,16 +11,34 @@ export const MainMenu: GlobalConfig = {
   },
   fields: [
     {
-      name: 'logo',
+      name: 'logoLarge',
       type: 'upload',
       relationTo: 'media',
-      label: 'Site Logo',
+      label: 'Logo Large',
+      admin: {
+        description: 'Displayed at XL and 2XL breakpoints (240×48 px). Use SVG or PNG with a transparent background.',
+      },
+    },
+    {
+      name: 'logoMedium',
+      type: 'upload',
+      relationTo: 'media',
+      label: 'Logo Medium',
+      admin: {
+        description: 'Displayed at SM, MD and LG breakpoints (170×40 px). Use SVG or PNG with a transparent background.',
+      },
     },
     {
       name: 'navItems',
       type: 'array',
       label: 'Navigation Items',
       maxRows: 8,
+      admin: {
+        initCollapsed: true,
+        components: {
+          RowLabel: '@/components/admin/FooterRowLabels#LabelRowLabel',
+        },
+      },
       fields: [
         {
           name: 'label',

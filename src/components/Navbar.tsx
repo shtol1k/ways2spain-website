@@ -17,17 +17,20 @@ interface CtaButton {
   path: string
 }
 
+interface LogoVariant {
+  url?: string | null
+  alt?: string | null
+}
+
 interface NavbarProps {
   items?: NavItem[]
-  logo?: {
-    url?: string | null
-    alt?: string | null
-  }
+  logoLarge?: LogoVariant
+  logoMedium?: LogoVariant
   ctaPrimary?: CtaButton | null
   ctaSecondary?: CtaButton | null
 }
 
-const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
+const Navbar = ({ items, logoLarge, logoMedium, ctaPrimary, ctaSecondary }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
@@ -42,17 +45,31 @@ const Navbar = ({ items, logo, ctaPrimary, ctaSecondary }: NavbarProps) => {
         <div className="flex items-center justify-between h-20 lg:h-[72px] lg:justify-normal lg:gap-2 xl:h-20 xl:justify-between xl:gap-0">
           {/* Logo */}
           <Link href="/" className="flex items-center shrink-0">
-            {logo?.url ? (
+            {/* Large logo — XL and above (240×48) */}
+            {logoLarge?.url ? (
               <Image
-                src={logo.url}
-                alt={logo.alt || "Ways 2 Spain Logo"}
-                width={200}
+                src={logoLarge.url}
+                alt={logoLarge.alt || "Ways 2 Spain Logo"}
+                width={240}
                 height={48}
                 priority
-                className="h-12 w-auto lg:h-10 xl:h-12"
+                className="hidden xl:block h-12 w-auto"
               />
             ) : (
-              <div className="bg-slate-200 rounded-sm h-12 w-[200px] lg:h-10 lg:w-44 xl:h-12 xl:w-[200px]" />
+              <div className="hidden xl:block bg-slate-200 rounded-sm h-12 w-[240px]" />
+            )}
+            {/* Medium logo — SM / MD / LG (170×40) */}
+            {logoMedium?.url ? (
+              <Image
+                src={logoMedium.url}
+                alt={logoMedium.alt || "Ways 2 Spain Logo"}
+                width={170}
+                height={40}
+                priority
+                className="xl:hidden h-10 w-auto"
+              />
+            ) : (
+              <div className="xl:hidden bg-slate-200 rounded-sm h-10 w-[170px]" />
             )}
           </Link>
 
