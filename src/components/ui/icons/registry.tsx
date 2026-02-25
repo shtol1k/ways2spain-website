@@ -33,6 +33,7 @@ export type IconName =
   | 'xmark'
   | 'info'
   | 'success'
+  | 'circleCheck'
   | 'error'
   | 'warning'
   | 'share'
@@ -55,6 +56,7 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   xmark: faXmark,
   info: faInfoCircle,
   success: faCheckCircle,
+  circleCheck: faCheckCircle,
   error: faExclamationCircle,
   warning: faExclamationCircle,
   share: faShareNodes,

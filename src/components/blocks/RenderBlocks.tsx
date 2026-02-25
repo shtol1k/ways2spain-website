@@ -5,6 +5,7 @@ import { HeroBlock } from './HeroBlock'
 import { FeaturesBlock } from './FeaturesBlock'
 import { TestimonialsBlock } from './TestimonialsBlock'
 import { TextBlock } from './TextBlock'
+import { CardsType1Block } from './CardsType1Block'
 
 const blockComponents = {
   pageHeader: PageHeaderBlock,
@@ -12,6 +13,7 @@ const blockComponents = {
   features: FeaturesBlock,
   testimonials: TestimonialsBlock,
   text: TextBlock,
+  cardsType1: CardsType1Block,
 }
 
 export const RenderBlocks: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {

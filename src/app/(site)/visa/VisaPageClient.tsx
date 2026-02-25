@@ -1,7 +1,7 @@
 'use client'
 
 import { useLivePreview } from '@payloadcms/live-preview-react'
-import { CheckCircle2, FileText, Clock, Users } from "lucide-react"
+import { Clock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { Page } from '@/payload-types'
@@ -25,56 +25,6 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
         {data.layout && Array.isArray(data.layout) && data.layout.length > 0 && (
            <RenderBlocks blocks={data.layout} />
         )}
-
-        {/* Main Info Grid - Static for now */}
-        <div className="grid lg:grid-cols-2 gap-8 mb-20">
-          {/* Who Can Apply */}
-          <div className="bg-card rounded-xl p-8 shadow-elegant border border-border">
-            <div className="w-12 h-12 rounded-lg gradient-accent flex items-center justify-center mb-6">
-              <Users className="w-6 h-6 text-accent-foreground" />
-            </div>
-            <h2 className="text-2xl font-bold mb-6">Хто може отримати</h2>
-            <ul className="space-y-4">
-              {[
-                "Фрілансери з міжнародними клієнтами",
-                "Спеціалісти на віддаленій роботі",
-                "Контрактники з іноземними компаніями",
-                "Підприємці з онлайн-бізнесом",
-                "Члени родини основного заявника",
-              ].map((item, index) => (
-                <li key={index} className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Requirements */}
-          <div className="bg-card rounded-xl p-8 shadow-elegant border border-border">
-            <div className="w-12 h-12 rounded-lg gradient-accent flex items-center justify-center mb-6">
-              <FileText className="w-6 h-6 text-accent-foreground" />
-            </div>
-            <h2 className="text-2xl font-bold mb-6">Основні вимоги</h2>
-            <ul className="space-y-4">
-              {[
-                <span key="req1">
-                  Дохід основного заявника від €2763/місяць
-                  <br />
-                  (збільшується для родини)
-                </span>,
-                "3+ місяців контракту з поточним замовником",
-                "Профільна освіта або 3+ роки досвіду за профілем",
-                "Відсутніть судимості з країн, де проживали останні 2 роки",
-              ].map((item, index) => (
-                <li key={index} className="flex items-start space-x-3">
-                  <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
 
         {/* Process Timeline */}
         <div className="max-w-4xl mx-auto mb-20">

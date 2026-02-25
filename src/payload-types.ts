@@ -325,6 +325,31 @@ export interface Page {
             blockName?: string | null;
             blockType: 'text';
           }
+        | {
+            cardLeft: {
+              image?: (number | null) | Media;
+              title: string;
+              items?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            cardRight: {
+              image?: (number | null) | Media;
+              title: string;
+              items?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cardsType1';
+          }
       )[]
     | null;
   meta?: {
@@ -999,6 +1024,36 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               content?: T;
+              id?: T;
+              blockName?: T;
+            };
+        cardsType1?:
+          | T
+          | {
+              cardLeft?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    items?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                  };
+              cardRight?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    items?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                  };
               id?: T;
               blockName?: T;
             };
