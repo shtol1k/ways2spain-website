@@ -76,7 +76,7 @@ export function TableOfContents({ selector, className }: TableOfContentsProps) {
 
   return (
     <nav
-      aria-label="Зміст статті"
+      aria-label="Зміст"
       className={cn('flex flex-col gap-4', className)}
     >
       <h4 className="font-bold text-xl color-content-primary">Зміст</h4>

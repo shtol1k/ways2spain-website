@@ -8,7 +8,7 @@ import { BlogBreadcrumbs, type BlogBreadcrumbItem } from "@/components/blog/Blog
 import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { CategoryTag } from "@/components/blog/CategoryTag";
 import { AuthorCard } from "@/components/blog/AuthorCard";
-import { TableOfContents } from "@/components/blog/TableOfContents";
+import { TableOfContents } from "@/components/ui/table-of-contents";
 import { LatestArticles } from "@/components/blog/LatestArticles";
 import { RelatedArticles } from "@/components/blog/RelatedArticles";
 import { SmartImage } from "@/components/SmartImage";
