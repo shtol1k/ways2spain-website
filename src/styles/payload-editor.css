@@ -6,14 +6,31 @@
   --font-body: 'Inter', system-ui, sans-serif;
   --font-heading: 'Inter', system-ui, sans-serif;
   --font-mono: 'Menlo', monospace;
+
+  /* Editor Content Colors (Light — mirrors content-primary/secondary) */
+  --editor-color-heading: #0f172a; /* slate-900 = content-primary */
+  --editor-color-body: #475569;    /* slate-600 = content-secondary */
+  --editor-color-link: #2563eb;    /* blue-600 */
+}
+
+/* Editor Content Colors (Dark — mirrors *-inverse tokens) */
+[data-theme="dark"] {
+  --editor-color-heading: #ffffff;  /* white = content-primary-inverse */
+  --editor-color-body: #cbd5e1;     /* slate-300 = content-secondary-inverse */
+  --editor-color-link: #60a5fa;     /* blue-400 — readable on dark bg */
 }
 
 /* Headings Base */
-.ContentEditable__root h1,h2,h3,h4,h5,h6 {
+.ContentEditable__root h1,
+.ContentEditable__root h2,
+.ContentEditable__root h3,
+.ContentEditable__root h4,
+.ContentEditable__root h5,
+.ContentEditable__root h6 {
   font-family: 'Inter', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: -0.025em; /* tracking-tight */
-  color: #0f172a; /* Slate-900 */
+  color: var(--editor-color-heading);
 }
 
 /* H1 */
@@ -71,15 +88,19 @@
 
 
 /* Body Text (Paragraphs & Lists) */
-.ContentEditable__root p,ul,ol,li {
+.ContentEditable__root p,
+.ContentEditable__root ul,
+.ContentEditable__root ol,
+.ContentEditable__root li {
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 16px;
   line-height: 24px;
-  color: #475569; /* Slate-600 */
+  color: var(--editor-color-body);
 }
 
 /* List Spacing */
-.ContentEditable__root ul,ol {
+.ContentEditable__root ul,
+.ContentEditable__root ol {
   padding-left: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -90,6 +111,6 @@
 
 /* Links */
 .ContentEditable__root a {
-  color: #2563eb; /* Blue-600 */
+  color: var(--editor-color-link);
   text-decoration: underline;
 }
