@@ -76,6 +76,12 @@ export default buildConfig({
   // Admin panel configuration
   admin: {
     user: Users.slug,
+    components: {
+      graphics: {
+        Logo: '@/components/admin/Logo',
+        Icon: '@/components/admin/Icon',
+      },
+    },
     meta: {
       title: 'Ways2Spain Admin',
       description: 'Content Management System',
