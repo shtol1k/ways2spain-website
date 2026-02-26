@@ -4,12 +4,12 @@ const Logo: React.FC = () => {
   return (
     <div className="ways2spain-admin-logo">
       <img 
-        src="/admin/logo-light.svg" 
+        src="/admin-assets/logo-light.svg" 
         alt="Ways2Spain Logo" 
         className="logo-light" 
       />
       <img 
-        src="/admin/logo-dark.svg" 
+        src="/admin-assets/logo-dark.svg" 
         alt="Ways2Spain Logo" 
         className="logo-dark" 
       />
