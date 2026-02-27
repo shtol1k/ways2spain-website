@@ -33,26 +33,6 @@
       color: var(--content-primary);
     }
 
-    /* Top margins (only if not first child) */
-    h1:not(:first-child) {
-      margin-top: 2.5rem;
-    } /* 40px */
-    h2:not(:first-child) {
-      margin-top: 2rem;
-    } /* 32px */
-    h3:not(:first-child) {
-      margin-top: 1.75rem;
-    } /* 28px */
-    h4:not(:first-child) {
-      margin-top: 1.5rem;
-    } /* 24px */
-    h5:not(:first-child) {
-      margin-top: 1.25rem;
-    } /* 20px */
-    h6:not(:first-child) {
-      margin-top: 1rem;
-    } /* 16px */
-
     h1 {
       font-size: var(--text-5xl);
       line-height: var(--leading-tight);
@@ -76,6 +56,31 @@
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+    }
+
+    .rich-text h1:not(:first-child),
+    .prose h1:not(:first-child) {
+      margin-top: 2.5rem; /* 40px */
+    }
+    .rich-text h2:not(:first-child),
+    .prose h2:not(:first-child) {
+      margin-top: 2rem; /* 32px */
+    }
+    .rich-text h3:not(:first-child),
+    .prose h3:not(:first-child) {
+      margin-top: 1.75rem; /* 28px */
+    }
+    .rich-text h4:not(:first-child),
+    .prose h4:not(:first-child) {
+      margin-top: 1.5rem; /* 24px */
+    }
+    .rich-text h5:not(:first-child),
+    .prose h5:not(:first-child) {
+      margin-top: 1.25rem; /* 20px */
+    }
+    .rich-text h6:not(:first-child),
+    .prose h6:not(:first-child) {
+      margin-top: 1rem; /* 16px */
     }
 
     .rich-text h1,
@@ -224,26 +229,6 @@
       color: var(--content-primary);
     }
 
-    /* Top margins (only if not first child) */
-    h1:not(:first-child) {
-      margin-top: 2.5rem;
-    } /* 40px */
-    h2:not(:first-child) {
-      margin-top: 2rem;
-    } /* 32px */
-    h3:not(:first-child) {
-      margin-top: 1.75rem;
-    } /* 28px */
-    h4:not(:first-child) {
-      margin-top: 1.5rem;
-    } /* 24px */
-    h5:not(:first-child) {
-      margin-top: 1.25rem;
-    } /* 20px */
-    h6:not(:first-child) {
-      margin-top: 1rem;
-    } /* 16px */
-
     h1 {
       font-size: var(--text-6xl);
       line-height: var(--leading-tight);
@@ -267,6 +252,31 @@
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+    }
+
+    .rich-text h1:not(:first-child),
+    .prose h1:not(:first-child) {
+      margin-top: 2.5rem; /* 40px */
+    }
+    .rich-text h2:not(:first-child),
+    .prose h2:not(:first-child) {
+      margin-top: 2rem; /* 32px */
+    }
+    .rich-text h3:not(:first-child),
+    .prose h3:not(:first-child) {
+      margin-top: 1.75rem; /* 28px */
+    }
+    .rich-text h4:not(:first-child),
+    .prose h4:not(:first-child) {
+      margin-top: 1.5rem; /* 24px */
+    }
+    .rich-text h5:not(:first-child),
+    .prose h5:not(:first-child) {
+      margin-top: 1.25rem; /* 20px */
+    }
+    .rich-text h6:not(:first-child),
+    .prose h6:not(:first-child) {
+      margin-top: 1rem; /* 16px */
     }
 
     .rich-text h1,
@@ -415,26 +425,6 @@
       color: var(--content-primary);
     }
 
-    /* Top margins (only if not first child) */
-    h1:not(:first-child) {
-      margin-top: 3rem;
-    } /* 48px */
-    h2:not(:first-child) {
-      margin-top: 2.5rem;
-    } /* 40px */
-    h3:not(:first-child) {
-      margin-top: 2rem;
-    } /* 32px */
-    h4:not(:first-child) {
-      margin-top: 1.5rem;
-    } /* 24px */
-    h5:not(:first-child) {
-      margin-top: 1.25rem;
-    } /* 20px */
-    h6:not(:first-child) {
-      margin-top: 1rem;
-    } /* 16px */
-
     h1 {
       font-size: var(--text-7xl);
       line-height: var(--leading-tight);
@@ -458,6 +448,31 @@
     h6 {
       font-size: var(--text-base);
       line-height: var(--leading-normal);
+    }
+
+    .rich-text h1:not(:first-child),
+    .prose h1:not(:first-child) {
+      margin-top: 3rem; /* 48px */
+    }
+    .rich-text h2:not(:first-child),
+    .prose h2:not(:first-child) {
+      margin-top: 2.5rem; /* 40px */
+    }
+    .rich-text h3:not(:first-child),
+    .prose h3:not(:first-child) {
+      margin-top: 2rem; /* 32px */
+    }
+    .rich-text h4:not(:first-child),
+    .prose h4:not(:first-child) {
+      margin-top: 1.5rem; /* 24px */
+    }
+    .rich-text h5:not(:first-child),
+    .prose h5:not(:first-child) {
+      margin-top: 1.25rem; /* 20px */
+    }
+    .rich-text h6:not(:first-child),
+    .prose h6:not(:first-child) {
+      margin-top: 1rem; /* 16px */
     }
 
     .rich-text h1,
