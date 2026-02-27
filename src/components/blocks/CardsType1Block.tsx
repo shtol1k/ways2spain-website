@@ -35,7 +35,7 @@ function InfoCard({ image, title, items }: CardData) {
   }
 
   return (
-    <div className="bg-fill-primary border border-[var(--color-border-primary)] rounded-xl p-[33px] shadow-elegant flex flex-col gap-6 items-start w-full lg:flex-1 lg:self-stretch">
+    <div className="bg-fill-primary border border-[var(--color-border-primary)] rounded-xl p-8 shadow-elegant flex flex-col gap-6 items-start w-full lg:flex-1 lg:self-stretch">
       {imageUrl ? (
         <Image
           src={imageUrl}
@@ -66,8 +66,8 @@ function InfoCard({ image, title, items }: CardData) {
 
 export const CardsType1Block: React.FC<CardsType1BlockProps> = ({ cardLeft, cardRight }) => {
   return (
-    <section className="py-6 px-4 lg:py-10 lg:px-8">
-      <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 xl:gap-8 max-w-screen-2xl mx-auto">
+    <section className="py-6 lg:py-10">
+      <div className="flex flex-col gap-4 lg:flex-row lg:gap-6 xl:gap-8">
         <InfoCard {...cardLeft} />
         <InfoCard {...cardRight} />
       </div>
