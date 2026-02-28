@@ -5,6 +5,7 @@ import { Icon } from '@/components/ui/icons'
 
 interface CardItem {
   text: string
+  details?: string | null
   id?: string | null
 }
 
@@ -55,7 +56,12 @@ function InfoCard({ image, title, items }: CardData) {
           {items.map((item, index) => (
             <li key={item.id ?? index} className="flex gap-2 items-start">
               <Icon name="circleCheck" size="lg" className="color-content-brand shrink-0 mt-0.5" />
-              <span className="text-body-base color-content-primary">{item.text}</span>
+              <div className="flex flex-col gap-1">
+                <h6>{item.text}</h6>
+                {item.details && (
+                  <span className="text-body-small color-content-secondary">{item.details}</span>
+                )}
+              </div>
             </li>
           ))}
         </ul>

@@ -332,6 +332,7 @@ export interface Page {
               items?:
                 | {
                     text: string;
+                    details?: string | null;
                     id?: string | null;
                   }[]
                 | null;
@@ -342,6 +343,7 @@ export interface Page {
               items?:
                 | {
                     text: string;
+                    details?: string | null;
                     id?: string | null;
                   }[]
                 | null;
@@ -1060,6 +1062,7 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           text?: T;
+                          details?: T;
                           id?: T;
                         };
                   };
@@ -1072,6 +1075,7 @@ export interface PagesSelect<T extends boolean = true> {
                       | T
                       | {
                           text?: T;
+                          details?: T;
                           id?: T;
                         };
                   };

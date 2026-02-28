@@ -33,12 +33,23 @@ export const CardsType1Block: Block = {
           type: 'array',
           label: 'Items',
           minRows: 1,
+          admin: {
+            components: {
+              RowLabel: '@/components/admin/CardItemRowLabel#CardItemRowLabel',
+            },
+          },
           fields: [
             {
               name: 'text',
               type: 'text',
               label: 'Text',
               required: true,
+            },
+            {
+              name: 'details',
+              type: 'text',
+              label: 'Details',
+              required: false,
             },
           ],
         },
@@ -67,12 +78,23 @@ export const CardsType1Block: Block = {
           type: 'array',
           label: 'Items',
           minRows: 1,
+          admin: {
+            components: {
+              RowLabel: '@/components/admin/CardItemRowLabel#CardItemRowLabel',
+            },
+          },
           fields: [
             {
               name: 'text',
               type: 'text',
               label: 'Text',
               required: true,
+            },
+            {
+              name: 'details',
+              type: 'text',
+              label: 'Details',
+              required: false,
             },
           ],
         },
