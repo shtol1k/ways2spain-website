@@ -91,40 +91,36 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
         {/* Duration and Benefits */}
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div className="bg-linear-to-br from-primary to-primary/80 rounded-xl p-8 text-primary-foreground">
-            <h3 className="text-2xl font-bold mb-4">Строк дії візи</h3>
-            <p className="text-primary-foreground/90 mb-6">
-              Віза видається на термін 3 роки (при подачі з Іспанії) з можливістю продовження до 5 років.
-              Після 5 років можливість отримання постійної резиденції.
-            </p>
-            <ul className="space-y-2">
+            <h3 className="text-2xl font-bold mb-6 color-content-primary-inverse">Терміни дії статусу</h3>
+            <ul className="space-y-4">
               {[
-                "Перша віза: 3 роки",
-                "Продовження: ще 2 роки",
-                "Постійне резиденство після 5 років проживання.",
+                { title: "Первинна резиденція:", text: "Видається на 3 роки при подачі безпосередньо з Іспанії. Віза D на 1 рік при подачі з Консульства у країні проживання." },
+                { title: "Пролонгація:", text: "Можливість продовження статусу ще на 2 роки за умови збереження підстав, при яких була видана резиденція." },
+                { title: "Постійна резиденція:", text: "Право на отримання статусу постійного проживання після 5 років безперервного проживання." },
               ].map((item, index) => (
-                <li key={index} className="flex items-center space-x-2">
-                  <div className="w-2 h-2 rounded-full bg-secondary" />
-                  <span>{item}</span>
+                <li key={index} className="flex items-start space-x-3">
+                  <div className="w-2 h-2 rounded-full bg-secondary mt-2.5 shrink-0" />
+                  <div className="leading-relaxed text-primary-foreground/90">
+                    <strong className="font-semibold text-primary-foreground">{item.title}</strong> {item.text}
+                  </div>
                 </li>
               ))}
             </ul>
           </div>
 
           <div className="bg-linear-to-br from-secondary to-secondary/80 rounded-xl p-8 text-secondary-foreground">
-            <h3 className="text-2xl font-bold mb-4">Переваги візи</h3>
-            <p className="text-secondary-foreground/90 mb-6">
-              Digital Nomad Visa надає повний легальний статус для життя та роботи в Іспанії. Термін перебування зараховується у загальний стаж для отримання громадянства.
-            </p>
-            <ul className="space-y-2">
+            <h3 className="text-2xl font-bold mb-6">Ключові переваги</h3>
+            <ul className="space-y-4">
               {[
-                "Право працювати віддалено",
-                "Доступ до медицини",
-                "Можливість відкрити банківський рахунок",
-                "Безвіз по Шенгенській зоні",
+                "Право на віддалену роботу на іноземні компанії або локальний ринок Іспанії (не більше 20% від загального прибутку).",
+                "Доступ до державної та приватної систем охорони здоров'я.",
+                "Можливість відкриття рахунків у європейських банках та отримання кредитів.",
+                "Безвізовий режим з усіма країнами Шенгенської зони.",
+                "Термін перебування за цією візою повністю зараховується у загальний стаж для отримання паспорта Іспанії.",
               ].map((item, index) => (
-                <li key={index} className="flex items-center space-x-2">
-                  <div className="w-2 h-2 rounded-full bg-primary" />
-                  <span>{item}</span>
+                <li key={index} className="flex items-start space-x-3">
+                  <div className="w-2 h-2 rounded-full bg-primary mt-2.5 shrink-0" />
+                  <span className="leading-relaxed text-secondary-foreground/90">{item}</span>
                 </li>
               ))}
             </ul>
@@ -145,11 +141,11 @@ export const VisaPageClient: React.FC<VisaPageClientProps> = ({ initialData }) =
                 Отримати консультацію
               </Button>
             </Link>
-            <Link href="/calculator">
+            {/* <Link href="/calculator">
               <Button variant="outline" size="xl">
                 Розрахувати вартість
               </Button>
-            </Link>
+            </Link> */}
           </div>
         </div>
       </div>
