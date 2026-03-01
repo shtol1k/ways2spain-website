@@ -13,6 +13,7 @@ import {
   faShareNodes, // share
   faCookieBite // cookie consent
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
+import { faCheckCircle as faCheckCircleSolid } from '@fortawesome/pro-solid-svg-icons';
 import {
   faTelegram,
   faInstagram,
@@ -34,6 +35,7 @@ export type IconName =
   | 'info'
   | 'success'
   | 'circleCheck'
+  | 'circleCheckSolid'
   | 'error'
   | 'warning'
   | 'share'
@@ -57,6 +59,7 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   info: faInfoCircle,
   success: faCheckCircle,
   circleCheck: faCheckCircle,
+  circleCheckSolid: faCheckCircleSolid,
   error: faExclamationCircle,
   warning: faExclamationCircle,
   share: faShareNodes,

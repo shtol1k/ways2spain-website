@@ -255,7 +255,7 @@ function CellContent({ value }: { value: CellValue }) {
   if (value.type === "check") {
     return (
       <Icon
-        name="circleCheck"
+        name="circleCheckSolid"
         size="md"
         className="color-content-positive mx-auto"
       />
@@ -286,7 +286,7 @@ function ServiceNameCell({
 }) {
   return (
     <div className="flex items-center gap-1.5">
-      <span className="text-body-small color-content-primary">{name}</span>
+      <span className="text-body-small color-content-secondary">{name}</span>
       {tooltip && (
         <Tooltip>
           <TooltipTrigger asChild>
@@ -309,7 +309,7 @@ function ServiceNameCell({
 
 export function PackageComparisonTable() {
   return (
-    <TooltipProvider>
+    <TooltipProvider delayDuration={200}>
       <section className="py-4">
         <div className="text-center mb-10">
           <h2 className="mb-3">Детальне порівняння планів</h2>
@@ -319,32 +319,20 @@ export function PackageComparisonTable() {
         </div>
 
         {/* Desktop Table — lg and above */}
-        <div className="hidden lg:block rounded-2xl border border-[var(--color-border-primary)] overflow-hidden shadow-elegant">
+        <div className="hidden lg:block rounded-2xl border border-(--color-border-primary) overflow-hidden shadow-elegant">
           <div className="overflow-x-auto">
             <Table>
               <TableHeader>
-                <TableRow className="bg-fill-secondary hover:bg-fill-secondary border-b border-[var(--color-border-primary)]">
+                <TableRow className="bg-fill-secondary hover:bg-fill-secondary border-b border-(--color-border-primary)">
                   <TableHead className="w-[38%] text-ui-label color-content-secondary py-5 pl-6 pr-4">
                     Послуга
                   </TableHead>
                   {plans.map((plan) => (
                     <TableHead
                       key={plan.key}
-                      className={cn(
-                        "text-center text-ui-label py-5 w-[15.5%]",
-                        plan.popular
-                          ? "color-content-brand"
-                          : "color-content-secondary"
-                      )}
+                      className="text-center py-5 w-[15.5%]"
                     >
-                      <div className="flex flex-col items-center gap-1.5">
-                        {plan.popular && (
-                          <span className="px-2.5 py-0.5 rounded-full gradient-accent text-accent-foreground text-xs font-bold whitespace-nowrap">
-                            Популярний
-                          </span>
-                        )}
-                        <span>{plan.label}</span>
-                      </div>
+                      <h5>{plan.label}</h5>
                     </TableHead>
                   ))}
                 </TableRow>
@@ -352,21 +340,18 @@ export function PackageComparisonTable() {
               <TableBody>
                 {serviceGroups.map((group) => (
                   <>
-                    <TableRow
-                      key={`group-${group.title}`}
-                      className="hover:bg-fill-secondary"
-                    >
+                    <TableRow key={`group-${group.title}`} className="hover:bg-transparent">
                       <TableCell
                         colSpan={5}
-                        className="bg-fill-secondary py-2 pl-6 text-ui-label color-content-tertiary uppercase tracking-wider"
+                        className="py-3 pl-6"
                       >
-                        {group.title}
+                        <h5>{group.title}</h5>
                       </TableCell>
                     </TableRow>
                     {group.rows.map((row) => (
                       <TableRow
                         key={row.name}
-                        className="border-b border-[var(--color-border-primary)] hover:bg-fill-primary-hover transition-smooth"
+                        className="border-b border-(--color-border-primary)"
                       >
                         <TableCell className="pl-6 pr-4 py-4">
                           <ServiceNameCell
@@ -402,10 +387,7 @@ export function PackageComparisonTable() {
                 <TabsTrigger
                   key={plan.key}
                   value={plan.key}
-                  className={cn(
-                    "text-xs py-2.5 rounded-lg whitespace-nowrap data-[state=active]:bg-fill-primary data-[state=active]:shadow-elegant",
-                    plan.popular && "data-[state=active]:color-content-brand"
-                  )}
+                  className="text-xs py-2.5 rounded-lg whitespace-nowrap data-[state=active]:bg-fill-primary data-[state=active]:shadow-elegant data-[state=active]:color-content-primary"
                 >
                   {plan.label}
                 </TabsTrigger>
@@ -414,19 +396,19 @@ export function PackageComparisonTable() {
 
             {plans.map((plan) => (
               <TabsContent key={plan.key} value={plan.key}>
-                <div className="rounded-2xl border border-[var(--color-border-primary)] overflow-hidden shadow-elegant">
+                <div className="rounded-2xl border border-(--color-border-primary) overflow-hidden shadow-elegant">
                   {serviceGroups.map((group) => (
                     <div key={group.title}>
-                      <div className="bg-fill-secondary px-4 py-2.5 text-ui-label color-content-tertiary uppercase tracking-wider border-b border-[var(--color-border-primary)]">
-                        {group.title}
+                      <div className="px-4 pt-4 pb-2 border-b border-(--color-border-primary)">
+                        <h5>{group.title}</h5>
                       </div>
                       {group.rows.map((row) => (
                         <div
                           key={row.name}
-                          className="flex items-center justify-between px-4 py-3.5 border-b border-[var(--color-border-primary)] last:border-b-0 hover:bg-fill-primary-hover transition-smooth"
+                          className="flex items-center justify-between px-4 py-3.5 border-b border-(--color-border-primary) last:border-b-0"
                         >
                           <div className="flex items-center gap-1.5 flex-1 pr-3 min-w-0">
-                            <span className="text-body-small color-content-primary leading-snug">
+                            <span className="text-body-small color-content-secondary leading-snug">
                               {row.name}
                             </span>
                             {row.tooltip && (
