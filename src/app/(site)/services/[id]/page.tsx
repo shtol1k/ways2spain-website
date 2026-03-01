@@ -15,7 +15,7 @@ import {
 // Service details data
 const serviceDetails = {
   consultation: {
-    name: "Консультація",
+    name: "Перша консультація",
     description: "Початкова оцінка вашої ситуації",
     timeline: [
       { title: "Попередня заявка", description: "Ви заповнюєте коротку форму із базовою інформацією", actor: "client" },
@@ -35,8 +35,8 @@ const serviceDetails = {
     pricing: [{ item: "Консультація", price: "Безкоштовно" }],
     additionalCosts: [],
   },
-  light: {
-    name: "Лайт",
+  base: {
+    name: "Базовий",
     description: "Консультація та перевірка документів",
     timeline: [
       { title: "Детальна консультація", description: "Зустріч для розбору ситуації", actor: "agency" },
@@ -52,15 +52,15 @@ const serviceDetails = {
       ],
       client: ["Збір документів", "Внесення правок за рекомендаціями"],
     },
-    pricing: [{ item: "Пакет \"Лайт\"", price: "400" }],
+    pricing: [{ item: "Пакет \"Базовий\"", price: "450" }],
     additionalCosts: [
       { item: "Переклад документів (за сторінку)", price: "15-25" },
       { item: "Апостиль", price: "30-50" },
     ],
   },
-  optimum: {
-    name: "Оптимум",
-    description: "Повний супровід від А до Я",
+  standard: {
+    name: "Стандарт",
+    description: "Повний супровід процесу",
     timeline: [
       { title: "Стратегічна консультація", description: "План дій і вимоги", actor: "agency" },
       { title: "Збір вихідних даних", description: "Надаєте потрібну інформацію", actor: "client" },
@@ -77,11 +77,11 @@ const serviceDetails = {
       ],
       client: ["Надання базових документів", "Підпис/присутність за потреби"],
     },
-    pricing: [{ item: "Пакет \"Оптимум\"", price: "700" }],
+    pricing: [{ item: "Пакет \"Стандарт\"", price: "1000" }],
     additionalCosts: [{ item: "Нотаріальні послуги (за потреби)", price: "20-40" }],
   },
-  allinclusive: {
-    name: "Все включено",
+  premium: {
+    name: "Преміум",
     description: "Максимальний комфорт та підтримка",
     timeline: [
       { title: "VIP консультація", description: "Індивідуальна стратегія", actor: "agency" },
@@ -98,7 +98,7 @@ const serviceDetails = {
       ],
       client: ["Надання вихідної інформації", "Прийняття ключових рішень"],
     },
-    pricing: [{ item: "Пакет \"Все включено\"", price: "1,300" }],
+    pricing: [{ item: "Пакет \"Преміум\"", price: "1,500" }],
     additionalCosts: [],
   },
 } as const;
@@ -231,7 +231,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <div className="flex items-start justify-between gap-4 mb-1">
                       <h3 className="font-bold">{step.title}</h3>
                       <span
-                        className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap flex-shrink-0 ${
+                        className={`text-xs px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${
                           step.actor === "agency"
                             ? "bg-secondary/20 text-secondary"
                             : "bg-primary/20 text-primary"
@@ -274,7 +274,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <TableCell>
                         {service.responsibilities.agency[index] && (
                           <div className="flex items-start space-x-2">
-                            <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                            <Check className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
                             <span>{service.responsibilities.agency[index]}</span>
                           </div>
                         )}
@@ -282,7 +282,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                       <TableCell>
                         {service.responsibilities.client[index] && (
                           <div className="flex items-start space-x-2">
-                            <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                            <Check className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                             <span>{service.responsibilities.client[index]}</span>
                           </div>
                         )}
@@ -371,7 +371,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
         {/* CTA Block */}
         <section>
-          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center text-primary-foreground">
+          <div className="bg-linear-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center text-primary-foreground">
             <h3 className="text-2xl md:text-3xl font-bold mb-4">Готові почати?</h3>
             <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
               Отримайте безкоштовну консультацію, і ми допоможемо вам обрати найкращий варіант для вашої ситуації
