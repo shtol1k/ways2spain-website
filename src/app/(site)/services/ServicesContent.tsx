@@ -3,6 +3,7 @@
 import { Check, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { PackageComparisonTable } from "@/components/PackageComparisonTable";
 
 const packages = [
   {
@@ -188,6 +189,11 @@ export default function ServicesContent() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Package Comparison Table */}
+        <div className="mb-20">
+          <PackageComparisonTable />
         </div>
 
         {/* Additional Services */}
