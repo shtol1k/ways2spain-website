@@ -149,9 +149,9 @@ export default function ServicesContent() {
                 {pkg.features.map((feature, fIndex) => (
                   <li key={fIndex} className="flex items-start space-x-2">
                     {feature.included ? (
-                      <Check className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                      <Check className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
                     ) : (
-                      <X className="w-5 h-5 text-muted-foreground/40 flex-shrink-0 mt-0.5" />
+                      <X className="w-5 h-5 text-muted-foreground/40 shrink-0 mt-0.5" />
                     )}
                     <span
                       className={
@@ -164,13 +164,13 @@ export default function ServicesContent() {
                 ))}
               </ul>
 
-              <div className="space-y-3">
-                <Link href={`/services/${pkg.id}`}>
+              <div className="flex flex-col gap-2">
+                <Link href={`/services/${pkg.id}`} className="block">
                   <Button variant="outline" className="w-full" size="lg">
                     Детальніше про послугу
                   </Button>
                 </Link>
-                <Link href="/contact">
+                <Link href="/contact" className="block">
                   <Button
                     variant={pkg.popular ? "hero" : "secondary"}
                     className="w-full"
@@ -212,7 +212,7 @@ export default function ServicesContent() {
           </div>
 
           {/* CTA */}
-          <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center text-primary-foreground">
+          <div className="bg-linear-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center text-primary-foreground">
             <h3 className="text-2xl md:text-3xl font-bold mb-4 color-content-primary-inverse">
               Не впевнені який пакет обрати?
             </h3>
