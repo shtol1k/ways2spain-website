@@ -73,19 +73,19 @@ const packages = [
 
 const additionalServices = [
   {
+    title: "Додаткова консультація",
+    price: "50 / 30хв",
+    description: "Відповіді на будь які додаткові питання стосовно легалізації і візи Digital Nomad.",
+  },
+  {
+    title: "Перереєстрація автомобіля",
+    price: "450",
+    description: "Підготовка документів і допомога у проходженні техогляду для постановки автомобіля на іспанські номери.",
+  },
+  {
     title: "Модифікація статусу",
     price: "790",
     description: "Зміна з тимчасового захисту на Digital Nomad Visa",
-  },
-  {
-    title: "Легалізація родини",
-    price: "від 490",
-    description: "Оформлення візи для членів сім'ї (за особу)",
-  },
-  {
-    title: "Податкові консультації",
-    price: "290",
-    description: "Консультація з іспанським податковим радником",
   },
   {
     title: "Продовження візи",
@@ -213,7 +213,7 @@ export default function ServicesContent() {
 
           {/* CTA */}
           <div className="bg-gradient-to-r from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-center text-primary-foreground">
-            <h3 className="text-2xl md:text-3xl font-bold mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold mb-4 color-content-primary-inverse">
               Не впевнені який пакет обрати?
             </h3>
             <p className="text-lg text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
