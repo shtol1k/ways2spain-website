@@ -90,9 +90,9 @@ const additionalServices = [
     description: "Підготовка документів і допомога у проходженні техогляду для постановки автомобіля на іспанські номери.",
   },
   {
-    title: "Модифікація статусу",
-    price: "790",
-    description: "Зміна з тимчасового захисту на Digital Nomad Visa",
+    title: "Подача з вашими документами",
+    price: "200",
+    description: "Подача заявки на візу з вашими документами і відслідковування статусу заявки.",
   },
   {
     title: "Продовження візи",
@@ -172,11 +172,12 @@ export default function ServicesContent() {
               </ul>
 
               <div className="flex flex-col gap-2">
-                <Link href={`/services/${pkg.id}`} className="block">
+                {/* Сторінки деталей послуг не публікуються в першому релізі */}
+                {/* <Link href={`/services/${pkg.id}`} className="block">
                   <Button variant="outline" className="w-full" size="lg">
                     Детальніше про послугу
                   </Button>
-                </Link>
+                </Link> */}
                 <Link href="/contact" className="block">
                   <Button
                     variant={pkg.popular ? "hero" : "secondary"}

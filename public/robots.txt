@@ -22,6 +22,9 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
+# Disallow service detail pages (not published in first release)
+Disallow: /services/
+
 # Sitemap location
 Sitemap: https://ways2spain.com/sitemap.xml
 Sitemap: https://www.ways2spain.com/sitemap.xml
