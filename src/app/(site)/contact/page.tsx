@@ -225,12 +225,12 @@ export default function ContactPage() {
                     <div>
                       <p className="font-medium">Telegram</p>
                       <a
-                        href="https://t.me/ways2spain_manager"
+                        href="https://t.me/ways2spain_assistant"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-muted-foreground hover:text-secondary transition-smooth"
                       >
-                        @ways2spain_manager
+                        @ways2spain_assistant
                       </a>
                     </div>
                   </div>
@@ -276,7 +276,7 @@ export default function ContactPage() {
 
               {/* Working Hours */}
               <div className="bg-gradient-to-br from-primary to-primary/90 rounded-xl p-6 text-primary-foreground">
-                <h3 className="text-xl font-bold mb-4">Графік роботи</h3>
+                <h3 className="text-xl font-bold mb-4 color-content-primary-inverse">Графік роботи</h3>
                 <div className="space-y-2 text-primary-foreground/90">
                   <div className="flex justify-between">
                     <span>Понеділок - П&apos;ятниця</span>

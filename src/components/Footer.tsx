@@ -16,6 +16,7 @@ const socialIconMap: Record<string, IconName | undefined> = {
   facebook: "facebook",
   xTwitter: "xTwitter",
   twitter: "xTwitter", // legacy fallback
+  linkedin: "linkedin",
 };
 
 // Left-to-right underline animation — white underline on dark footer background

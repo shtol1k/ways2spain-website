@@ -107,7 +107,7 @@ export default function ConsultationPage() {
         {/* Additional Info - dark gradient card */}
         <div className="bg-gradient-to-br from-primary to-primary/90 rounded-2xl p-8 md:p-12 text-primary-foreground mb-12">
           <div className="max-w-3xl mx-auto">
-            <h3 className="text-3xl font-bold mb-6 text-center">Що отримаєте на консультації?</h3>
+            <h3 className="text-3xl font-bold mb-6 text-center color-content-primary-inverse">Що отримаєте на консультації?</h3>
             <ul className="space-y-4 mb-8 text-left">
               <li className="flex items-start">
                 <CircleCheckBig className="w-6 h-6 text-secondary mt-0.5 mr-3 flex-shrink-0" />
@@ -145,7 +145,7 @@ export default function ConsultationPage() {
               </Button>
             </Link>
             <a
-              href="https://t.me/DNSpain"
+              href="https://t.me/ways2spain_assistant"
               target="_blank"
               rel="noopener noreferrer"
             >
