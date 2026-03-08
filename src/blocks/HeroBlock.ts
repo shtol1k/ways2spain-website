@@ -41,7 +41,6 @@ export const HeroBlock: Block = {
               name: 'primaryLabel',
               type: 'text',
               label: 'Primary CTA Label',
-              required: true,
               admin: {
                 width: '50%',
               },
@@ -51,7 +50,6 @@ export const HeroBlock: Block = {
               type: 'relationship',
               relationTo: 'pages',
               label: 'Primary CTA Target',
-              required: true,
               admin: {
                 width: '50%',
               },
@@ -65,7 +63,6 @@ export const HeroBlock: Block = {
               name: 'secondaryLabel',
               type: 'text',
               label: 'Secondary CTA Label',
-              required: true,
               admin: {
                 width: '50%',
               },
@@ -75,7 +72,6 @@ export const HeroBlock: Block = {
               type: 'relationship',
               relationTo: 'pages',
               label: 'Secondary CTA Target',
-              required: true,
               admin: {
                 width: '50%',
               },

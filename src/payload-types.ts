@@ -252,11 +252,11 @@ export interface Page {
             title: string;
             text?: string | null;
             media: number | Media;
-            cta: {
-              primaryLabel: string;
-              primaryPage: number | Page;
-              secondaryLabel: string;
-              secondaryPage: number | Page;
+            cta?: {
+              primaryLabel?: string | null;
+              primaryPage?: (number | null) | Page;
+              secondaryLabel?: string | null;
+              secondaryPage?: (number | null) | Page;
             };
             benefits?:
               | {
