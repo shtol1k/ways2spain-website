@@ -193,7 +193,7 @@ export default function ServicesContent() {
         </div>
 
         {/* Package Comparison Table */}
-        <div className="mb-20">
+        <div id="package-comparison" className="mb-20">
           <PackageComparisonTable />
         </div>
 

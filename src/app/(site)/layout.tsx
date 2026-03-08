@@ -106,6 +106,8 @@ export default async function SiteLayout({
   return (
     <html lang="uk" suppressHydrationWarning>
       <head>
+        {/* Figma Code-to-Canvas capture script — remove after capture */}
+        <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
         <GoogleTagManagerHead />
         <link
           rel="alternate"
