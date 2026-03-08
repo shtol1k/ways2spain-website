@@ -1,5 +1,7 @@
 'use client';
 
+import { Fragment } from "react";
+
 import { Icon } from "@/components/ui/icons";
 import {
   Table,
@@ -339,8 +341,8 @@ export function PackageComparisonTable() {
               </TableHeader>
               <TableBody>
                 {serviceGroups.map((group) => (
-                  <>
-                    <TableRow key={`group-${group.title}`} className="hover:bg-transparent">
+                  <Fragment key={group.title}>
+                    <TableRow className="hover:bg-transparent">
                       <TableCell
                         colSpan={5}
                         className="py-3 pl-6"
@@ -372,7 +374,7 @@ export function PackageComparisonTable() {
                         ))}
                       </TableRow>
                     ))}
-                  </>
+                  </Fragment>
                 ))}
               </TableBody>
             </Table>
