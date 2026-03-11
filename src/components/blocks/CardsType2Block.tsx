@@ -46,7 +46,7 @@ export const CardsType2Block: React.FC<CardsType2BlockProps> = ({ cards }) => {
                   'gap-6 md:gap-4',
                   'p-6',
                   'bg-fill-primary',
-                  'border border-[var(--color-border-primary)]',
+                  'border border-(--color-border-primary)',
                   'rounded-xl',
                   'shadow-elegant',
                 )}
@@ -64,7 +64,7 @@ export const CardsType2Block: React.FC<CardsType2BlockProps> = ({ cards }) => {
                 )}
                 <div className="flex flex-col gap-2">
                   <h4>{card.title}</h4>
-                  <p className="text-body-small color-content-secondary">{card.description}</p>
+                  <p className="text-body-small color-content-secondary mb-0">{card.description}</p>
                 </div>
               </div>
             )
