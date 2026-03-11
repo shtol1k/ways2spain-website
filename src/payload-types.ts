@@ -353,6 +353,19 @@ export interface Page {
             blockType: 'cardsType1';
           }
         | {
+            cards?:
+              | {
+                  icon?: (number | null) | Media;
+                  title: string;
+                  description: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'cardsType2';
+          }
+        | {
             content: {
               root: {
                 type: string;
@@ -1078,6 +1091,20 @@ export interface PagesSelect<T extends boolean = true> {
                           details?: T;
                           id?: T;
                         };
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        cardsType2?:
+          | T
+          | {
+              cards?:
+                | T
+                | {
+                    icon?: T;
+                    title?: T;
+                    description?: T;
+                    id?: T;
                   };
               id?: T;
               blockName?: T;

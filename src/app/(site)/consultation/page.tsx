@@ -1,8 +1,10 @@
 import { CircleCheckBig, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image";
 import type { Metadata } from "next";
+import { getPayload } from 'payload'
+import configPromise from '@payload-config'
+import { RenderBlocks } from '@/components/blocks/RenderBlocks'
 
 // SEO Metadata
 export const metadata: Metadata = {
@@ -22,67 +24,23 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ConsultationPage() {
+export default async function ConsultationPage() {
+  const payload = await getPayload({ config: configPromise })
+  const { docs } = await payload.find({
+    collection: 'pages',
+    where: { slug: { equals: 'consultation' } },
+    limit: 1,
+    depth: 2,
+  })
+  const consultationPage = docs[0] ?? null
+
   return (
-    <div className="min-h-screen py-20 lg:py-32">
-      <div className="container mx-auto px-4 lg:px-8">
-        {/* Header - centered */}
-        <div className="text-center mb-12">
-          <h1 className="mb-4">Безкоштовна консультація</h1>
-          <p className="text-xl text-muted-foreground">
-            Запис на первинну безкоштовну консультацію для оцінки вашого кейсу та персональних рекомендацій
-          </p>
-        </div>
-
-        {/* Benefits - full width grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-card rounded-xl p-6 border border-border shadow-elegant hover:shadow-strong transition-smooth">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-neutral-100 mb-4">
-              <Image
-                src="/icon_time.svg"
-                alt="30 хвилин"
-                width={44}
-                height={44}
-                className="w-11 h-11"
-              />
-            </div>
-            <h3 className="font-semibold mb-2">30 хвилин</h3>
-            <p className="text-sm text-muted-foreground">
-              Оптимальний час для розбору вашого кейсу та відповідей на питання
-            </p>
-          </div>
-          <div className="bg-card rounded-xl p-6 border border-border shadow-elegant hover:shadow-strong transition-smooth">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-neutral-100 mb-4">
-              <Image
-                src="/icon_personal.svg"
-                alt="Персональна консультація"
-                width={44}
-                height={44}
-                className="w-11 h-11"
-              />
-            </div>
-            <h3 className="font-semibold mb-2">Персонально</h3>
-            <p className="text-sm text-muted-foreground">
-              Аналіз вашої унікальної ситуації та рекомендації крок за кроком
-            </p>
-          </div>
-          <div className="bg-card rounded-xl p-6 border border-border shadow-elegant hover:shadow-strong transition-smooth">
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-neutral-100 mb-4">
-              <Image
-                src="/icon_google_meet.svg"
-                alt="Онлайн консультація"
-                width={44}
-                height={44}
-                className="w-11 h-11"
-              />
-            </div>
-            <h3 className="font-semibold mb-2">Онлайн</h3>
-            <p className="text-sm text-muted-foreground">
-              Консультація через Google Meet у зручний для вас час
-            </p>
-          </div>
-        </div>
-
+    <div className="min-h-screen">
+      {consultationPage?.layout && consultationPage.layout.length > 0 && (
+        <RenderBlocks blocks={consultationPage.layout} />
+      )}
+      <div className="pb-20 lg:pb-32 pt-6">
+        <div className="container mx-auto px-4 lg:px-8">
         {/* Google Calendar header */}
         <div className="text-center max-w-3xl mx-auto mb-6">
           <h2 className="text-2xl font-bold mb-2">Оберіть дату та час</h2>
@@ -156,6 +114,7 @@ export default function ConsultationPage() {
             </a>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

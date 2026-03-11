@@ -6,6 +6,7 @@ import { FeaturesBlock } from './FeaturesBlock'
 import { TestimonialsBlock } from './TestimonialsBlock'
 import { TextBlock } from './TextBlock'
 import { CardsType1Block } from './CardsType1Block'
+import { CardsType2Block } from './CardsType2Block'
 import { LongTextBlock } from './LongTextBlock'
 
 const blockComponents = {
@@ -15,6 +16,7 @@ const blockComponents = {
   testimonials: TestimonialsBlock,
   text: TextBlock,
   cardsType1: CardsType1Block,
+  cardsType2: CardsType2Block,
   longText: LongTextBlock,
 }
 

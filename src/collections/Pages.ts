@@ -5,6 +5,7 @@ import { FeaturesBlock } from '../blocks/FeaturesBlock'
 import { TestimonialsBlock } from '../blocks/TestimonialsBlock'
 import { TextBlock } from '../blocks/TextBlock'
 import { CardsType1Block } from '../blocks/CardsType1Block'
+import { CardsType2Block } from '../blocks/CardsType2Block'
 import { LongTextBlock } from '../blocks/LongTextBlock'
 import { revalidatePage } from '../hooks/revalidatePage'
 
@@ -89,6 +90,7 @@ export const Pages: CollectionConfig = {
                 TestimonialsBlock,
                 TextBlock,
                 CardsType1Block,
+                CardsType2Block,
                 LongTextBlock,
               ],
               // Limit Hero block to maximum 1 per page
