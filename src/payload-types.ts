@@ -1417,7 +1417,11 @@ export interface MainMenu {
   navItems?:
     | {
         label: string;
-        link: number | Page;
+        link?: (number | null) | Page;
+        /**
+         * Use this only if not linking to an internal page.
+         */
+        externalLink?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1522,6 +1526,7 @@ export interface MainMenuSelect<T extends boolean = true> {
     | {
         label?: T;
         link?: T;
+        externalLink?: T;
         id?: T;
       };
   ctaPrimary?:

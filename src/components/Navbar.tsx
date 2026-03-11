@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 interface NavItem {
   path: string
   label: string
+  isExternal?: boolean
 }
 
 interface CtaButton {
@@ -75,19 +76,31 @@ const Navbar = ({ items, logoLarge, logoMedium, ctaPrimary, ctaSecondary }: Navb
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-4 flex-1 justify-center xl:flex-none xl:gap-6">
-            {navItems.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`relative h-10 flex items-center justify-center text-ui-nav transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 after:origin-left after:transition-transform after:duration-300 ${
-                  isActive(item.path)
-                    ? "color-content-primary after:scale-x-100"
-                    : "color-content-tertiary after:scale-x-0 hover:color-content-primary hover:after:scale-x-100"
-                } ${item.path === "/" ? "hidden xl:flex" : ""}`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) =>
+              item.isExternal ? (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative h-10 flex items-center justify-center text-ui-nav transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 after:origin-left after:transition-transform after:duration-300 color-content-tertiary after:scale-x-0 hover:color-content-primary hover:after:scale-x-100"
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`relative h-10 flex items-center justify-center text-ui-nav transition-colors duration-300 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-amber-400 after:origin-left after:transition-transform after:duration-300 ${
+                    isActive(item.path)
+                      ? "color-content-primary after:scale-x-100"
+                      : "color-content-tertiary after:scale-x-0 hover:color-content-primary hover:after:scale-x-100"
+                  } ${item.path === "/" ? "hidden xl:flex" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              )
+            )}
           </div>
 
           <div className="hidden lg:flex items-center gap-2 xl:gap-3">
@@ -124,20 +137,33 @@ const Navbar = ({ items, logoLarge, logoMedium, ctaPrimary, ctaSecondary }: Navb
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  href={item.path}
-                  onClick={() => setIsOpen(false)}
-                  className={`px-4 py-3 rounded-md text-ui-nav transition-colors duration-300 ${
-                    isActive(item.path)
-                      ? "color-content-primary border-l-2 border-amber-400"
-                      : "color-content-tertiary hover:color-content-primary hover:bg-muted/50"
-                  }`}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) =>
+                item.isExternal ? (
+                  <a
+                    key={item.path}
+                    href={item.path}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-3 rounded-md text-ui-nav transition-colors duration-300 color-content-tertiary hover:color-content-primary hover:bg-muted/50"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={item.path}
+                    href={item.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`px-4 py-3 rounded-md text-ui-nav transition-colors duration-300 ${
+                      isActive(item.path)
+                        ? "color-content-primary border-l-2 border-amber-400"
+                        : "color-content-tertiary hover:color-content-primary hover:bg-muted/50"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              )}
               {ctaSecondary && (
                 <Link href={ctaSecondary.path} onClick={() => setIsOpen(false)}>
                   <Button variant="outline" size="lg" className="w-full mt-2 shadow-elegant">

@@ -51,7 +51,14 @@ export const MainMenu: GlobalConfig = {
           type: 'relationship',
           relationTo: 'pages',
           label: 'Page Link',
-          required: true,
+        },
+        {
+          name: 'externalLink',
+          type: 'text',
+          label: 'External Link (Optional)',
+          admin: {
+            description: 'Use this only if not linking to an internal page.',
+          },
         },
       ],
 

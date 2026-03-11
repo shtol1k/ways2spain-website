@@ -62,7 +62,7 @@ export default async function SiteLayout({
     // Check if link is a Page object (populated)
     if (item.link && typeof item.link !== 'string') {
       const page = item.link as any // Using any to avoid strict type checks on 'published' field for now
-      
+
       // Filter unpublished pages for non-authenticated users
       // If user is absent AND page.published is explicitly false, hide it.
       if (!user && page.published === false) {
@@ -70,10 +70,14 @@ export default async function SiteLayout({
       }
 
       const href = page.slug === 'home' ? '/' : `/${page.slug}`
-      return { path: href, label: item.label }
+      return { path: href, label: item.label, isExternal: false }
+    }
+    // External link fallback
+    if (item.externalLink) {
+      return { path: item.externalLink, label: item.label, isExternal: true }
     }
     return null
-  }).filter((item): item is { path: string, label: string } => item !== null) || undefined
+  }).filter((item): item is { path: string; label: string; isExternal: boolean } => item !== null) || undefined
 
   // Process Logos
   const logoLarge = mainMenu.logoLarge && typeof mainMenu.logoLarge !== 'number'
