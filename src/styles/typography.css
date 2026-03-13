@@ -218,6 +218,12 @@
       line-height: var(--leading-none); /* 1 */
       font-weight: var(--font-weight-medium);
     }
+
+    .text-labels-sm {
+      font-size: var(--text-xs); /* 12px */
+      line-height: var(--leading-4); /* 16px */
+      font-weight: var(--font-weight-medium);
+    }
   }
 
   /* TABLET (768px - 1023px) 48rem <= width < 64rem */
@@ -415,6 +421,12 @@
       line-height: var(--leading-none);
       font-weight: var(--font-weight-medium);
     }
+
+    .text-labels-sm {
+      font-size: var(--text-xs); /* 12px */
+      line-height: var(--leading-4); /* 16px */
+      font-weight: var(--font-weight-medium);
+    }
   }
 
   /* DESKTOP (>= 1024px / 64rem) */
@@ -610,6 +622,12 @@
     .text-ui-label {
       font-size: var(--text-sm);
       line-height: var(--leading-none);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .text-labels-sm {
+      font-size: var(--text-xs); /* 12px */
+      line-height: var(--leading-4); /* 16px */
       font-weight: var(--font-weight-medium);
     }
   }

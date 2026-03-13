@@ -67,12 +67,14 @@ export default async function GuidesPage({ searchParams }: GuidesPageProps) {
 
   const otherBlocks = layout.filter((b) => b.blockType !== 'guidesCTA')
 
-  return (
-    <div className="min-h-screen pt-32 pb-20">
-      {/* @ts-ignore */}
-      {otherBlocks.length > 0 && <RenderBlocks blocks={otherBlocks} />}
+  const hasPageBlocks = otherBlocks.length > 0
 
-      <div className="container mx-auto px-4 lg:px-8">
+  return (
+    <div className="min-h-screen pb-20">
+      {/* @ts-ignore */}
+      {hasPageBlocks && <RenderBlocks blocks={otherBlocks} />}
+
+      <div className={`container mx-auto px-4 lg:px-8${hasPageBlocks ? '' : ' pt-32'}`}>
         {categories.length > 0 && (
           <div className="mb-8">
             <GuidesCategoryFilter categories={categories} />
