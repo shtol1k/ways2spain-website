@@ -8,7 +8,7 @@
     --content-primary: var(--color-slate-900);
     --content-primary-inverse: var(--color-white);
     --content-secondary: var(--color-slate-600);
-    --content-secondary-inverse: var(--color-slate-300);
+    --content-secondary-inverse: var(--color-slate-200);
     --content-tertiary: var(--color-slate-500);
     --content-tertiary-inverse: var(--color-slate-400);
     --content-disable: var(--color-black);
@@ -72,7 +72,7 @@
 /* === Overlay === */
 @utility mask-default {
   background-color: var(--color-stone-800);
-  opacity: 0.5;
+  opacity: 0.6;
 }
 @utility mask-hover {
   background-color: var(--color-stone-600);
