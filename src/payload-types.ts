@@ -391,11 +391,11 @@ export interface Page {
             description?: string | null;
             primaryButton: {
               label: string;
-              url: string;
+              target: number | Page;
             };
             secondaryButton: {
               label: string;
-              url: string;
+              target: number | Page;
             };
             id?: string | null;
             blockName?: string | null;
@@ -1141,13 +1141,13 @@ export interface PagesSelect<T extends boolean = true> {
                 | T
                 | {
                     label?: T;
-                    url?: T;
+                    target?: T;
                   };
               secondaryButton?:
                 | T
                 | {
                     label?: T;
-                    url?: T;
+                    target?: T;
                   };
               id?: T;
               blockName?: T;

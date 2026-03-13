@@ -38,6 +38,7 @@ import * as migration_20260228_155053 from './20260228_155053';
 import * as migration_20260311_135002 from './20260311_135002';
 import * as migration_20260311_main_menu_external_link from './20260311_main_menu_external_link';
 import * as migration_20260313_134558 from './20260313_134558';
+import * as migration_20260313_guides_cta_url_to_target from './20260313_guides_cta_url_to_target';
 
 export const migrations = [
   {
@@ -238,6 +239,11 @@ export const migrations = [
   {
     up: migration_20260313_134558.up,
     down: migration_20260313_134558.down,
-    name: '20260313_134558'
+    name: '20260313_134558',
+  },
+  {
+    up: migration_20260313_guides_cta_url_to_target.up,
+    down: migration_20260313_guides_cta_url_to_target.down,
+    name: '20260313_guides_cta_url_to_target',
   },
 ];

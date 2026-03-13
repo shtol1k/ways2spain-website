@@ -1,3 +1,4 @@
+import type { Page } from '@/payload-types'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
@@ -7,13 +8,20 @@ export interface GuidesCTABlockProps {
   description?: string | null
   primaryButton: {
     label: string
-    url: string
+    target: Page | string | null
   }
   secondaryButton: {
     label: string
-    url: string
+    target: Page | string | null
   }
   className?: string
+}
+
+const getPageHref = (page: Page | string | null | any): string => {
+  if (typeof page === 'object' && page?.slug) {
+    return page.slug === 'home' ? '/' : `/${page.slug}`
+  }
+  return '#'
 }
 
 export function GuidesCTABlock({
@@ -40,10 +48,10 @@ export function GuidesCTABlock({
       </div>
       <div className="flex flex-col sm:flex-col md:flex-row items-center gap-4 md:gap-6 w-full justify-center">
         <Button variant="amber" size="lg" asChild>
-          <a href={primaryButton.url}>{primaryButton.label}</a>
+          <a href={getPageHref(primaryButton.target)}>{primaryButton.label}</a>
         </Button>
         <Button variant="outline" size="lg" asChild>
-          <a href={secondaryButton.url}>{secondaryButton.label}</a>
+          <a href={getPageHref(secondaryButton.target)}>{secondaryButton.label}</a>
         </Button>
       </div>
     </div>
