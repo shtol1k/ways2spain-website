@@ -38,8 +38,8 @@ export function GuideCard({ guide, index = 0 }: GuideCardProps) {
         className={cn(
           'relative h-[340px] rounded-xl overflow-hidden isolate group',
           'shadow-elegant',
-          // Hover lift + shadow — xl і 2xl only
-          'xl:transition-[box-shadow,transform] xl:ease-out xl:duration-300',
+          // Hover lift + shadow — xl і 2xl only (spring easing)
+          'xl:transition-card-lift',
           'xl:hover:shadow-strong xl:hover:-translate-y-1'
         )}
       >
@@ -53,8 +53,8 @@ export function GuideCard({ guide, index = 0 }: GuideCardProps) {
             className={cn(
               'object-cover pointer-events-none',
               // Saturation — xl і 2xl only
-              'xl:[filter:saturate(0.5)] xl:group-hover:[filter:saturate(1.35)]',
-              'xl:transition-[filter] xl:ease-out xl:duration-300'
+              'xl:filter-[saturate(0.5)] xl:group-hover:filter-[saturate(1.5)]',
+              'xl:transition-[filter] xl:ease-in-out xl:duration-[450ms]'
             )}
             priority={index < 3}
           />
@@ -68,7 +68,7 @@ export function GuideCard({ guide, index = 0 }: GuideCardProps) {
         <div
           className={cn(
             'absolute inset-0 z-[1] mask-default',
-            'xl:transition-[background-color] xl:ease-out xl:duration-300',
+            'xl:transition-[background-color] xl:ease-in-out xl:duration-400',
             'xl:group-hover:mask-hover'
           )}
         />
