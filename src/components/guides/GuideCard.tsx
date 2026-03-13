@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Image from 'next/image'
+import { SmartImage } from '@/components/SmartImage'
 import { Tag } from '@/components/ui/tag'
 import { cn } from '@/lib/utils'
 import type { Guide, GuideCategory } from '@/api/guides'
@@ -45,7 +45,7 @@ export function GuideCard({ guide, index = 0 }: GuideCardProps) {
       >
         {/* Background image */}
         {imageData ? (
-          <Image
+          <SmartImage
             src={imageData.url}
             alt={imageData.alt || guide.title}
             fill
