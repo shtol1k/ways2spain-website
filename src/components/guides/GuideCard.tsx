@@ -1,14 +1,12 @@
 import Link from 'next/link'
-import { Card, CardContent, CardFooter } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { SmartImage } from '@/components/SmartImage'
-import { Banknote, Clock, Globe, Calendar } from 'lucide-react'
+import Image from 'next/image'
+import { Tag } from '@/components/ui/tag'
+import { cn } from '@/lib/utils'
 import type { Guide, GuideCategory } from '@/api/guides'
-import { format } from 'date-fns'
-import { uk } from 'date-fns/locale'
 
 interface GuideCardProps {
   guide: Guide
+  index?: number
 }
 
 function getCategorySlug(category: Guide['category']): string {
@@ -18,83 +16,72 @@ function getCategorySlug(category: Guide['category']): string {
   return ''
 }
 
-function getImageUrl(
+function getImageData(
   image: Guide['featuredImage']
-): string | null {
+): { url: string; alt: string } | null {
   if (!image || typeof image === 'number') return null
-  if (typeof image === 'object' && 'url' in image) return image.url ?? null
+  if (typeof image === 'object' && 'url' in image && image.url) {
+    return { url: image.url, alt: 'alt' in image && image.alt ? image.alt : '' }
+  }
   return null
 }
 
-export function GuideCard({ guide }: GuideCardProps) {
+export function GuideCard({ guide, index = 0 }: GuideCardProps) {
   const categorySlug = getCategorySlug(guide.category)
   const category = typeof guide.category === 'object' ? guide.category : null
   const href = `/guides/${categorySlug}/${guide.slug}`
-  const imageUrl = getImageUrl(guide.featuredImage)
-  const lastUpdated = guide.summary?.lastUpdated
+  const imageData = getImageData(guide.featuredImage)
 
   return (
     <Link href={href} className="block h-full">
-      <Card className="h-full transition-shadow hover:shadow-md">
-        <div className="aspect-video w-full overflow-hidden rounded-t-lg bg-muted">
-          {imageUrl ? (
-            <SmartImage
-              src={imageUrl}
-              alt={guide.title}
-              width={400}
-              height={225}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center text-muted-foreground/40 text-6xl">
-              📋
-            </div>
-          )}
-        </div>
-        <CardContent className="p-4">
-          {category ? (
-            <Badge
-              variant="secondary"
-              className="mb-2"
-              style={
-                category.color
-                  ? { backgroundColor: `${category.color}20`, color: category.color }
-                  : undefined
-              }
-            >
-              {category.name}
-            </Badge>
-          ) : null}
-          <h3 className="font-semibold text-lg line-clamp-2 mb-2">{guide.title}</h3>
-          <p className="text-sm text-muted-foreground line-clamp-2">{guide.excerpt}</p>
-          <div className="flex flex-wrap gap-3 mt-3 text-xs text-muted-foreground">
-            {guide.summary?.totalCost ? (
-              <span className="flex items-center gap-1">
-                <Banknote className="size-3.5" />
-                {guide.summary.totalCost}
-              </span>
-            ) : null}
-            {guide.summary?.estimatedDuration ? (
-              <span className="flex items-center gap-1">
-                <Clock className="size-3.5" />
-                {guide.summary.estimatedDuration}
-              </span>
-            ) : null}
-            {guide.summary?.format?.length ? (
-              <span className="flex items-center gap-1">
-                <Globe className="size-3.5" />
-                {guide.summary.format.join(', ')}
-              </span>
-            ) : null}
+      <article
+        className={cn(
+          'relative h-[340px] rounded-xl overflow-hidden isolate group',
+          'shadow-elegant',
+          // Hover lift + shadow — xl і 2xl only
+          'xl:transition-[box-shadow,transform] xl:ease-out xl:duration-300',
+          'xl:hover:shadow-strong xl:hover:-translate-y-1'
+        )}
+      >
+        {/* Background image */}
+        {imageData ? (
+          <Image
+            src={imageData.url}
+            alt={imageData.alt || guide.title}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 25vw, 25vw"
+            className={cn(
+              'object-cover pointer-events-none',
+              // Saturation — xl і 2xl only
+              'xl:[filter:saturate(0.5)] xl:group-hover:[filter:saturate(1.35)]',
+              'xl:transition-[filter] xl:ease-out xl:duration-300'
+            )}
+            priority={index < 3}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-fill-secondary flex items-center justify-center text-6xl">
+            📋
           </div>
-        </CardContent>
-        {lastUpdated ? (
-          <CardFooter className="p-4 pt-0 text-xs text-muted-foreground flex items-center gap-1">
-            <Calendar className="size-3.5" />
-            Оновлено {format(new Date(lastUpdated), 'd.MM.yyyy', { locale: uk })}
-          </CardFooter>
-        ) : null}
-      </Card>
+        )}
+
+        {/* Overlay mask z-[1] */}
+        <div
+          className={cn(
+            'absolute inset-0 z-[1] mask-default',
+            'xl:transition-[background-color] xl:ease-out xl:duration-300',
+            'xl:group-hover:mask-hover'
+          )}
+        />
+
+        {/* Content z-[2] */}
+        <div className="relative z-[2] p-6 flex flex-col gap-3">
+          {category && <Tag label={category.name} />}
+          <h3 className="color-content-primary-inverse line-clamp-3">{guide.title}</h3>
+          <p className="text-body-base color-content-secondary-inverse line-clamp-2">
+            {guide.excerpt}
+          </p>
+        </div>
+      </article>
     </Link>
   )
 }

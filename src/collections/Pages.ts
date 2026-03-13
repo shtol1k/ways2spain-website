@@ -7,6 +7,7 @@ import { TextBlock } from '../blocks/TextBlock'
 import { CardsType1Block } from '../blocks/CardsType1Block'
 import { CardsType2Block } from '../blocks/CardsType2Block'
 import { LongTextBlock } from '../blocks/LongTextBlock'
+import { GuidesCTABlock } from '../blocks/GuidesCTABlock'
 import { revalidatePage } from '../hooks/revalidatePage'
 
 export const Pages: CollectionConfig = {
@@ -92,6 +93,7 @@ export const Pages: CollectionConfig = {
                 CardsType1Block,
                 CardsType2Block,
                 LongTextBlock,
+                GuidesCTABlock,
               ],
               // Limit Hero block to maximum 1 per page
               validate: (value) => {

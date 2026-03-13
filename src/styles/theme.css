@@ -69,6 +69,16 @@
 @utility color-content-secondary-inverse { color: var(--content-secondary-inverse); }
 @utility color-content-tertiary-inverse  { color: var(--content-tertiary-inverse);  }
 
+/* === Overlay === */
+@utility mask-default {
+  background-color: var(--color-stone-800);
+  opacity: 0.5;
+}
+@utility mask-hover {
+  background-color: var(--color-stone-600);
+  opacity: 0.5;
+}
+
 /* Background fill utilities */
 @utility bg-fill-primary         { background-color: var(--color-fill-primary);         }
 @utility bg-fill-primary-hover   { background-color: var(--color-fill-primary-hover);   }

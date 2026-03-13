@@ -386,6 +386,21 @@ export interface Page {
             blockName?: string | null;
             blockType: 'longText';
           }
+        | {
+            title: string;
+            description?: string | null;
+            primaryButton: {
+              label: string;
+              url: string;
+            };
+            secondaryButton: {
+              label: string;
+              url: string;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'guidesCTA';
+          }
       )[]
     | null;
   meta?: {
@@ -1114,6 +1129,26 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               content?: T;
               showTableOfContents?: T;
+              id?: T;
+              blockName?: T;
+            };
+        guidesCTA?:
+          | T
+          | {
+              title?: T;
+              description?: T;
+              primaryButton?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
+              secondaryButton?:
+                | T
+                | {
+                    label?: T;
+                    url?: T;
+                  };
               id?: T;
               blockName?: T;
             };

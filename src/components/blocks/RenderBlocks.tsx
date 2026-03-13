@@ -8,6 +8,7 @@ import { TextBlock } from './TextBlock'
 import { CardsType1Block } from './CardsType1Block'
 import { CardsType2Block } from './CardsType2Block'
 import { LongTextBlock } from './LongTextBlock'
+import { GuidesCTABlock } from './GuidesCTABlock'
 
 const blockComponents = {
   pageHeader: PageHeaderBlock,
@@ -18,6 +19,7 @@ const blockComponents = {
   cardsType1: CardsType1Block,
   cardsType2: CardsType2Block,
   longText: LongTextBlock,
+  guidesCTA: GuidesCTABlock,
 }
 
 export const RenderBlocks: React.FC<{ blocks: Page['layout'] }> = ({ blocks }) => {
