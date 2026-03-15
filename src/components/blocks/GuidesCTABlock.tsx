@@ -8,16 +8,16 @@ export interface GuidesCTABlockProps {
   description?: string | null
   primaryButton: {
     label: string
-    target: Page | string | null
+    target: number | Page | null
   }
   secondaryButton: {
     label: string
-    target: Page | string | null
+    target: number | Page | null
   }
   className?: string
 }
 
-const getPageHref = (page: Page | string | null | any): string => {
+const getPageHref = (page: number | Page | null | any): string => {
   if (typeof page === 'object' && page?.slug) {
     return page.slug === 'home' ? '/' : `/${page.slug}`
   }
