@@ -22,6 +22,12 @@ interface TestimonialsBlockProps {
   testimonials?: TestimonialItem[] | null
 }
 
+function ensureAbsoluteUrl(url: string | null | undefined): string | undefined {
+  if (!url) return undefined
+  if (url.startsWith('http://') || url.startsWith('https://') || url.startsWith('//')) return url
+  return `https://${url}`
+}
+
 function resolvePhotoUrl(photo: Media | number | null | undefined): string | undefined {
   if (!photo || typeof photo === 'number') return undefined
   const url = (photo as Media).url
@@ -54,11 +60,11 @@ export const TestimonialsBlock: React.FC<TestimonialsBlockProps> = ({
     testimonial: item.testimonial,
     date: item.date,
     photo: resolvePhotoUrl(item.photo),
-    linkedin: item.linkedin ?? undefined,
-    facebook: item.facebook ?? undefined,
-    xTwitter: item.xTwitter ?? undefined,
-    instagram: item.instagram ?? undefined,
-    telegram: item.telegram ?? undefined,
+    linkedin: ensureAbsoluteUrl(item.linkedin),
+    facebook: ensureAbsoluteUrl(item.facebook),
+    xTwitter: ensureAbsoluteUrl(item.xTwitter),
+    instagram: ensureAbsoluteUrl(item.instagram),
+    telegram: ensureAbsoluteUrl(item.telegram),
   }))
 
   return (
