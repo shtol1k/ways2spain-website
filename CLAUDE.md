@@ -1,5 +1,23 @@
 # Claude Code Instructions — Ways2Spain Landing
 
+## Knowledge Base
+
+OBSIDIAN_VAULT_PATH: /Users/atamanov/Library/Mobile Documents/icloud~md~obsidian/Documents/Vault
+PROJECT_DOCS: /Users/atamanov/Library/Mobile Documents/icloud~md~obsidian/Documents/Vault/Projects/Ways2Spain
+
+Project documentation, PRD, notes, and ideas are stored in the Vault under `Projects/Ways2Spain`.
+Use the `obsidian-knowledge-base` skill to read, search, or write files in the vault.
+
+**Entry point:** `Projects/Ways2Spain/INDEX.md` — start here to find the right document without reading the full library.
+
+| File | Contents |
+|------|----------|
+| `INDEX.md` | Master index with quick context and critical rules for AI agents |
+| `Website/Project-Overview.md` | Business goals, target audience, page routes, CMS content, project status |
+| `Website/Technical-Architecture.md` | Tech stack, Payload collections/globals/blocks, infrastructure (Supabase, R2, Vercel, Resend), route groups |
+| `Website/Design-System.md` | Color tokens, typography classes, Button variants, icon system, custom utilities |
+| `Website/Development-Workflow.md` | Git strategy, migrations workflow, local dev setup, deploy process, code conventions |
+
 ## Stack
 
 - **Framework:** Next.js 16 (App Router) + Payload CMS 3.74

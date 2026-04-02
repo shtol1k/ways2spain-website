@@ -67,7 +67,8 @@ export const Guides: CollectionConfig = {
       hooks: {
         beforeValidate: [
           ({ value, data }) => {
-            if (!value && data?.title) return formatSlug(data.title)
+            if (value) return formatSlug(value)
+            if (data?.title) return formatSlug(data.title)
             return value
           },
         ],
