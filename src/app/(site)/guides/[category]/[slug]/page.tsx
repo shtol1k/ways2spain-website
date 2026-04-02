@@ -1,9 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import {
   getGuideBySlug,
-  getGuideCategories,
   getAllGuideSlugs,
 } from '@/api/guides'
 import { getCanonicalUrl } from '@/lib/utils'
@@ -15,10 +13,7 @@ import { GuidesTableOfContents } from '@/components/guides/GuidesTableOfContents
 import { GuideFAQ } from '@/components/guides/GuideFAQ'
 import { PrintButton } from '@/components/guides/PrintButton'
 import { PrintStyles } from '@/components/guides/PrintStyles'
-import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { JsonLd } from '@/components/JsonLd'
-import { Button } from '@/components/ui/button'
-import { ArrowLeft } from 'lucide-react'
 import type { GuideCategory } from '@/api/guides'
 import {
   generateHowToSchema,
@@ -111,59 +106,51 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <JsonLd data={faqSchema} />
       ) : null}
       <JsonLd data={breadcrumbSchema} />
-    <div className="min-h-screen pt-32 pb-20">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="max-w-4xl mx-auto mb-6">
-          <Link href="/guides">
-            <Button variant="ghost" size="sm">
-              <ArrowLeft className="mr-2 size-4" />
-              Повернутися до гайдів
-            </Button>
-          </Link>
-          <BlogBreadcrumbs items={breadcrumbItems} />
+
+      <GuideHeader guide={guide} categorySlug={category} />
+
+      <div className="min-h-screen pb-20">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
+            <main className="min-w-0">
+              <GuideSummary summary={guide.summary} />
+
+              {guide.introduction_html ? (
+                <div
+                  className="prose prose-neutral dark:prose-invert max-w-none my-8"
+                  dangerouslySetInnerHTML={{
+                    __html: guide.introduction_html,
+                  }}
+                />
+              ) : null}
+
+              <section className="my-8" aria-label="Кроки">
+                <h2 className="text-2xl font-bold mb-6">Кроки</h2>
+                <GuideSteps steps={guide.steps} />
+              </section>
+
+              {guide.conclusion_html ? (
+                <div
+                  className="prose prose-neutral dark:prose-invert max-w-none my-8"
+                  dangerouslySetInnerHTML={{ __html: guide.conclusion_html }}
+                />
+              ) : null}
+
+              <GuideFAQ faqs={guide.faqs} />
+            </main>
+
+            <aside className="space-y-6 print:hidden">
+              <div className="lg:sticky lg:top-24 space-y-6">
+                <GuidesTableOfContents steps={guide.steps} />
+                <GuideResources resources={guide.resources} />
+                <PrintButton />
+              </div>
+            </aside>
+          </div>
+
+          <PrintStyles />
         </div>
-
-        <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
-          <main className="min-w-0">
-            <GuideHeader guide={guide} />
-            <GuideSummary summary={guide.summary} />
-
-            {guide.introduction_html ? (
-              <div
-                className="prose prose-neutral dark:prose-invert max-w-none my-8"
-                dangerouslySetInnerHTML={{
-                  __html: guide.introduction_html,
-                }}
-              />
-            ) : null}
-
-            <section className="my-8" aria-label="Кроки">
-              <h2 className="text-2xl font-bold mb-6">Кроки</h2>
-              <GuideSteps steps={guide.steps} />
-            </section>
-
-            {guide.conclusion_html ? (
-              <div
-                className="prose prose-neutral dark:prose-invert max-w-none my-8"
-                dangerouslySetInnerHTML={{ __html: guide.conclusion_html }}
-              />
-            ) : null}
-
-            <GuideFAQ faqs={guide.faqs} />
-          </main>
-
-          <aside className="space-y-6 print:hidden">
-            <div className="lg:sticky lg:top-24 space-y-6">
-              <GuidesTableOfContents steps={guide.steps} />
-              <GuideResources resources={guide.resources} />
-              <PrintButton />
-            </div>
-          </aside>
-        </div>
-
-        <PrintStyles />
       </div>
-    </div>
     </>
   )
 }
