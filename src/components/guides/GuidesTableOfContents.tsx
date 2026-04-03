@@ -1,8 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { ScrollArea } from '@/components/ui/scroll-area'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
 import type { GuideStepBlock } from '@/api/guides'
 
@@ -15,7 +13,30 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
     (s): s is GuideStepBlock => s.blockType === 'guideStep' && 'title' in s
   )
   const [activeId, setActiveId] = useState<string>('step-1')
+  const [indicator, setIndicator] = useState({ top: 0, height: 32 })
+  const listRef = useRef<HTMLUListElement>(null)
 
+  // Позиція індикатора при зміні активного елемента
+  useEffect(() => {
+    if (!listRef.current) return
+    const activeEl = listRef.current.querySelector(
+      `[data-toc-id="${activeId}"]`
+    ) as HTMLElement | null
+    if (!activeEl) return
+    setIndicator({ top: activeEl.offsetTop, height: activeEl.offsetHeight })
+  }, [activeId])
+
+  // Ініціальна позиція (без анімації)
+  useLayoutEffect(() => {
+    if (!listRef.current) return
+    const activeEl = listRef.current.querySelector(
+      `[data-toc-id="${activeId}"]`
+    ) as HTMLElement | null
+    if (!activeEl) return
+    setIndicator({ top: activeEl.offsetTop, height: activeEl.offsetHeight })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Scroll observer: секція стає активною при перетині 50% viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -23,11 +44,10 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
           if (entry.isIntersecting) {
             const id = entry.target.getAttribute('data-step-value')
             if (id) setActiveId(id)
-            break
           }
         }
       },
-      { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
     )
     document.querySelectorAll('[data-step-value]').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
@@ -36,39 +56,48 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
   if (guideSteps.length === 0) return null
 
   return (
-    <Card className="sticky top-24 print:hidden">
-      <CardHeader className="pb-2">
-        <h3 className="text-sm font-semibold">Зміст</h3>
-      </CardHeader>
-      <CardContent>
-        <ScrollArea className="max-h-[300px]">
-          <nav className="space-y-1">
-            {guideSteps.map((step, index) => {
-              const value = `step-${index + 1}`
-              const isActive = activeId === value
-              return (
+    <div className="sticky top-24 print:hidden flex flex-col gap-4">
+      <h3 className="text-body-large font-bold color-content-primary tracking-tight">
+        Зміст
+      </h3>
+      <nav aria-label="Зміст гайду">
+        <ul
+          ref={listRef}
+          className="relative border-l border-[var(--color-border-primary)] flex flex-col gap-2"
+        >
+          <div
+            className="absolute left-[-1px] w-0.5 bg-[var(--color-border-brand)]"
+            style={{
+              top: indicator.top,
+              height: indicator.height,
+              transition:
+                'top 0.3s cubic-bezier(0.4, 0, 0.2, 1), height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            }}
+            aria-hidden="true"
+          />
+          {guideSteps.map((step, index) => {
+            const value = `step-${index + 1}`
+            const isActive = activeId === value
+            return (
+              <li key={step.id} data-toc-id={value}>
                 <a
-                  key={step.id}
                   href={`#${value}`}
                   onClick={(e) => {
                     e.preventDefault()
                     document.getElementById(value)?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   className={cn(
-                    'block rounded-md px-2 py-1.5 text-sm transition-colors',
-                    isActive
-                      ? 'bg-primary/10 font-medium text-primary'
-                      : 'text-muted-foreground hover:bg-muted hover:text-foreground'
+                    'flex items-center px-4 py-1 text-body-base cursor-pointer hover:underline',
+                    isActive ? 'color-content-primary' : 'color-content-tertiary'
                   )}
                 >
-                  <span className="mr-2 font-mono text-xs">{index + 1}.</span>
                   {step.title}
                 </a>
-              )
-            })}
-          </nav>
-        </ScrollArea>
-      </CardContent>
-    </Card>
+              </li>
+            )
+          })}
+        </ul>
+      </nav>
+    </div>
   )
 }
