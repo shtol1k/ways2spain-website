@@ -113,8 +113,6 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
             <main className="min-w-0">
-              <GuideSummary summary={guide.summary} />
-
               {guide.introduction_html ? (
                 <div
                   className="prose prose-neutral dark:prose-invert max-w-none my-8"
@@ -123,6 +121,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
                   }}
                 />
               ) : null}
+
+              <GuideSummary summary={guide.summary} />
 
               <section className="my-8" aria-label="Кроки">
                 <h2 className="text-2xl font-bold mb-6">Кроки</h2>

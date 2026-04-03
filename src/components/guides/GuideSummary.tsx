@@ -1,15 +1,5 @@
-import {
-  Banknote,
-  Clock,
-  FileCheck,
-  Globe,
-  Calendar,
-} from 'lucide-react'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
+import { Icon } from '@/components/ui/icons'
 import type { GuideSummary as GuideSummaryType } from '@/api/guides'
-import { format } from 'date-fns'
-import { uk } from 'date-fns/locale'
 
 interface GuideSummaryProps {
   summary: GuideSummaryType
@@ -17,7 +7,7 @@ interface GuideSummaryProps {
 
 const formatLabels: Record<string, string> = {
   online: 'Онлайн',
-  hybrid: 'Онлайн + офлайн',
+  hybrid: 'Онлайн + Офлайн',
   offline: 'Офлайн',
 }
 
@@ -27,75 +17,64 @@ export function GuideSummary({ summary }: GuideSummaryProps) {
     estimatedDuration,
     format: formatList,
     requirements,
-    lastUpdated,
   } = summary
 
+  const hasLeftColumn = !!(formatList?.length || totalCost || estimatedDuration)
+  const hasRightColumn = !!requirements?.length
+
+  if (!hasLeftColumn && !hasRightColumn) return null
+
   return (
-    <Card className="print:shadow-none print:border">
-      <CardHeader className="pb-2">
-        <h2 className="text-lg font-semibold">Коротко про процедуру</h2>
-      </CardHeader>
-      <CardContent className="grid gap-4 sm:grid-cols-2">
-        {totalCost ? (
-          <div className="flex items-start gap-3">
-            <Banknote className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Вартість</p>
-              <p className="font-medium">{totalCost}</p>
+    <div className="border border-(--color-border-primary) rounded-xl p-4 flex flex-col md:flex-row gap-4">
+
+      {hasLeftColumn && (
+        <div className="flex flex-col gap-2 flex-1 min-w-0">
+          {formatList?.length ? (
+            <div className="flex items-center gap-2 h-6 overflow-hidden">
+              <Icon name="cube" size="lg" className="color-content-secondary shrink-0" />
+              <span className="text-body-base color-content-secondary whitespace-nowrap">Формат:</span>
+              <span className="text-body-base color-content-primary truncate">
+                {formatList.map((f) => formatLabels[f] ?? f).join(', ')}
+              </span>
             </div>
-          </div>
-        ) : null}
-        {estimatedDuration ? (
-          <div className="flex items-start gap-3">
-            <Clock className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Тривалість</p>
-              <p className="font-medium">{estimatedDuration}</p>
+          ) : null}
+
+          {totalCost ? (
+            <div className="flex items-center gap-2 h-6 overflow-hidden">
+              <Icon name="wallet" size="lg" className="color-content-secondary shrink-0" />
+              <span className="text-body-base color-content-secondary whitespace-nowrap">Витрати:</span>
+              <span className="text-body-base color-content-primary truncate">{totalCost}</span>
             </div>
-          </div>
-        ) : null}
-        {formatList?.length ? (
-          <div className="flex items-start gap-3 sm:col-span-2">
-            <Globe className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground mb-1">Формат</p>
-              <div className="flex flex-wrap gap-1">
-                {formatList.map((f) => (
-                  <Badge key={f} variant="secondary" className="font-normal">
-                    {formatLabels[f] ?? f}
-                  </Badge>
-                ))}
-              </div>
+          ) : null}
+
+          {estimatedDuration ? (
+            <div className="flex items-center gap-2 h-6 overflow-hidden">
+              <Icon name="calendar" size="lg" className="color-content-secondary shrink-0" />
+              <span className="text-body-base color-content-secondary whitespace-nowrap">Тривалість:</span>
+              <span className="text-body-base color-content-primary truncate">{estimatedDuration}</span>
             </div>
+          ) : null}
+        </div>
+      )}
+
+      {hasRightColumn && (
+        <div className="flex flex-col gap-2 flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <Icon name="clipboardList" size="lg" className="color-content-secondary shrink-0" />
+            <span className="text-body-base color-content-secondary whitespace-nowrap">Вимоги:</span>
           </div>
-        ) : null}
-        {requirements?.length ? (
-          <div className="flex items-start gap-3 sm:col-span-2">
-            <FileCheck className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground mb-1">Вимоги</p>
-              <div className="flex flex-wrap gap-1">
-                {requirements.map((r, i) => (
-                  <Badge key={i} variant="outline" className="font-normal">
-                    {r.requirement}
-                  </Badge>
-                ))}
-              </div>
-            </div>
+          <div className="pl-2 md:pl-0">
+            <ul className="list-disc">
+              {requirements!.map((r, i) => (
+                <li key={i} className="ms-6 text-body-base color-content-primary leading-6">
+                  {r.requirement}
+                </li>
+              ))}
+            </ul>
           </div>
-        ) : null}
-        {lastUpdated ? (
-          <div className="flex items-start gap-3 sm:col-span-2">
-            <Calendar className="mt-0.5 size-5 shrink-0 text-muted-foreground" />
-            <div>
-              <p className="text-sm font-medium text-muted-foreground">Актуальність</p>
-              <p className="font-medium">
-                Станом на {format(new Date(lastUpdated), 'd MMMM yyyy', { locale: uk })}
-              </p>
-            </div>
-          </div>
-        ) : null}
-      </CardContent>
-    </Card>
+        </div>
+      )}
+
+    </div>
   )
 }

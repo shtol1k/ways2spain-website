@@ -11,7 +11,10 @@ import {
   faCheckCircle,
   faExclamationCircle, // warning/error
   faShareNodes, // share
-  faCookieBite // cookie consent
+  faCookieBite, // cookie consent
+  faCube, // guide summary: format
+  faWallet, // guide summary: costs
+  faClipboardList, // guide summary: requirements
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
 import { faCheckCircle as faCheckCircleSolid } from '@fortawesome/pro-solid-svg-icons';
 import {
@@ -40,6 +43,9 @@ export type IconName =
   | 'warning'
   | 'share'
   | 'cookieBite'
+  | 'cube'
+  | 'wallet'
+  | 'clipboardList'
   | 'telegram'
   | 'instagram'
   | 'facebook'
@@ -64,6 +70,9 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   warning: faExclamationCircle,
   share: faShareNodes,
   cookieBite: faCookieBite,
+  cube: faCube,
+  wallet: faWallet,
+  clipboardList: faClipboardList,
   // Social / brand icons
   telegram: faTelegram,
   instagram: faInstagram,
