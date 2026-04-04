@@ -24,7 +24,7 @@ export function GuideHeader({ guide }: GuideHeaderProps) {
 
   return (
     <header className="flex flex-col items-center pt-24 pb-4 md:pt-32 md:pb-10">
-      <div className="flex flex-col gap-4 w-full px-4 md:px-8 max-w-screen-2xl mx-auto">
+      <div className="flex flex-col gap-4 container mx-auto px-4 lg:px-8">
 
         {/* Nav row: breadcrumbs always visible, share button hidden on sm */}
         <div className="flex items-center justify-between">
