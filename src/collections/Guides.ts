@@ -28,7 +28,7 @@ export const Guides: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'title',
-    defaultColumns: ['title', 'category', 'summary.lastUpdated'],
+    defaultColumns: ['title', 'category'],
     group: 'Guides',
   },
   access: {
@@ -145,12 +145,6 @@ export const Guides: CollectionConfig = {
             },
           ],
           admin: { description: 'e.g. Residency, NIE, e-signature' },
-        },
-        {
-          name: 'lastUpdated',
-          type: 'date',
-          label: 'Last Updated',
-          admin: { description: 'Guide accuracy as of this date' },
         },
       ],
     },

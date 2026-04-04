@@ -652,10 +652,6 @@ export interface Guide {
           id?: string | null;
         }[]
       | null;
-    /**
-     * Guide accuracy as of this date
-     */
-    lastUpdated?: string | null;
   };
   /**
    * Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо
@@ -1218,7 +1214,6 @@ export interface GuidesSelect<T extends boolean = true> {
               requirement?: T;
               id?: T;
             };
-        lastUpdated?: T;
       };
   content?:
     | T
