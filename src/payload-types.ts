@@ -634,7 +634,7 @@ export interface Guide {
     /**
      * How the procedure is done
      */
-    format?: ('online' | 'hybrid' | 'offline')[] | null;
+    format?: ('online' | 'hybrid' | 'offline') | null;
     /**
      * e.g. €50–100
      */

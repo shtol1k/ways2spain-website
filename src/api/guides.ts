@@ -29,7 +29,7 @@ export type GuideCategory = {
 export type GuideSummary = {
   totalCost?: string | null
   estimatedDuration?: string | null
-  format?: ('online' | 'hybrid' | 'offline')[] | null
+  format?: 'online' | 'hybrid' | 'offline' | null
   requirements?: Array<{ requirement?: string | null }> | null
 }
 

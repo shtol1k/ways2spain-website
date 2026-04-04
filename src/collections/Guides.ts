@@ -115,7 +115,6 @@ export const Guides: CollectionConfig = {
               name: 'format',
               type: 'select',
               label: 'Format',
-              hasMany: true,
               options: [
                 { label: 'Online', value: 'online' },
                 { label: 'Hybrid (online + offline)', value: 'hybrid' },

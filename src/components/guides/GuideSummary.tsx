@@ -15,11 +15,11 @@ export function GuideSummary({ summary }: GuideSummaryProps) {
   const {
     totalCost,
     estimatedDuration,
-    format: formatList,
+    format,
     requirements,
   } = summary
 
-  const hasLeftColumn = !!(formatList?.length || totalCost || estimatedDuration)
+  const hasLeftColumn = !!(format || totalCost || estimatedDuration)
   const hasRightColumn = !!requirements?.length
 
   if (!hasLeftColumn && !hasRightColumn) return null
@@ -29,12 +29,12 @@ export function GuideSummary({ summary }: GuideSummaryProps) {
 
       {hasLeftColumn && (
         <div className="flex flex-col gap-2 flex-1 min-w-0">
-          {formatList?.length ? (
+          {format ? (
             <div className="flex items-center gap-2 h-6 overflow-hidden">
               <Icon name="cube" size="lg" className="color-content-secondary shrink-0" />
               <span className="text-body-base color-content-secondary whitespace-nowrap">Формат:</span>
               <span className="text-body-base color-content-primary truncate">
-                {formatList.map((f) => formatLabels[f] ?? f).join(', ')}
+                {formatLabels[format] ?? format}
               </span>
             </div>
           ) : null}
