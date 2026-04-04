@@ -158,6 +158,28 @@
       margin-bottom: 0.25rem; /* 4px */
     }
 
+    .rich-text blockquote,
+    .prose blockquote {
+      border-left: 2px solid var(--color-border-secondary);
+      padding-left: 1rem; /* 16px */
+      padding-top: 0.5rem; /* 8px */
+      padding-bottom: 0.5rem; /* 8px */
+      font-style: italic;
+      font-weight: var(--font-weight-normal);
+      font-size: var(--text-base); /* 16px */
+      line-height: var(--leading-6); /* 24px */
+      color: var(--content-primary);
+      margin-bottom: 1.25rem; /* 20px */
+    }
+
+    .rich-text blockquote p,
+    .prose blockquote p {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin-bottom: 0;
+    }
+
     a {
       color: var(--content-link);
       font-weight: inherit;
@@ -362,6 +384,28 @@
       margin-bottom: 0.5rem; /* 8px */
     }
 
+    .rich-text blockquote,
+    .prose blockquote {
+      border-left: 2px solid var(--color-border-secondary);
+      padding-left: 1rem; /* 16px */
+      padding-top: 0.5rem; /* 8px */
+      padding-bottom: 0.5rem; /* 8px */
+      font-style: italic;
+      font-weight: var(--font-weight-normal);
+      font-size: var(--text-base); /* 16px */
+      line-height: var(--leading-6); /* 24px */
+      color: var(--content-primary);
+      margin-bottom: 1.5rem; /* 24px */
+    }
+
+    .rich-text blockquote p,
+    .prose blockquote p {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin-bottom: 0;
+    }
+
     a {
       color: var(--content-link);
       font-weight: inherit;
@@ -564,6 +608,28 @@
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
       margin-bottom: 0.5rem; /* 8px */
+    }
+
+    .rich-text blockquote,
+    .prose blockquote {
+      border-left: 2px solid var(--color-border-secondary);
+      padding-left: 1rem; /* 16px */
+      padding-top: 0.5rem; /* 8px */
+      padding-bottom: 0.5rem; /* 8px */
+      font-style: italic;
+      font-weight: var(--font-weight-normal);
+      font-size: var(--text-base); /* 16px */
+      line-height: var(--leading-6); /* 24px */
+      color: var(--content-primary);
+      margin-bottom: 1.5rem; /* 24px */
+    }
+
+    .rich-text blockquote p,
+    .prose blockquote p {
+      font-size: inherit;
+      line-height: inherit;
+      color: inherit;
+      margin-bottom: 0;
     }
 
     a {
