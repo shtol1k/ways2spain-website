@@ -113,7 +113,7 @@ const BlogPostContent = ({ post, relatedPosts, latestPosts, breadcrumbItems }: B
                   prose-ol:list-decimal prose-ol:pl-6
                   prose-li:color-content-secondary
                   prose-img:rounded-xl prose-img:shadow-lg
-                  prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:italic"
+                  prose-blockquote:border-l-2 prose-blockquote:border-[var(--color-border-secondary)] prose-blockquote:pl-4 prose-blockquote:pt-2 prose-blockquote:pb-2 prose-blockquote:italic prose-blockquote:color-content-primary"
                 >
                   <RichText
                     data={post.content as Parameters<typeof RichText>[0]['data']}
