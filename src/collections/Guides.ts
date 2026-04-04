@@ -109,28 +109,33 @@ export const Guides: CollectionConfig = {
       admin: { description: 'Shown at the top of the guide' },
       fields: [
         {
-          name: 'totalCost',
-          type: 'text',
-          label: 'Total Cost',
-          admin: { description: 'e.g. €50–100' },
-        },
-        {
-          name: 'estimatedDuration',
-          type: 'text',
-          label: 'Estimated Duration',
-          admin: { description: 'e.g. 2–3 months' },
-        },
-        {
-          name: 'format',
-          type: 'select',
-          label: 'Format',
-          hasMany: true,
-          options: [
-            { label: 'Online', value: 'online' },
-            { label: 'Hybrid (online + offline)', value: 'hybrid' },
-            { label: 'Offline', value: 'offline' },
+          type: 'row',
+          fields: [
+            {
+              name: 'format',
+              type: 'select',
+              label: 'Format',
+              hasMany: true,
+              options: [
+                { label: 'Online', value: 'online' },
+                { label: 'Hybrid (online + offline)', value: 'hybrid' },
+                { label: 'Offline', value: 'offline' },
+              ],
+              admin: { description: 'How the procedure is done', width: '33%' },
+            },
+            {
+              name: 'totalCost',
+              type: 'text',
+              label: 'Total Cost',
+              admin: { description: 'e.g. €50–100', width: '33%' },
+            },
+            {
+              name: 'estimatedDuration',
+              type: 'text',
+              label: 'Estimated Duration',
+              admin: { description: 'e.g. 2–3 months', width: '33%' },
+            },
           ],
-          admin: { description: 'How the procedure is done' },
         },
         {
           name: 'requirements',
@@ -144,7 +149,12 @@ export const Guides: CollectionConfig = {
               label: 'Requirement',
             },
           ],
-          admin: { description: 'e.g. Residency, NIE, e-signature' },
+          admin: {
+            description: 'e.g. Residency, NIE, e-signature',
+            components: {
+              RowLabel: '@/components/admin/RequirementRowLabel#RequirementRowLabel',
+            },
+          },
         },
       ],
     },

@@ -28,6 +28,7 @@ import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f
 import { InlineToolbarFeatureClient as InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { CardItemRowLabel as CardItemRowLabel_0af98b2502542b7c010a7df195ed5bed } from '@/components/admin/CardItemRowLabel'
 import { CardType2RowLabel as CardType2RowLabel_4233ba493de4eaabbc611d19df297456 } from '@/components/admin/CardType2RowLabel'
+import { RequirementRowLabel as RequirementRowLabel_928eb8367a34a3c60284a5ba10a4c71c } from '@/components/admin/RequirementRowLabel'
 import { FolderTypeField as FolderTypeField_2b8867833a34864a02ddf429b0728a40 } from '@payloadcms/next/client'
 import { LabelRowLabel as LabelRowLabel_a5d06f8dd513dda97aa9d7471ed6d40f } from '@/components/admin/FooterRowLabels'
 import { PlatformRowLabel as PlatformRowLabel_a5d06f8dd513dda97aa9d7471ed6d40f } from '@/components/admin/FooterRowLabels'
@@ -66,6 +67,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#InlineToolbarFeatureClient": InlineToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@/components/admin/CardItemRowLabel#CardItemRowLabel": CardItemRowLabel_0af98b2502542b7c010a7df195ed5bed,
   "@/components/admin/CardType2RowLabel#CardType2RowLabel": CardType2RowLabel_4233ba493de4eaabbc611d19df297456,
+  "@/components/admin/RequirementRowLabel#RequirementRowLabel": RequirementRowLabel_928eb8367a34a3c60284a5ba10a4c71c,
   "@payloadcms/next/client#FolderTypeField": FolderTypeField_2b8867833a34864a02ddf429b0728a40,
   "@/components/admin/FooterRowLabels#LabelRowLabel": LabelRowLabel_a5d06f8dd513dda97aa9d7471ed6d40f,
   "@/components/admin/FooterRowLabels#PlatformRowLabel": PlatformRowLabel_a5d06f8dd513dda97aa9d7471ed6d40f,

@@ -632,6 +632,10 @@ export interface Guide {
    */
   summary?: {
     /**
+     * How the procedure is done
+     */
+    format?: ('online' | 'hybrid' | 'offline')[] | null;
+    /**
      * e.g. €50–100
      */
     totalCost?: string | null;
@@ -639,10 +643,6 @@ export interface Guide {
      * e.g. 2–3 months
      */
     estimatedDuration?: string | null;
-    /**
-     * How the procedure is done
-     */
-    format?: ('online' | 'hybrid' | 'offline')[] | null;
     /**
      * e.g. Residency, NIE, e-signature
      */
@@ -1205,9 +1205,9 @@ export interface GuidesSelect<T extends boolean = true> {
   summary?:
     | T
     | {
+        format?: T;
         totalCost?: T;
         estimatedDuration?: T;
-        format?: T;
         requirements?:
           | T
           | {
