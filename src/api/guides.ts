@@ -34,23 +34,32 @@ export type GuideSummary = {
   lastUpdated?: string | null
 }
 
-export type GuideStepBlock = {
+export type GuideStepHeaderBlock = {
   id: string
-  blockType: 'guideStep'
+  blockType: 'guideStepHeader'
   title: string
+  format?: 'online' | 'hybrid' | 'offline' | null
+  duration?: string | null
+  cost?: string | null
+}
+
+export type GuideRichTextBlock = {
+  id: string
+  blockType: 'guideRichText'
   content: unknown
   content_html?: string | null
-  estimatedTime?: string | null
-  difficulty?: 'easy' | 'medium' | 'hard' | null
-  requiredDocuments?: Array<{ document?: string | null }> | null
-  callouts?: Array<{
-    id: string
-    blockType: 'callout'
-    type: 'info' | 'warning' | 'alert' | 'success'
-    title?: string | null
-    content: unknown
-  }> | null
 }
+
+export type GuideCalloutBlock = {
+  id: string
+  blockType: 'guideCallout'
+  type: 'info' | 'warning' | 'alert' | 'success'
+  title?: string | null
+  content: unknown
+  content_html?: string | null
+}
+
+export type GuideContentBlock = GuideStepHeaderBlock | GuideRichTextBlock | GuideCalloutBlock
 
 export type GuideResource = {
   id: string
@@ -75,11 +84,7 @@ export type Guide = {
   category: number | GuideCategory
   featuredImage?: number | { id: number; url?: string; alt?: string } | null
   summary: GuideSummary
-  introduction?: unknown
-  introduction_html?: string | null
-  steps?: GuideStepBlock[] | null
-  conclusion?: unknown
-  conclusion_html?: string | null
+  content?: GuideContentBlock[] | null
   resources?: GuideResource[] | null
   faqs?: GuideFAQ[] | null
   seo?: {
@@ -309,8 +314,8 @@ export async function getAllGuideSlugs(): Promise<
             ? (cat as GuideCategory).slug
             : null
         if (!g.slug || !categorySlug) return null
-        return { 
-          category: categorySlug, 
+        return {
+          category: categorySlug,
           slug: g.slug,
           updatedAt: g.updatedAt || new Date().toISOString()
         }

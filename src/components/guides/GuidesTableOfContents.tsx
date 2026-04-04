@@ -2,15 +2,15 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
-import type { GuideStepBlock } from '@/api/guides'
+import type { GuideContentBlock, GuideStepHeaderBlock } from '@/api/guides'
 
 interface GuidesTableOfContentsProps {
-  steps: (GuideStepBlock | { blockType: string; title?: string })[] | null | undefined
+  content: GuideContentBlock[] | null | undefined
 }
 
-export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
-  const guideSteps = (steps ?? []).filter(
-    (s): s is GuideStepBlock => s.blockType === 'guideStep' && 'title' in s
+export function GuidesTableOfContents({ content }: GuidesTableOfContentsProps) {
+  const stepHeaders = (content ?? []).filter(
+    (b): b is GuideStepHeaderBlock => b.blockType === 'guideStepHeader'
   )
   const [activeId, setActiveId] = useState<string>('step-1')
   const [indicator, setIndicator] = useState({ top: 0, height: 32 })
@@ -51,9 +51,9 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
     )
     document.querySelectorAll('[data-step-value]').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [guideSteps.length])
+  }, [stepHeaders.length])
 
-  if (guideSteps.length === 0) return null
+  if (stepHeaders.length === 0) return null
 
   return (
     <div className="sticky top-24 print:hidden flex flex-col gap-4">
@@ -63,10 +63,10 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
       <nav aria-label="Зміст гайду">
         <ul
           ref={listRef}
-          className="relative border-l border-[var(--color-border-primary)] flex flex-col gap-2"
+          className="relative border-l border-(--color-border-primary) flex flex-col gap-2"
         >
           <div
-            className="absolute left-[-1px] w-0.5 bg-[var(--color-border-brand)]"
+            className="absolute -left-px w-0.5 bg-(--color-border-brand)"
             style={{
               top: indicator.top,
               height: indicator.height,
@@ -75,11 +75,11 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
             }}
             aria-hidden="true"
           />
-          {guideSteps.map((step, index) => {
+          {stepHeaders.map((block, index) => {
             const value = `step-${index + 1}`
             const isActive = activeId === value
             return (
-              <li key={step.id} data-toc-id={value}>
+              <li key={block.id} data-toc-id={value}>
                 <a
                   href={`#${value}`}
                   onClick={(e) => {
@@ -91,7 +91,7 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
                     isActive ? 'color-content-primary' : 'color-content-tertiary'
                   )}
                 >
-                  {step.title}
+                  {block.title}
                 </a>
               </li>
             )

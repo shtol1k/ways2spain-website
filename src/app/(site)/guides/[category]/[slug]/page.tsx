@@ -7,7 +7,7 @@ import {
 import { getCanonicalUrl } from '@/lib/utils'
 import { GuideHeader } from '@/components/guides/GuideHeader'
 import { GuideSummary } from '@/components/guides/GuideSummary'
-import { GuideSteps } from '@/components/guides/GuideSteps'
+import { GuideContent } from '@/components/guides/GuideContent'
 import { GuideResources } from '@/components/guides/GuideResources'
 import { GuidesTableOfContents } from '@/components/guides/GuidesTableOfContents'
 import { GuideFAQ } from '@/components/guides/GuideFAQ'
@@ -113,35 +113,14 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
             <main className="min-w-0">
-              {guide.introduction_html ? (
-                <div
-                  className="rich-text max-w-none mb-8 color-content-secondary [&_p]:!text-base [&_p]:!leading-6"
-                  dangerouslySetInnerHTML={{
-                    __html: guide.introduction_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1'),
-                  }}
-                />
-              ) : null}
-
               <GuideSummary summary={guide.summary} />
-
-              <section className="my-8" aria-label="Кроки">
-                <h2 className="text-2xl font-bold mb-6">Кроки</h2>
-                <GuideSteps steps={guide.steps} />
-              </section>
-
-              {guide.conclusion_html ? (
-                <div
-                  className="prose prose-neutral dark:prose-invert max-w-none my-8"
-                  dangerouslySetInnerHTML={{ __html: guide.conclusion_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1') }}
-                />
-              ) : null}
-
+              <GuideContent content={guide.content} />
               <GuideFAQ faqs={guide.faqs} />
             </main>
 
             <aside className="space-y-6 print:hidden">
               <div className="lg:sticky lg:top-24 space-y-6">
-                <GuidesTableOfContents steps={guide.steps} />
+                <GuidesTableOfContents content={guide.content} />
                 <GuideResources resources={guide.resources} />
                 <PrintButton />
               </div>

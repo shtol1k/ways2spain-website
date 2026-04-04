@@ -6,6 +6,9 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { formatSlug } from '@/utilities/transliterate'
 import { revalidateGuide } from '@/hooks/revalidateGuide'
+import { GuideStepHeaderBlock } from '@/blocks/guide-content/GuideStepHeaderBlock'
+import { GuideRichTextBlock } from '@/blocks/guide-content/GuideRichTextBlock'
+import { GuideCalloutBlock } from '@/blocks/guide-content/GuideCalloutBlock'
 
 const lexicalEditorConfig = () =>
   lexicalEditor({
@@ -156,107 +159,16 @@ export const Guides: CollectionConfig = {
           label: 'Content',
           fields: [
             {
-              name: 'introduction',
-              type: 'richText',
-              label: 'Introduction',
-              editor: lexicalEditorConfig(),
-            },
-            lexicalHTML('introduction', { name: 'introduction_html' }),
-            {
-              name: 'steps',
+              name: 'content',
               type: 'blocks',
-              label: 'Steps',
+              label: 'Контент',
               minRows: 0,
-              maxRows: 100,
-              blocks: [
-                {
-                  slug: 'guideStep',
-                  labels: { singular: 'Step', plural: 'Steps' },
-                  fields: [
-                    {
-                      name: 'title',
-                      type: 'text',
-                      required: true,
-                      label: 'Step Title',
-                    },
-                    {
-                      name: 'content',
-                      type: 'richText',
-                      required: true,
-                      label: 'Step Content',
-                      editor: lexicalEditorConfig(),
-                    },
-                    lexicalHTML('content', { name: 'content_html' }),
-                    {
-                      name: 'estimatedTime',
-                      type: 'text',
-                      label: 'Estimated Time',
-                      admin: { description: 'e.g. 15–30 min' },
-                    },
-                    {
-                      name: 'difficulty',
-                      type: 'select',
-                      label: 'Difficulty',
-                      options: [
-                        { label: 'Easy', value: 'easy' },
-                        { label: 'Medium', value: 'medium' },
-                        { label: 'Hard', value: 'hard' },
-                      ],
-                    },
-                    {
-                      name: 'requiredDocuments',
-                      type: 'array',
-                      label: 'Required Documents',
-                      fields: [
-                        { name: 'document', type: 'text', required: true, label: 'Document' },
-                      ],
-                    },
-                    {
-                      name: 'callouts',
-                      type: 'blocks',
-                      label: 'Callouts',
-                      minRows: 0,
-                      maxRows: 20,
-                      blocks: [
-                        {
-                          slug: 'callout',
-                          labels: { singular: 'Callout', plural: 'Callouts' },
-                          fields: [
-                            {
-                              name: 'type',
-                              type: 'select',
-                              required: true,
-                              label: 'Type',
-                              options: [
-                                { label: 'Info', value: 'info' },
-                                { label: 'Warning', value: 'warning' },
-                                { label: 'Alert', value: 'alert' },
-                                { label: 'Success', value: 'success' },
-                              ],
-                            },
-                            { name: 'title', type: 'text', label: 'Title' },
-                            {
-                              name: 'content',
-                              type: 'richText',
-                              required: true,
-                              label: 'Content',
-                              editor: lexicalEditorConfig(),
-                            },
-                          ],
-                        },
-                      ],
-                    },
-                  ],
-                },
-              ],
+              maxRows: 200,
+              blocks: [GuideStepHeaderBlock, GuideRichTextBlock, GuideCalloutBlock],
+              admin: {
+                description: 'Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо',
+              },
             },
-            {
-              name: 'conclusion',
-              type: 'richText',
-              label: 'Conclusion',
-              editor: lexicalEditorConfig(),
-            },
-            lexicalHTML('conclusion', { name: 'conclusion_html' }),
             {
               name: 'resources',
               type: 'array',

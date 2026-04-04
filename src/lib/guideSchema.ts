@@ -3,7 +3,7 @@
  */
 
 import { getCanonicalUrl } from './utils'
-import type { Guide, GuideStepBlock, GuideFAQ as GuideFAQType } from '@/api/guides'
+import type { Guide, GuideStepHeaderBlock, GuideFAQ as GuideFAQType } from '@/api/guides'
 
 export interface BreadcrumbItem {
   label: string
@@ -14,10 +14,9 @@ export function generateHowToSchema(
   guide: Guide,
   categorySlug: string
 ): object {
-  const base = getCanonicalUrl('').replace(/\/$/, '')
   const url = getCanonicalUrl(`guides/${categorySlug}/${guide.slug}`)
-  const steps = (guide.steps ?? []).filter(
-    (s): s is GuideStepBlock => s.blockType === 'guideStep'
+  const stepHeaders = (guide.content ?? []).filter(
+    (b): b is GuideStepHeaderBlock => b.blockType === 'guideStepHeader'
   )
 
   return {
@@ -42,11 +41,11 @@ export function generateHowToSchema(
         name: r.requirement,
       })),
     }),
-    step: steps.map((step, index) => ({
+    step: stepHeaders.map((step, index) => ({
       '@type': 'HowToStep',
       position: index + 1,
       name: step.title,
-      text: step.content_html ?? step.title,
+      text: step.title,
     })),
   }
 }

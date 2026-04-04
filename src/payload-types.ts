@@ -657,97 +657,78 @@ export interface Guide {
      */
     lastUpdated?: string | null;
   };
-  introduction?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  introduction_html?: string | null;
-  steps?:
-    | {
-        title: string;
-        content: {
-          root: {
-            type: string;
-            children: {
-              type: any;
-              version: number;
-              [k: string]: unknown;
-            }[];
-            direction: ('ltr' | 'rtl') | null;
-            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-            indent: number;
-            version: number;
-          };
-          [k: string]: unknown;
-        };
-        content_html?: string | null;
-        /**
-         * e.g. 15–30 min
-         */
-        estimatedTime?: string | null;
-        difficulty?: ('easy' | 'medium' | 'hard') | null;
-        requiredDocuments?:
-          | {
-              document: string;
-              id?: string | null;
-            }[]
-          | null;
-        callouts?:
-          | {
-              type: 'info' | 'warning' | 'alert' | 'success';
-              title?: string | null;
-              content: {
-                root: {
-                  type: string;
-                  children: {
-                    type: any;
-                    version: number;
-                    [k: string]: unknown;
-                  }[];
-                  direction: ('ltr' | 'rtl') | null;
-                  format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                  indent: number;
+  /**
+   * Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо
+   */
+  content?:
+    | (
+        | {
+            /**
+             * Наприклад: Крок 1: Отримання DUA
+             */
+            title: string;
+            /**
+             * Як виконується цей крок
+             */
+            format?: ('online' | 'hybrid' | 'offline') | null;
+            /**
+             * Наприклад: 2–3 дні, 1 тиждень
+             */
+            duration?: string | null;
+            /**
+             * Наприклад: 320€, безкоштовно
+             */
+            cost?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'guideStepHeader';
+          }
+        | {
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
                   version: number;
-                };
-                [k: string]: unknown;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
               };
-              id?: string | null;
-              blockName?: string | null;
-              blockType: 'callout';
-            }[]
-          | null;
-        id?: string | null;
-        blockName?: string | null;
-        blockType: 'guideStep';
-      }[]
+              [k: string]: unknown;
+            };
+            content_html?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'guideRichText';
+          }
+        | {
+            type: 'info' | 'warning' | 'alert' | 'success';
+            title?: string | null;
+            content: {
+              root: {
+                type: string;
+                children: {
+                  type: any;
+                  version: number;
+                  [k: string]: unknown;
+                }[];
+                direction: ('ltr' | 'rtl') | null;
+                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+                indent: number;
+                version: number;
+              };
+              [k: string]: unknown;
+            };
+            content_html?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'guideCallout';
+          }
+      )[]
     | null;
-  conclusion?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
-  conclusion_html?: string | null;
   resources?:
     | {
         title: string;
@@ -1262,44 +1243,38 @@ export interface GuidesSelect<T extends boolean = true> {
             };
         lastUpdated?: T;
       };
-  introduction?: T;
-  introduction_html?: T;
-  steps?:
+  content?:
     | T
     | {
-        guideStep?:
+        guideStepHeader?:
           | T
           | {
               title?: T;
+              format?: T;
+              duration?: T;
+              cost?: T;
+              id?: T;
+              blockName?: T;
+            };
+        guideRichText?:
+          | T
+          | {
               content?: T;
               content_html?: T;
-              estimatedTime?: T;
-              difficulty?: T;
-              requiredDocuments?:
-                | T
-                | {
-                    document?: T;
-                    id?: T;
-                  };
-              callouts?:
-                | T
-                | {
-                    callout?:
-                      | T
-                      | {
-                          type?: T;
-                          title?: T;
-                          content?: T;
-                          id?: T;
-                          blockName?: T;
-                        };
-                  };
+              id?: T;
+              blockName?: T;
+            };
+        guideCallout?:
+          | T
+          | {
+              type?: T;
+              title?: T;
+              content?: T;
+              content_html?: T;
               id?: T;
               blockName?: T;
             };
       };
-  conclusion?: T;
-  conclusion_html?: T;
   resources?:
     | T
     | {
