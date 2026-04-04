@@ -115,7 +115,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
             <main className="min-w-0">
               {guide.introduction_html ? (
                 <div
-                  className="prose prose-neutral max-w-none mb-6 text-body-base color-content-secondary"
+                  className="mb-6 [&_p]:text-body-base [&_p]:color-content-secondary [&_p]:mb-3 [&_strong]:font-semibold [&_em]:italic [&_a]:color-content-link [&_a]:underline"
                   dangerouslySetInnerHTML={{ __html: guide.introduction_html }}
                 />
               ) : null}
