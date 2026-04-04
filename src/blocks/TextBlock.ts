@@ -1,5 +1,6 @@
 import { Block } from 'payload'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { BlocksFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
+import { CalloutBlock } from '@/blocks/callout/CalloutBlock'
 
 export const TextBlock: Block = {
   slug: 'text',
@@ -15,7 +16,12 @@ export const TextBlock: Block = {
       name: 'content',
       type: 'richText',
       label: 'Content',
-      editor: lexicalEditor({}),
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          BlocksFeature({ blocks: [CalloutBlock] }),
+        ],
+      }),
       required: true,
     },
   ],

@@ -50,16 +50,7 @@ export type GuideRichTextBlock = {
   content_html?: string | null
 }
 
-export type GuideCalloutBlock = {
-  id: string
-  blockType: 'guideCallout'
-  type: 'info' | 'warning' | 'alert' | 'success'
-  title?: string | null
-  content: unknown
-  content_html?: string | null
-}
-
-export type GuideContentBlock = GuideStepHeaderBlock | GuideRichTextBlock | GuideCalloutBlock
+export type GuideContentBlock = GuideStepHeaderBlock | GuideRichTextBlock
 
 export type GuideResource = {
   id: string

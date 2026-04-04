@@ -1,9 +1,11 @@
 import { CollectionConfig } from 'payload'
 import {
+    BlocksFeature,
     HTMLConverterFeature,
     lexicalEditor,
     lexicalHTML
 } from '@payloadcms/richtext-lexical'
+import { CalloutBlock } from '@/blocks/callout/CalloutBlock'
 import { formatSlug } from '@/utilities/transliterate'
 import { revalidatePost } from '@/hooks/revalidatePost'
 
@@ -92,6 +94,7 @@ export const Posts: CollectionConfig = {
                                 features: ({ defaultFeatures }) => [
                                     ...defaultFeatures,
                                     HTMLConverterFeature({}),
+                                    BlocksFeature({ blocks: [CalloutBlock] }),
                                 ],
                             }),
                         },

@@ -1,12 +1,7 @@
 import { Block } from 'payload'
-import {
-  HTMLConverterFeature,
-  lexicalEditor,
-  lexicalHTML,
-} from '@payloadcms/richtext-lexical'
 
-export const GuideCalloutBlock: Block = {
-  slug: 'guideCallout',
+export const CalloutBlock: Block = {
+  slug: 'callout',
   labels: {
     singular: 'Callout',
     plural: 'Callout-блоки',
@@ -17,6 +12,7 @@ export const GuideCalloutBlock: Block = {
       type: 'select',
       required: true,
       label: 'Тип',
+      defaultValue: 'info',
       options: [
         { label: 'Інформація', value: 'info' },
         { label: 'Попередження', value: 'warning' },
@@ -30,17 +26,10 @@ export const GuideCalloutBlock: Block = {
       label: 'Заголовок (опціонально)',
     },
     {
-      name: 'content',
-      type: 'richText',
+      name: 'message',
+      type: 'text',
       required: true,
-      label: 'Контент',
-      editor: lexicalEditor({
-        features: ({ defaultFeatures }) => [
-          ...defaultFeatures,
-          HTMLConverterFeature({}),
-        ],
-      }),
+      label: 'Текст',
     },
-    lexicalHTML('content', { name: 'content_html' }),
   ],
 }

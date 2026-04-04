@@ -14,16 +14,17 @@ import { RelatedArticles } from "@/components/blog/RelatedArticles";
 import { SmartImage } from "@/components/SmartImage";
 import { ShareButton } from "@/components/blog/ShareButton";
 import { getCanonicalUrl } from "@/lib/utils";
+import { RichText } from "@payloadcms/richtext-lexical/react";
+import { calloutJSXConverters } from "@/components/callout/calloutConverters";
 
 interface BlogPostContentProps {
   post: Post;
-  contentHtml: string | null;
   relatedPosts: Post[];
   latestPosts: Post[];
   breadcrumbItems?: BlogBreadcrumbItem[];
 }
 
-const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcrumbItems }: BlogPostContentProps) => {
+const BlogPostContent = ({ post, relatedPosts, latestPosts, breadcrumbItems }: BlogPostContentProps) => {
   return (
     <div className="min-h-screen pt-32 pb-20">
       <ReadingProgress />
@@ -101,7 +102,7 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
                 )}
               </div>
               {/* Article text */}
-              {contentHtml ? (
+              {post.content ? (
                 <div
                   className="blog-content prose prose-lg dark:prose-invert max-w-none
                   prose-headings:color-content-primary prose-headings:scroll-mt-24
@@ -113,8 +114,12 @@ const BlogPostContent = ({ post, contentHtml, relatedPosts, latestPosts, breadcr
                   prose-li:color-content-secondary
                   prose-img:rounded-xl prose-img:shadow-lg
                   prose-blockquote:border-l-4 prose-blockquote:border-secondary prose-blockquote:pl-4 prose-blockquote:italic"
-                  dangerouslySetInnerHTML={{ __html: contentHtml }}
-                />
+                >
+                  <RichText
+                    data={post.content as Parameters<typeof RichText>[0]['data']}
+                    converters={calloutJSXConverters}
+                  />
+                </div>
               ) : (
                 <div className="w-full min-h-96 bg-muted/60 rounded-xl" />
               )}

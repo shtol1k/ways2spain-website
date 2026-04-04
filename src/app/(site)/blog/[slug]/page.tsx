@@ -86,10 +86,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
     latestPosts = [];
   }
 
-  // Serialize content to HTML if it's available in the special field
-  // or user content_html if lexicalHTML populated it (which we configured)
-  const contentHtml = (post as any).content_html || null;
-
   const breadcrumbItems = [
     { label: "Головна", href: "/" },
     { label: "Блог", href: "/blog" },
@@ -120,7 +116,6 @@ export default async function BlogPage({ params }: BlogPageProps) {
       <JsonLd data={[articleSchema, breadcrumbSchema, ...(personSchema ? [personSchema] : [])]} />
       <BlogPostContent
         post={post}
-        contentHtml={contentHtml}
         relatedPosts={relatedPosts}
         latestPosts={latestPosts}
         breadcrumbItems={breadcrumbItems}

@@ -1,5 +1,6 @@
 import { CollectionConfig } from 'payload'
 import {
+  BlocksFeature,
   HTMLConverterFeature,
   lexicalEditor,
   lexicalHTML,
@@ -8,13 +9,14 @@ import { formatSlug } from '@/utilities/transliterate'
 import { revalidateGuide } from '@/hooks/revalidateGuide'
 import { GuideStepHeaderBlock } from '@/blocks/guide-content/GuideStepHeaderBlock'
 import { GuideRichTextBlock } from '@/blocks/guide-content/GuideRichTextBlock'
-import { GuideCalloutBlock } from '@/blocks/guide-content/GuideCalloutBlock'
+import { CalloutBlock } from '@/blocks/callout/CalloutBlock'
 
 const lexicalEditorConfig = () =>
   lexicalEditor({
     features: ({ defaultFeatures }) => [
       ...defaultFeatures,
       HTMLConverterFeature({}),
+      BlocksFeature({ blocks: [CalloutBlock] }),
     ],
   })
 
@@ -164,7 +166,7 @@ export const Guides: CollectionConfig = {
               label: 'Контент',
               minRows: 0,
               maxRows: 200,
-              blocks: [GuideStepHeaderBlock, GuideRichTextBlock, GuideCalloutBlock],
+              blocks: [GuideStepHeaderBlock, GuideRichTextBlock],
               admin: {
                 description: 'Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо',
               },

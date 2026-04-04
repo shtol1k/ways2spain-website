@@ -704,29 +704,6 @@ export interface Guide {
             blockName?: string | null;
             blockType: 'guideRichText';
           }
-        | {
-            type: 'info' | 'warning' | 'alert' | 'success';
-            title?: string | null;
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            content_html?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'guideCallout';
-          }
       )[]
     | null;
   resources?:
@@ -1259,16 +1236,6 @@ export interface GuidesSelect<T extends boolean = true> {
         guideRichText?:
           | T
           | {
-              content?: T;
-              content_html?: T;
-              id?: T;
-              blockName?: T;
-            };
-        guideCallout?:
-          | T
-          | {
-              type?: T;
-              title?: T;
               content?: T;
               content_html?: T;
               id?: T;

@@ -1,6 +1,7 @@
-import { Callout } from '@/components/ui/callout'
+import { RichText } from '@payloadcms/richtext-lexical/react'
 import { GuideStepHeader } from '@/components/guides/GuideStepHeader'
-import type { GuideContentBlock, GuideStepHeaderBlock, GuideCalloutBlock, GuideRichTextBlock } from '@/api/guides'
+import { calloutJSXConverters } from '@/components/callout/calloutConverters'
+import type { GuideContentBlock, GuideStepHeaderBlock, GuideRichTextBlock } from '@/api/guides'
 
 interface GuideContentProps {
   content: GuideContentBlock[] | null | undefined
@@ -27,35 +28,16 @@ export function GuideContent({ content }: GuideContentProps) {
 
         if (block.blockType === 'guideRichText') {
           const richBlock = block as GuideRichTextBlock
-          if (!richBlock.content_html) return null
           return (
             <div
               key={block.id}
-              className="rich-text max-w-none color-content-secondary [&_p]:!text-base [&_p]:!leading-6"
-              dangerouslySetInnerHTML={{
-                __html: richBlock.content_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1'),
-              }}
-            />
-          )
-        }
-
-        if (block.blockType === 'guideCallout') {
-          const calloutBlock = block as GuideCalloutBlock
-          return (
-            <Callout
-              key={block.id}
-              variant={calloutBlock.type}
-              title={calloutBlock.title ?? undefined}
-              className="my-4"
+              className="rich-text color-content-secondary [&_p]:text-base! [&_p]:leading-6!"
             >
-              {calloutBlock.content_html ? (
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: calloutBlock.content_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1'),
-                  }}
-                />
-              ) : null}
-            </Callout>
+              <RichText
+                data={richBlock.content as Parameters<typeof RichText>[0]['data']}
+                converters={calloutJSXConverters}
+              />
+            </div>
           )
         }
 

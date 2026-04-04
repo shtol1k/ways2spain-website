@@ -3,6 +3,7 @@
 import React from 'react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { TableOfContents } from '@/components/ui/table-of-contents'
+import { calloutJSXConverters } from '@/components/callout/calloutConverters'
 
 interface LongTextBlockProps {
   content: Parameters<typeof RichText>[0]['data']
@@ -20,7 +21,7 @@ export const LongTextBlock: React.FC<LongTextBlockProps> = ({
           {/* Main content */}
           <div className="flex-1 min-w-0">
             <div className="long-text-content rich-text color-content-secondary">
-              <RichText data={content} />
+              <RichText data={content} converters={calloutJSXConverters} />
             </div>
           </div>
 

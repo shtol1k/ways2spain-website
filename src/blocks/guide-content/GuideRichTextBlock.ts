@@ -1,9 +1,11 @@
 import { Block } from 'payload'
 import {
+  BlocksFeature,
   HTMLConverterFeature,
   lexicalEditor,
   lexicalHTML,
 } from '@payloadcms/richtext-lexical'
+import { CalloutBlock } from '@/blocks/callout/CalloutBlock'
 
 export const GuideRichTextBlock: Block = {
   slug: 'guideRichText',
@@ -21,6 +23,7 @@ export const GuideRichTextBlock: Block = {
         features: ({ defaultFeatures }) => [
           ...defaultFeatures,
           HTMLConverterFeature({}),
+          BlocksFeature({ blocks: [CalloutBlock] }),
         ],
       }),
     },
