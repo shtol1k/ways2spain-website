@@ -115,9 +115,9 @@ export default async function GuidePage({ params }: GuidePageProps) {
             <main className="min-w-0">
               {guide.introduction_html ? (
                 <div
-                  className="prose prose-neutral dark:prose-invert max-w-none my-8"
+                  className="rich-text max-w-none mb-8 color-content-secondary [&_p]:!text-base [&_p]:!leading-6"
                   dangerouslySetInnerHTML={{
-                    __html: guide.introduction_html,
+                    __html: guide.introduction_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1'),
                   }}
                 />
               ) : null}
@@ -132,7 +132,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
               {guide.conclusion_html ? (
                 <div
                   className="prose prose-neutral dark:prose-invert max-w-none my-8"
-                  dangerouslySetInnerHTML={{ __html: guide.conclusion_html }}
+                  dangerouslySetInnerHTML={{ __html: guide.conclusion_html.replace(/<p>(<p[\s\S]*?<\/p>)<\/p>/g, '$1') }}
                 />
               ) : null}
 

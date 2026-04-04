@@ -119,6 +119,7 @@
       line-height: var(--leading-6); /* 24px */
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-top: 0;
       margin-bottom: 1.25rem; /* 20px */
     }
 
@@ -322,6 +323,7 @@
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-top: 0;
       margin-bottom: 1.5rem; /* 24px */
     }
 
@@ -525,6 +527,7 @@
       line-height: var(--leading-6);
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
+      margin-top: 0;
       margin-bottom: 1.5rem; /* 24px */
     }
 
