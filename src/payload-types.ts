@@ -613,9 +613,6 @@ export interface Tag {
  */
 export interface Guide {
   id: number;
-  /**
-   * Guide title
-   */
   title: string;
   /**
    * Auto-generated from title if empty
@@ -625,27 +622,16 @@ export interface Guide {
    * 150–200 characters for cards and SEO
    */
   excerpt: string;
+  /**
+   * Displayed above the summary block on the guide page
+   */
+  introduction?: string | null;
   category: number | GuideCategory;
   featuredImage?: (number | null) | Media;
-  /**
-   * Shown at the top of the guide
-   */
   summary?: {
-    /**
-     * How the procedure is done
-     */
     format?: ('online' | 'hybrid' | 'offline') | null;
-    /**
-     * e.g. €50–100
-     */
     totalCost?: string | null;
-    /**
-     * e.g. 2–3 months
-     */
     estimatedDuration?: string | null;
-    /**
-     * e.g. Residency, NIE, e-signature
-     */
     requirements?:
       | {
           requirement: string;
@@ -1200,6 +1186,7 @@ export interface GuidesSelect<T extends boolean = true> {
   title?: T;
   slug?: T;
   excerpt?: T;
+  introduction?: T;
   category?: T;
   featuredImage?: T;
   summary?:

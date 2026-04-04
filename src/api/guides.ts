@@ -71,6 +71,7 @@ export type Guide = {
   title: string
   slug: string
   excerpt: string
+  introduction?: string | null
   category: number | GuideCategory
   featuredImage?: number | { id: number; url?: string; alt?: string } | null
   summary: GuideSummary

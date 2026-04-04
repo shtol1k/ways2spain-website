@@ -56,7 +56,7 @@ export const Guides: CollectionConfig = {
       type: 'text',
       required: true,
       label: 'Title',
-      admin: { description: 'Guide title' },
+      admin: {},
     },
     {
       name: 'slug',
@@ -88,6 +88,12 @@ export const Guides: CollectionConfig = {
       admin: { description: '150–200 characters for cards and SEO' },
     },
     {
+      name: 'introduction',
+      type: 'textarea',
+      label: 'Introduction',
+      admin: { description: 'Displayed above the summary block on the guide page' },
+    },
+    {
       name: 'category',
       type: 'relationship',
       relationTo: 'guide-categories',
@@ -106,7 +112,7 @@ export const Guides: CollectionConfig = {
       name: 'summary',
       type: 'group',
       label: 'Summary',
-      admin: { description: 'Shown at the top of the guide' },
+      admin: {},
       fields: [
         {
           type: 'row',
@@ -120,19 +126,19 @@ export const Guides: CollectionConfig = {
                 { label: 'Hybrid (online + offline)', value: 'hybrid' },
                 { label: 'Offline', value: 'offline' },
               ],
-              admin: { description: 'How the procedure is done', width: '33%' },
+              admin: { width: '33%' },
             },
             {
               name: 'totalCost',
               type: 'text',
               label: 'Total Cost',
-              admin: { description: 'e.g. €50–100', width: '33%' },
+              admin: { width: '33%' },
             },
             {
               name: 'estimatedDuration',
               type: 'text',
               label: 'Estimated Duration',
-              admin: { description: 'e.g. 2–3 months', width: '33%' },
+              admin: { width: '33%' },
             },
           ],
         },
@@ -149,7 +155,6 @@ export const Guides: CollectionConfig = {
             },
           ],
           admin: {
-            description: 'e.g. Residency, NIE, e-signature',
             components: {
               RowLabel: '@/components/admin/RequirementRowLabel#RequirementRowLabel',
             },
