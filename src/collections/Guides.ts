@@ -89,10 +89,17 @@ export const Guides: CollectionConfig = {
     },
     {
       name: 'introduction',
-      type: 'textarea',
+      type: 'richText',
       label: 'Introduction',
+      editor: lexicalEditor({
+        features: ({ defaultFeatures }) => [
+          ...defaultFeatures,
+          HTMLConverterFeature({}),
+        ],
+      }),
       admin: { description: 'Displayed above the summary block on the guide page' },
     },
+    lexicalHTML('introduction', { name: 'introduction_html' }),
     {
       name: 'category',
       type: 'relationship',

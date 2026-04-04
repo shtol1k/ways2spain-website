@@ -113,8 +113,11 @@ export default async function GuidePage({ params }: GuidePageProps) {
         <div className="container mx-auto px-4 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1fr_300px]">
             <main className="min-w-0">
-              {guide.introduction ? (
-                <p className="text-body-large color-content-secondary mb-6">{guide.introduction}</p>
+              {guide.introduction_html ? (
+                <div
+                  className="prose prose-neutral max-w-none mb-6 text-body-base color-content-secondary"
+                  dangerouslySetInnerHTML={{ __html: guide.introduction_html }}
+                />
               ) : null}
               <GuideSummary summary={guide.summary} />
               <GuideContent content={guide.content} />

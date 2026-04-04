@@ -625,7 +625,22 @@ export interface Guide {
   /**
    * Displayed above the summary block on the guide page
    */
-  introduction?: string | null;
+  introduction?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  introduction_html?: string | null;
   category: number | GuideCategory;
   featuredImage?: (number | null) | Media;
   summary?: {
@@ -1187,6 +1202,7 @@ export interface GuidesSelect<T extends boolean = true> {
   slug?: T;
   excerpt?: T;
   introduction?: T;
+  introduction_html?: T;
   category?: T;
   featuredImage?: T;
   summary?:
