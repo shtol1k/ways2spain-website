@@ -49,7 +49,7 @@ export function GuideSummary({ summary }: GuideSummaryProps) {
 
           {estimatedDuration ? (
             <div className="flex items-center gap-2 h-6 overflow-hidden">
-              <Icon name="calendar" size="lg" className="color-content-secondary shrink-0" />
+              <Icon name="clock" size="lg" className="color-content-secondary shrink-0" />
               <span className="text-body-base color-content-secondary whitespace-nowrap">Тривалість:</span>
               <span className="text-body-base color-content-primary truncate">{estimatedDuration}</span>
             </div>
