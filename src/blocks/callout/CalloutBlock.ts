@@ -4,32 +4,32 @@ export const CalloutBlock: Block = {
   slug: 'callout',
   labels: {
     singular: 'Callout',
-    plural: 'Callout-блоки',
+    plural: 'Callouts',
   },
   fields: [
     {
       name: 'type',
       type: 'select',
       required: true,
-      label: 'Тип',
+      label: 'Type',
       defaultValue: 'info',
       options: [
-        { label: 'Інформація', value: 'info' },
-        { label: 'Попередження', value: 'warning' },
-        { label: 'Увага', value: 'alert' },
-        { label: 'Успіх', value: 'success' },
+        { label: 'Info', value: 'info' },
+        { label: 'Warning', value: 'warning' },
+        { label: 'Alert', value: 'alert' },
+        { label: 'Success', value: 'success' },
       ],
     },
     {
       name: 'title',
       type: 'text',
-      label: 'Заголовок (опціонально)',
+      label: 'Title',
     },
     {
       name: 'message',
       type: 'text',
       required: true,
-      label: 'Текст',
+      label: 'Text',
     },
   ],
 }
