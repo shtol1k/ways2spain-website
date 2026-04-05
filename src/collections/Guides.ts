@@ -235,19 +235,21 @@ export const Guides: CollectionConfig = {
             },
           ],
         },
+      ],
+    },
+    {
+      name: 'seo',
+      type: 'group',
+      label: 'SEO',
+      admin: { position: 'sidebar' },
+      fields: [
+        { name: 'metaTitle', type: 'text', label: 'Meta Title' },
+        { name: 'metaDescription', type: 'textarea', label: 'Meta Description' },
         {
-          label: 'SEO',
-          name: 'seo',
-          fields: [
-            { name: 'metaTitle', type: 'text', label: 'Meta Title' },
-            { name: 'metaDescription', type: 'textarea', label: 'Meta Description' },
-            {
-              name: 'metaImage',
-              type: 'upload',
-              relationTo: 'media',
-              label: 'OG Image',
-            },
-          ],
+          name: 'metaImage',
+          type: 'upload',
+          relationTo: 'media',
+          label: 'OG Image',
         },
       ],
     },
