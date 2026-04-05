@@ -27,9 +27,9 @@ export function GuideStepBlockComponent({
     <div
       id={id}
       data-step-value={id}
-      className="flex flex-col gap-2 mt-10 mb-4 scroll-mt-28"
+      className="flex flex-col gap-2 mt-10 mb-6 scroll-mt-28"
     >
-      <h3 className="color-content-primary">{title}</h3>
+      <h3 className="color-content-primary mb-0">{title}</h3>
       {hasMeta ? (
         <div className="flex flex-wrap gap-4">
           {format ? (

@@ -2,5 +2,5 @@
 
 export function GuideStepLabel({ data }: { data?: { title?: string | null } }) {
   const title = data?.title
-  return <span>{title ? title : 'Step Guide'}</span>
+  return <span>{title ? `${title} · Guide Step` : 'Guide Step'}</span>
 }

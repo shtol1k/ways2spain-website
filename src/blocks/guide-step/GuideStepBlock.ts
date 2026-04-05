@@ -4,8 +4,8 @@ export const GuideStepBlock: Block = {
   slug: 'guideStep',
   interfaceName: 'GuideStepFields',
   labels: {
-    singular: 'Step Guide',
-    plural: 'Step Guides',
+    singular: 'Guide Step',
+    plural: 'Guide Steps',
   },
   admin: {
     components: {
