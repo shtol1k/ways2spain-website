@@ -15,6 +15,7 @@ import LoadingBar from '@/components/LoadingBar'
 import { Toaster } from '@/components/ui/sonner'
 import { GoogleTagManagerHead, GoogleTagManagerBody } from '@/components/GoogleTagManager'
 import { CookieConsentBanner } from '@/components/CookieConsent'
+import { LightboxProvider } from '@/components/ui/image-lightbox'
 
 const inter = Inter({ 
   subsets: ['latin', 'cyrillic'],
@@ -134,7 +135,9 @@ export default async function SiteLayout({
             ctaSecondary={ctaSecondary}
           />
           <main className="flex-1">
-            {children}
+            <LightboxProvider>
+              {children}
+            </LightboxProvider>
           </main>
           <Footer />
           <Toaster />
