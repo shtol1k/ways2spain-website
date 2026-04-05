@@ -170,7 +170,7 @@ export function LightboxImage({ node }: LightboxImageProps) {
     )
 
     return (
-      <figure className="m-0">
+      <figure className="mb-6">
         <picture onClick={handleClick} className="cursor-pointer block">
           {sources.map((s, i) => (
             <source
@@ -190,7 +190,7 @@ export function LightboxImage({ node }: LightboxImageProps) {
 
   // Simple image
   return (
-    <figure className="m-0">
+    <figure className="mb-6">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={url}
