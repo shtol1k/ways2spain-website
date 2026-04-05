@@ -12,7 +12,7 @@
     --content-tertiary: var(--color-slate-500);
     --content-tertiary-inverse: var(--color-slate-400);
     --content-disable: var(--color-black);
-    --content-brand: var(--color-amber-400);
+    --content-brand: var(--color-amber-600);
     --content-link: var(--color-amber-600);
     --content-info: var(--color-sky-600);
     --content-notice: var(--color-yellow-600);
@@ -40,7 +40,7 @@
     --color-border-primary: var(--color-slate-200);
     --color-border-secondary: var(--color-slate-300);
     --color-border-tertiary: var(--color-slate-400);
-    --color-border-brand: var(--color-amber-400);
+    --color-border-brand: var(--color-amber-600);
     --color-border-negative: var(--color-red-600);
     --color-border-positive: var(--color-green-600);
     --color-border-info: var(--color-sky-600);

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { SmartImage } from '@/components/SmartImage'
-import { Tag } from '@/components/ui/tag'
+import { Badge } from '@/components/ui/tag'
 import { cn } from '@/lib/utils'
 import type { Guide, GuideCategory } from '@/api/guides'
 
@@ -75,7 +75,7 @@ export function GuideCard({ guide, index = 0 }: GuideCardProps) {
 
         {/* Content z-[2] */}
         <div className="relative z-[2] p-6 flex flex-col gap-3">
-          {category && <Tag label={category.name} />}
+          {category && <Badge label={category.name} />}
           <h4 className="color-content-primary-inverse line-clamp-3">{guide.title}</h4>
           <p className="text-body-base color-content-secondary-inverse line-clamp-2">
             {guide.excerpt}
