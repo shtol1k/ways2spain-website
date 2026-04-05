@@ -3,7 +3,25 @@
  */
 
 import { getCanonicalUrl } from './utils'
-import type { Guide, GuideStepHeaderBlock, GuideFAQ as GuideFAQType } from '@/api/guides'
+import type { Guide, GuideFAQ as GuideFAQType } from '@/api/guides'
+
+function extractStepsFromLexical(content: unknown): Array<{ id: string; title: string }> {
+  if (!content || typeof content !== 'object') return []
+  const root = (content as Record<string, unknown>).root
+  if (!root || typeof root !== 'object') return []
+  const children = (root as Record<string, unknown>).children
+  if (!Array.isArray(children)) return []
+  const steps: Array<{ id: string; title: string }> = []
+  for (const node of children) {
+    if (node && typeof node === 'object' && (node as Record<string, unknown>).type === 'block') {
+      const fields = (node as Record<string, unknown>).fields as Record<string, unknown> | undefined
+      if (fields?.blockType === 'guideStep' && typeof fields.id === 'string' && typeof fields.title === 'string') {
+        steps.push({ id: fields.id, title: fields.title })
+      }
+    }
+  }
+  return steps
+}
 
 export interface BreadcrumbItem {
   label: string
@@ -15,9 +33,7 @@ export function generateHowToSchema(
   categorySlug: string
 ): object {
   const url = getCanonicalUrl(`guides/${categorySlug}/${guide.slug}`)
-  const stepHeaders = (guide.content ?? []).filter(
-    (b): b is GuideStepHeaderBlock => b.blockType === 'guideStepHeader'
-  )
+  const stepHeaders = extractStepsFromLexical(guide.content)
 
   return {
     '@context': 'https://schema.org',

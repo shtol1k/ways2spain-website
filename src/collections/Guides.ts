@@ -7,9 +7,8 @@ import {
 } from '@payloadcms/richtext-lexical'
 import { formatSlug } from '@/utilities/transliterate'
 import { revalidateGuide } from '@/hooks/revalidateGuide'
-import { GuideStepHeaderBlock } from '@/blocks/guide-content/GuideStepHeaderBlock'
-import { GuideRichTextBlock } from '@/blocks/guide-content/GuideRichTextBlock'
 import { CalloutBlock } from '@/blocks/callout/CalloutBlock'
+import { GuideStepBlock } from '@/blocks/guide-step/GuideStepBlock'
 
 const lexicalEditorConfig = () =>
   lexicalEditor({
@@ -177,15 +176,42 @@ export const Guides: CollectionConfig = {
           fields: [
             {
               name: 'content',
-              type: 'blocks',
-              label: 'Контент',
-              minRows: 0,
-              maxRows: 200,
-              blocks: [GuideStepHeaderBlock, GuideRichTextBlock],
-              admin: {
-                description: 'Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо',
-              },
+              type: 'richText',
+              label: 'Content',
+              editor: lexicalEditor({
+                features: ({ defaultFeatures }) => [
+                  ...defaultFeatures,
+                  HTMLConverterFeature({}),
+                  BlocksFeature({ blocks: [CalloutBlock, GuideStepBlock] }),
+                ],
+              }),
             },
+          ],
+        },
+        {
+          label: 'FAQ',
+          fields: [
+            {
+              name: 'faqs',
+              type: 'array',
+              label: 'FAQ',
+              fields: [
+                { name: 'question', type: 'text', required: true, label: 'Question' },
+                {
+                  name: 'answer',
+                  type: 'richText',
+                  required: true,
+                  label: 'Answer',
+                  editor: lexicalEditorConfig(),
+                },
+                lexicalHTML('answer', { name: 'answer_html' }),
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Resources & Links',
+          fields: [
             {
               name: 'resources',
               type: 'array',
@@ -205,22 +231,6 @@ export const Guides: CollectionConfig = {
                   ],
                 },
                 { name: 'description', type: 'text', label: 'Description' },
-              ],
-            },
-            {
-              name: 'faqs',
-              type: 'array',
-              label: 'FAQ',
-              fields: [
-                { name: 'question', type: 'text', required: true, label: 'Question' },
-                {
-                  name: 'answer',
-                  type: 'richText',
-                  required: true,
-                  label: 'Answer',
-                  editor: lexicalEditorConfig(),
-                },
-                lexicalHTML('answer', { name: 'answer_html' }),
               ],
             },
           ],

@@ -2,17 +2,18 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils'
-import type { GuideContentBlock, GuideStepHeaderBlock } from '@/api/guides'
 
-interface GuidesTableOfContentsProps {
-  content: GuideContentBlock[] | null | undefined
+export type GuideStep = {
+  id: string
+  title: string
 }
 
-export function GuidesTableOfContents({ content }: GuidesTableOfContentsProps) {
-  const stepHeaders = (content ?? []).filter(
-    (b): b is GuideStepHeaderBlock => b.blockType === 'guideStepHeader'
-  )
-  const [activeId, setActiveId] = useState<string>('step-1')
+interface GuidesTableOfContentsProps {
+  steps: GuideStep[]
+}
+
+export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
+  const [activeId, setActiveId] = useState<string>(steps[0]?.id ?? '')
   const [indicator, setIndicator] = useState({ top: 0, height: 32 })
   const listRef = useRef<HTMLUListElement>(null)
 
@@ -51,9 +52,9 @@ export function GuidesTableOfContents({ content }: GuidesTableOfContentsProps) {
     )
     document.querySelectorAll('[data-step-value]').forEach((el) => observer.observe(el))
     return () => observer.disconnect()
-  }, [stepHeaders.length])
+  }, [steps.length])
 
-  if (stepHeaders.length === 0) return null
+  if (steps.length === 0) return null
 
   return (
     <div className="hidden lg:flex sticky top-24 print:hidden flex-col gap-4">
@@ -75,23 +76,22 @@ export function GuidesTableOfContents({ content }: GuidesTableOfContentsProps) {
             }}
             aria-hidden="true"
           />
-          {stepHeaders.map((block, index) => {
-            const value = `step-${index + 1}`
-            const isActive = activeId === value
+          {steps.map((step) => {
+            const isActive = activeId === step.id
             return (
-              <li key={block.id} data-toc-id={value}>
+              <li key={step.id} data-toc-id={step.id}>
                 <a
-                  href={`#${value}`}
+                  href={`#${step.id}`}
                   onClick={(e) => {
                     e.preventDefault()
-                    document.getElementById(value)?.scrollIntoView({ behavior: 'smooth' })
+                    document.getElementById(step.id)?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   className={cn(
                     'flex items-center px-4 py-1 text-body-base cursor-pointer hover:underline',
                     isActive ? 'color-content-primary' : 'color-content-tertiary'
                   )}
                 >
-                  {block.title}
+                  {step.title}
                 </a>
               </li>
             )

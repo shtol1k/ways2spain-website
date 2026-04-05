@@ -10,6 +10,7 @@ import { GuideSummary } from '@/components/guides/GuideSummary'
 import { GuideContent } from '@/components/guides/GuideContent'
 import { GuideResources } from '@/components/guides/GuideResources'
 import { GuidesTableOfContents } from '@/components/guides/GuidesTableOfContents'
+import type { GuideStep } from '@/components/guides/GuidesTableOfContents'
 import { GuideFAQ } from '@/components/guides/GuideFAQ'
 import { PrintButton } from '@/components/guides/PrintButton'
 import { PrintStyles } from '@/components/guides/PrintStyles'
@@ -20,6 +21,29 @@ import {
   generateFAQSchema,
   generateGuideBreadcrumbSchema,
 } from '@/lib/guideSchema'
+
+function extractGuideSteps(content: unknown): GuideStep[] {
+  if (!content || typeof content !== 'object') return []
+  const root = (content as Record<string, unknown>).root
+  if (!root || typeof root !== 'object') return []
+  const children = (root as Record<string, unknown>).children
+  if (!Array.isArray(children)) return []
+
+  const steps: GuideStep[] = []
+  for (const node of children) {
+    if (
+      node &&
+      typeof node === 'object' &&
+      (node as Record<string, unknown>).type === 'block'
+    ) {
+      const fields = (node as Record<string, unknown>).fields as Record<string, unknown> | undefined
+      if (fields?.blockType === 'guideStep' && typeof fields.id === 'string' && typeof fields.title === 'string') {
+        steps.push({ id: fields.id, title: fields.title })
+      }
+    }
+  }
+  return steps
+}
 
 export const revalidate = 60
 
@@ -93,6 +117,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
     { label: guide.title },
   ]
 
+  const guideSteps = extractGuideSteps(guide.content)
   const howToSchema = generateHowToSchema(guide, category)
   const faqSchema = guide.faqs?.length
     ? generateFAQSchema(guide.faqs)
@@ -126,7 +151,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
 
             <aside className="space-y-6 print:hidden">
               <div className="lg:sticky lg:top-24 space-y-6">
-                <GuidesTableOfContents content={guide.content} />
+                <GuidesTableOfContents steps={guideSteps} />
                 <GuideResources resources={guide.resources} />
                 <PrintButton />
               </div>

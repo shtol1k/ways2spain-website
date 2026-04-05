@@ -1,25 +1,34 @@
+import type { SerializedBlockNode } from '@payloadcms/richtext-lexical'
 import { Icon } from '@/components/ui/icons'
-import type { GuideStepHeaderBlock } from '@/api/guides'
 
-interface GuideStepHeaderProps {
-  block: GuideStepHeaderBlock
-  stepIndex: number
+type GuideStepFields = {
+  id: string
+  title: string
+  format?: 'online' | 'hybrid' | 'offline' | null
+  duration?: string | null
+  cost?: string | null
 }
 
 const formatLabels: Record<string, string> = {
-  online: 'Онлайн',
-  hybrid: 'Онлайн + Офлайн',
-  offline: 'Офлайн',
+  online: 'Online',
+  hybrid: 'Online + Offline',
+  offline: 'Offline',
 }
 
-export function GuideStepHeader({ block, stepIndex }: GuideStepHeaderProps) {
-  const { title, format, duration, cost } = block
-  const stepId = `step-${stepIndex}`
-
+export function GuideStepBlockComponent({
+  node,
+}: {
+  node: SerializedBlockNode<GuideStepFields>
+}) {
+  const { id, title, format, duration, cost } = node.fields
   const hasMeta = format || duration || cost
 
   return (
-    <div id={stepId} data-step-value={stepId} className="flex flex-col gap-2 mt-10 mb-4 scroll-mt-28">
+    <div
+      id={id}
+      data-step-value={id}
+      className="flex flex-col gap-2 mt-10 mb-4 scroll-mt-28"
+    >
       <h3 className="color-content-primary">{title}</h3>
       {hasMeta ? (
         <div className="flex flex-wrap gap-4">

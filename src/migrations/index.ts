@@ -44,6 +44,7 @@ import * as migration_20260404_140000_remove_guide_callout_block from './2026040
 import * as migration_20260404_160000_guides_format_single_select from './20260404_160000_guides_format_single_select';
 import * as migration_20260404_170000_guides_add_introduction from './20260404_170000_guides_add_introduction';
 import * as migration_20260404_180000_guides_introduction_richtext from './20260404_180000_guides_introduction_richtext';
+import * as migration_20260405_120000_guides_step_blockfeature from './20260405_120000_guides_step_blockfeature';
 
 export const migrations = [
   {
@@ -275,5 +276,10 @@ export const migrations = [
     up: migration_20260404_180000_guides_introduction_richtext.up,
     down: migration_20260404_180000_guides_introduction_richtext.down,
     name: '20260404_180000_guides_introduction_richtext',
+  },
+  {
+    up: migration_20260405_120000_guides_step_blockfeature.up,
+    down: migration_20260405_120000_guides_step_blockfeature.down,
+    name: '20260405_120000_guides_step_blockfeature',
   },
 ];

@@ -654,64 +654,21 @@ export interface Guide {
         }[]
       | null;
   };
-  /**
-   * Додавайте блоки в будь-якому порядку: шапку кроку, текст, callout тощо
-   */
-  content?:
-    | (
-        | {
-            /**
-             * Наприклад: Крок 1: Отримання DUA
-             */
-            title: string;
-            /**
-             * Як виконується цей крок
-             */
-            format?: ('online' | 'hybrid' | 'offline') | null;
-            /**
-             * Наприклад: 2–3 дні, 1 тиждень
-             */
-            duration?: string | null;
-            /**
-             * Наприклад: 320€, безкоштовно
-             */
-            cost?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'guideStepHeader';
-          }
-        | {
-            content: {
-              root: {
-                type: string;
-                children: {
-                  type: any;
-                  version: number;
-                  [k: string]: unknown;
-                }[];
-                direction: ('ltr' | 'rtl') | null;
-                format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-                indent: number;
-                version: number;
-              };
-              [k: string]: unknown;
-            };
-            content_html?: string | null;
-            id?: string | null;
-            blockName?: string | null;
-            blockType: 'guideRichText';
-          }
-      )[]
-    | null;
-  resources?:
-    | {
-        title: string;
-        url: string;
-        type?: ('website' | 'pdf' | 'video' | 'form') | null;
-        description?: string | null;
-        id?: string | null;
-      }[]
-    | null;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   faqs?:
     | {
         question: string;
@@ -731,6 +688,15 @@ export interface Guide {
           [k: string]: unknown;
         };
         answer_html?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  resources?:
+    | {
+        title: string;
+        url: string;
+        type?: ('website' | 'pdf' | 'video' | 'form') | null;
+        description?: string | null;
         id?: string | null;
       }[]
     | null;
@@ -1218,27 +1184,14 @@ export interface GuidesSelect<T extends boolean = true> {
               id?: T;
             };
       };
-  content?:
+  content?: T;
+  faqs?:
     | T
     | {
-        guideStepHeader?:
-          | T
-          | {
-              title?: T;
-              format?: T;
-              duration?: T;
-              cost?: T;
-              id?: T;
-              blockName?: T;
-            };
-        guideRichText?:
-          | T
-          | {
-              content?: T;
-              content_html?: T;
-              id?: T;
-              blockName?: T;
-            };
+        question?: T;
+        answer?: T;
+        answer_html?: T;
+        id?: T;
       };
   resources?:
     | T
@@ -1247,14 +1200,6 @@ export interface GuidesSelect<T extends boolean = true> {
         url?: T;
         type?: T;
         description?: T;
-        id?: T;
-      };
-  faqs?:
-    | T
-    | {
-        question?: T;
-        answer?: T;
-        answer_html?: T;
         id?: T;
       };
   seo?:
@@ -1563,6 +1508,19 @@ export interface FooterSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "GuideStepFields".
+ */
+export interface GuideStepFields {
+  title: string;
+  format?: ('online' | 'hybrid' | 'offline') | null;
+  duration?: string | null;
+  cost?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'guideStep';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

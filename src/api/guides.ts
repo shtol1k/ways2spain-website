@@ -33,24 +33,6 @@ export type GuideSummary = {
   requirements?: Array<{ requirement?: string | null }> | null
 }
 
-export type GuideStepHeaderBlock = {
-  id: string
-  blockType: 'guideStepHeader'
-  title: string
-  format?: 'online' | 'hybrid' | 'offline' | null
-  duration?: string | null
-  cost?: string | null
-}
-
-export type GuideRichTextBlock = {
-  id: string
-  blockType: 'guideRichText'
-  content: unknown
-  content_html?: string | null
-}
-
-export type GuideContentBlock = GuideStepHeaderBlock | GuideRichTextBlock
-
 export type GuideResource = {
   id: string
   title: string
@@ -76,7 +58,7 @@ export type Guide = {
   category: number | GuideCategory
   featuredImage?: number | { id: number; url?: string; alt?: string } | null
   summary: GuideSummary
-  content?: GuideContentBlock[] | null
+  content?: unknown | null
   resources?: GuideResource[] | null
   faqs?: GuideFAQ[] | null
   seo?: {
