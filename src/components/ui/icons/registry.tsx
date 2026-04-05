@@ -11,6 +11,8 @@ import {
   faCheckCircle,
   faExclamationCircle, // warning/error
   faShareNodes, // share
+  faLink, // copy link
+  faCheck, // copied confirmation
   faCookieBite, // cookie consent
   faCube, // guide summary: format
   faWallet, // guide summary: costs
@@ -24,6 +26,7 @@ import {
 } from '@fortawesome/pro-solid-svg-icons';
 import {
   faTelegram,
+  faWhatsapp,
   faInstagram,
   faFacebook,
   faXTwitter,
@@ -47,11 +50,14 @@ export type IconName =
   | 'error'
   | 'warning'
   | 'share'
+  | 'link'
+  | 'check'
   | 'cookieBite'
   | 'cube'
   | 'wallet'
   | 'clipboardList'
   | 'telegram'
+  | 'whatsapp'
   | 'instagram'
   | 'facebook'
   | 'xTwitter'
@@ -77,6 +83,8 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   error: faExclamationCircle,
   warning: faExclamationCircle,
   share: faShareNodes,
+  link: faLink,
+  check: faCheck,
   cookieBite: faCookieBite,
   cube: faCube,
   wallet: faWallet,
@@ -86,6 +94,7 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   triangleExclamationSolid: faTriangleExclamationSolid,
   // Social / brand icons
   telegram: faTelegram,
+  whatsapp: faWhatsapp,
   instagram: faInstagram,
   facebook: faFacebook,
   xTwitter: faXTwitter,

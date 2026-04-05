@@ -4,6 +4,7 @@ import { uk } from 'date-fns/locale'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { GuideShareButton } from '@/components/guides/GuideShareButton'
 import { Icon } from '@/components/ui/icons'
+import { getCanonicalUrl } from '@/lib/utils'
 
 interface GuideHeaderProps {
   guide: Guide
@@ -22,6 +23,10 @@ export function GuideHeader({ guide }: GuideHeaderProps) {
 
   const publishedDate = format(new Date(guide.createdAt), 'd MMMM yyyy', { locale: uk })
 
+  const guideUrl = category
+    ? getCanonicalUrl(`/guides/${category.slug}/${guide.slug}`)
+    : getCanonicalUrl(`/guides/${guide.slug}`)
+
   return (
     <header className="flex flex-col items-center pt-24 pb-4 md:pt-32 md:pb-10">
       <div className="flex flex-col gap-4 container mx-auto px-4 lg:px-8">
@@ -29,7 +34,7 @@ export function GuideHeader({ guide }: GuideHeaderProps) {
         {/* Nav row: breadcrumbs always visible, share button hidden on sm */}
         <div className="flex items-center justify-between">
           <BlogBreadcrumbs items={breadcrumbs} />
-          <GuideShareButton className="hidden md:flex" />
+          <GuideShareButton url={guideUrl} title={guide.title} className="hidden md:flex" />
         </div>
 
         {/* Note: overrides global h1 typography — Figma uses h2-scale for guide header */}
