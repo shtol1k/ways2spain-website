@@ -22,7 +22,7 @@ export function GuideFAQ({ faqs }: GuideFAQProps) {
           <div key={faq.id} className="group">
             <AccordionItem
               value={`faq-${index}`}
-              className="peer border-b-0 rounded-lg px-4 py-1 transition-colors duration-300 data-[state=open]:bg-fill-secondary"
+              className="peer border-b-0 rounded-lg px-4 transition-colors duration-300 data-[state=open]:bg-fill-secondary"
             >
               <AccordionTrigger
                 className="hover:no-underline cursor-pointer gap-6 text-left text-base font-medium leading-normal"
@@ -39,7 +39,7 @@ export function GuideFAQ({ faqs }: GuideFAQProps) {
               <AccordionContent className="pb-4">
                 {faq.answer_html ? (
                   <div
-                    className="text-body-base color-content-secondary"
+                    className="text-body-base color-content-secondary [&>p:last-child]:mb-0"
                     dangerouslySetInnerHTML={{ __html: faq.answer_html }}
                   />
                 ) : null}
