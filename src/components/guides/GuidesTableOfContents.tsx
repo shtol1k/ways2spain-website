@@ -56,7 +56,7 @@ export function GuidesTableOfContents({ content }: GuidesTableOfContentsProps) {
   if (stepHeaders.length === 0) return null
 
   return (
-    <div className="sticky top-24 print:hidden flex flex-col gap-4">
+    <div className="hidden lg:flex sticky top-24 print:hidden flex-col gap-4">
       <h3 className="text-body-large font-bold color-content-primary tracking-tight">
         Зміст
       </h3>

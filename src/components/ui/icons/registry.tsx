@@ -16,7 +16,12 @@ import {
   faWallet, // guide summary: costs
   faClipboardList, // guide summary: requirements
 } from '@fortawesome/pro-regular-svg-icons'; // Using Regular as base style
-import { faCheckCircle as faCheckCircleSolid } from '@fortawesome/pro-solid-svg-icons';
+import {
+  faCheckCircle as faCheckCircleSolid,
+  faCircleInfo as faCircleInfoSolid,
+  faCircleExclamation as faCircleExclamationSolid,
+  faTriangleExclamation as faTriangleExclamationSolid,
+} from '@fortawesome/pro-solid-svg-icons';
 import {
   faTelegram,
   faInstagram,
@@ -50,7 +55,10 @@ export type IconName =
   | 'instagram'
   | 'facebook'
   | 'xTwitter'
-  | 'linkedin';
+  | 'linkedin'
+  | 'circleInfoSolid'
+  | 'circleExclamationSolid'
+  | 'triangleExclamationSolid';
 
 export const iconsRegistry: Record<IconName, IconDefinition> = {
   // Mapping internal names to Font Awesome icons
@@ -73,6 +81,9 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   cube: faCube,
   wallet: faWallet,
   clipboardList: faClipboardList,
+  circleInfoSolid: faCircleInfoSolid,
+  circleExclamationSolid: faCircleExclamationSolid,
+  triangleExclamationSolid: faTriangleExclamationSolid,
   // Social / brand icons
   telegram: faTelegram,
   instagram: faInstagram,

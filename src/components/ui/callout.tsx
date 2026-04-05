@@ -1,21 +1,18 @@
 import * as React from 'react'
 import { cva, type VariantProps } from 'class-variance-authority'
-import { Info, AlertTriangle, AlertCircle, CheckCircle } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { Icon } from '@/components/ui/icons'
+import type { IconName } from '@/components/ui/icons/registry'
 
 const calloutVariants = cva(
-  'relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:size-5 shrink-0',
+  'flex gap-4 items-start p-4 rounded-lg w-full',
   {
     variants: {
       variant: {
-        info:
-          'border-blue-500/50 bg-blue-500/10 text-blue-700 dark:text-blue-300 [&>svg]:text-blue-600 dark:[&>svg]:text-blue-400',
-        warning:
-          'border-amber-500/50 bg-amber-500/10 text-amber-800 dark:text-amber-200 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400',
-        alert:
-          'border-destructive/50 bg-destructive/10 text-destructive [&>svg]:text-destructive',
-        success:
-          'border-emerald-500/50 bg-emerald-500/10 text-emerald-800 dark:text-emerald-200 [&>svg]:text-emerald-600 dark:[&>svg]:text-emerald-400',
+        info: 'bg-sky-50',
+        warning: 'bg-amber-50',
+        alert: 'bg-red-50',
+        success: 'bg-green-50',
       },
     },
     defaultVariants: {
@@ -24,11 +21,25 @@ const calloutVariants = cva(
   }
 )
 
-const iconMap = {
-  info: Info,
-  warning: AlertTriangle,
-  alert: AlertCircle,
-  success: CheckCircle,
+const iconColorVariants = cva('', {
+  variants: {
+    variant: {
+      info: 'color-content-info',
+      warning: 'color-content-notice',
+      alert: 'color-content-negative',
+      success: 'color-content-positive',
+    },
+  },
+  defaultVariants: {
+    variant: 'info',
+  },
+})
+
+const iconMap: Record<string, IconName> = {
+  info: 'circleInfoSolid',
+  warning: 'triangleExclamationSolid',
+  alert: 'circleExclamationSolid',
+  success: 'circleCheckSolid',
 }
 
 export interface CalloutProps
@@ -39,7 +50,7 @@ export interface CalloutProps
 
 const Callout = React.forwardRef<HTMLDivElement, CalloutProps>(
   ({ className, variant = 'info', title, children, ...props }, ref) => {
-    const Icon = iconMap[variant ?? 'info']
+    const v = variant ?? 'info'
     return (
       <div
         ref={ref}
@@ -47,12 +58,14 @@ const Callout = React.forwardRef<HTMLDivElement, CalloutProps>(
         className={cn(calloutVariants({ variant }), className)}
         {...props}
       >
-        <Icon className="[&~*]:pl-7" />
-        <div>
-          {title ? (
-            <h5 className="mb-1 font-medium leading-none tracking-tight">{title}</h5>
-          ) : null}
-          <div className="text-sm [&_p]:leading-relaxed [&_p]:mb-2 last:[&_p]:mb-0">
+        <Icon name={iconMap[v]} size="lg" className={iconColorVariants({ variant })} />
+        <div className="flex flex-col gap-1 min-w-0">
+          {title && (
+            <p className="font-medium text-body-base color-content-primary tracking-tight leading-6 m-0">
+              {title}
+            </p>
+          )}
+          <div className="text-body-base color-content-secondary [&_p]:leading-6 [&_p]:m-0">
             {children}
           </div>
         </div>
