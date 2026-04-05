@@ -7,11 +7,6 @@ export const GuideStepBlock: Block = {
     singular: 'Guide Step',
     plural: 'Guide Steps',
   },
-  admin: {
-    components: {
-      Label: '@/blocks/guide-step/GuideStepLabel#GuideStepLabel',
-    },
-  },
   fields: [
     {
       name: 'title',
