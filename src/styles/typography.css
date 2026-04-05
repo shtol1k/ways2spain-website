@@ -120,7 +120,7 @@
       font-weight: var(--font-weight-normal);
       color: var(--content-secondary);
       margin-top: 0;
-      margin-bottom: 1.25rem; /* 20px */
+      margin-bottom: 1.5rem; /* 24px */
     }
 
     .rich-text ul,
@@ -141,7 +141,7 @@
     .prose p {
       font-size: var(--text-base); /* 16px */
       line-height: var(--leading-7); /* 28px */
-      margin-bottom: 1rem; /* 16px */
+      margin-bottom: 1.5rem; /* 24px */
     }
 
     .rich-text p:last-child,
@@ -367,7 +367,7 @@
     .prose p {
       font-size: var(--text-lg); /* 18px */
       line-height: var(--leading-7); /* 28px */
-      margin-bottom: 1rem; /* 16px */
+      margin-bottom: 1.5rem; /* 24px */
     }
 
     .rich-text p:last-child,
@@ -593,7 +593,7 @@
     .prose p {
       font-size: var(--text-lg); /* 18px */
       line-height: var(--leading-7); /* 28px */
-      margin-bottom: 1rem; /* 16px */
+      margin-bottom: 1.5rem; /* 24px */
     }
 
     .rich-text p:last-child,
