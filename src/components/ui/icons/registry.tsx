@@ -5,6 +5,7 @@ import {
   faUser,
   faArrowRight,
   faAngleRight,
+  faAngleDown,
   faGrip, // menu/layout-grid
   faXmark, // close/x
   faInfoCircle,
@@ -40,6 +41,7 @@ export type IconName =
   | 'user'
   | 'arrowRight'
   | 'angleRight'
+  | 'angleDown'
   | 'menu'
   | 'close'
   | 'xmark'
@@ -73,6 +75,7 @@ export const iconsRegistry: Record<IconName, IconDefinition> = {
   user: faUser,
   arrowRight: faArrowRight,
   angleRight: faAngleRight,
+  angleDown: faAngleDown,
   menu: faGrip,
   close: faXmark,
   xmark: faXmark,

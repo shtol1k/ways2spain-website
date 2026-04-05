@@ -21,11 +21,11 @@
 
     /* Background Colors */
     --color-fill-primary: var(--color-white);
-    --color-fill-primary-hover: var(--color-slate-100);
-    --color-fill-primary-inverse: var(--color-slate-800);
-    --color-fill-secondary: var(--color-slate-100);
-    --color-fill-tertiary: var(--color-slate-200);
-    --color-fill-tertiary-inverse: var(--color-slate-600);
+    --color-fill-primary-hover: var(--color-zinc-100);
+    --color-fill-primary-inverse: var(--color-zinc-800);
+    --color-fill-secondary: var(--color-zinc-100);
+    --color-fill-tertiary: var(--color-zinc-200);
+    --color-fill-tertiary-inverse: var(--color-zinc-600);
     --color-fill-brand: var(--color-amber-400);
     --color-fill-negative: var(--color-red-600);
     --color-fill-negative-subtle: var(--color-red-50);

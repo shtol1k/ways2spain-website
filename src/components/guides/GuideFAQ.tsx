@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion'
+import { Icon } from '@/components/ui/icons'
 import type { GuideFAQ as GuideFAQType } from '@/api/guides'
 
 interface GuideFAQProps {
@@ -14,27 +15,38 @@ export function GuideFAQ({ faqs }: GuideFAQProps) {
   if (!faqs?.length) return null
 
   return (
-    <section className="mt-12" aria-label="Часті питання">
-      <h2 className="text-2xl font-bold mb-6">Часті питання</h2>
-      <Accordion type="single" collapsible className="border rounded-lg divide-y">
+    <section className="mt-12" aria-label="Часті запитання">
+      <h3 className="mb-6">Часті запитання</h3>
+      <Accordion type="single" collapsible>
         {faqs.map((faq, index) => (
-          <AccordionItem
-            key={faq.id}
-            value={`faq-${index}`}
-            className="px-4 border-b-0"
-          >
-            <AccordionTrigger className="hover:no-underline py-4 text-left">
-              {faq.question}
-            </AccordionTrigger>
-            <AccordionContent>
-              {faq.answer_html ? (
-                <div
-                  className="prose prose-neutral dark:prose-invert max-w-none pb-4"
-                  dangerouslySetInnerHTML={{ __html: faq.answer_html }}
-                />
-              ) : null}
-            </AccordionContent>
-          </AccordionItem>
+          <div key={faq.id} className="group">
+            <AccordionItem
+              value={`faq-${index}`}
+              className="peer border-b-0 rounded-lg px-4 py-1 transition-colors duration-300 data-[state=open]:bg-fill-secondary"
+            >
+              <AccordionTrigger
+                className="hover:no-underline cursor-pointer gap-6 text-left text-base font-medium leading-normal"
+                icon={
+                  <Icon
+                    name="angleDown"
+                    size="lg"
+                    className="shrink-0 transition-transform duration-300 ease-in-out in-data-[state=open]:rotate-180"
+                  />
+                }
+              >
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="pb-4">
+                {faq.answer_html ? (
+                  <div
+                    className="text-body-base color-content-secondary"
+                    dangerouslySetInnerHTML={{ __html: faq.answer_html }}
+                  />
+                ) : null}
+              </AccordionContent>
+            </AccordionItem>
+            <hr className="mx-4 -mb-px group-last:hidden border-(--color-border-primary) transition-opacity duration-300 peer-data-[state=open]:opacity-0" />
+          </div>
         ))}
       </Accordion>
     </section>
