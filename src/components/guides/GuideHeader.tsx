@@ -4,6 +4,7 @@ import { uk } from 'date-fns/locale'
 import { BlogBreadcrumbs } from '@/components/blog/BlogBreadcrumbs'
 import { GuideShareButton } from '@/components/guides/GuideShareButton'
 import { Icon } from '@/components/ui/icons'
+import { Badge } from '@/components/ui/tag'
 import { getCanonicalUrl } from '@/lib/utils'
 
 interface GuideHeaderProps {
@@ -22,6 +23,7 @@ export function GuideHeader({ guide }: GuideHeaderProps) {
   ]
 
   const publishedDate = format(new Date(guide.createdAt), 'd MMMM yyyy', { locale: uk })
+  const updatedDate = format(new Date(guide.updatedAt), 'd MMMM yyyy', { locale: uk })
 
   const guideUrl = category
     ? getCanonicalUrl(`/guides/${category.slug}/${guide.slug}`)
@@ -44,15 +46,17 @@ export function GuideHeader({ guide }: GuideHeaderProps) {
 
         {/* Meta: vertical on sm, horizontal on md+ */}
         <div className="flex flex-col gap-2 md:flex-row md:gap-4 items-start">
-          {category && (
-            <span className="inline-flex items-center h-8 px-3 rounded-full border border-[var(--color-border-brand)] text-body-base color-content-brand whitespace-nowrap">
-              {category.name}
-            </span>
-          )}
+          {category && <Badge label={category.name} />}
           <div className="flex items-center gap-1">
-            <Icon name="calendar" size="lg" className="color-content-secondary shrink-0" />
-            <span className="text-body-base color-content-secondary whitespace-nowrap">
+            <Icon name="calendar" size="lg" className="color-content-tertiary shrink-0" />
+            <span className="text-body-base color-content-tertiary whitespace-nowrap">
               Опубліковано: {publishedDate}
+            </span>
+          </div>
+          <div className="flex items-center gap-1">
+            <Icon name="calendar" size="lg" className="color-content-tertiary shrink-0" />
+            <span className="text-body-base color-content-tertiary whitespace-nowrap">
+              Оновлено: {updatedDate}
             </span>
           </div>
         </div>
