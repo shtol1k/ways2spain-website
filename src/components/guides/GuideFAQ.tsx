@@ -16,7 +16,7 @@ export function GuideFAQ({ faqs }: GuideFAQProps) {
 
   return (
     <section className="mt-12" aria-label="Часті запитання">
-      <h3 className="mb-6">Часті запитання</h3>
+      <h3 className="mb-4">Часті запитання</h3>
       <Accordion type="single" collapsible>
         {faqs.map((faq, index) => (
           <div key={faq.id} className="group">

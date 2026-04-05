@@ -12,7 +12,6 @@ import { GuideResources } from '@/components/guides/GuideResources'
 import { GuidesTableOfContents } from '@/components/guides/GuidesTableOfContents'
 import type { GuideStep } from '@/components/guides/GuidesTableOfContents'
 import { GuideFAQ } from '@/components/guides/GuideFAQ'
-import { PrintButton } from '@/components/guides/PrintButton'
 import { PrintStyles } from '@/components/guides/PrintStyles'
 import { JsonLd } from '@/components/JsonLd'
 import type { GuideCategory } from '@/api/guides'
@@ -153,7 +152,6 @@ export default async function GuidePage({ params }: GuidePageProps) {
               <div className="lg:sticky lg:top-24 space-y-6">
                 <GuidesTableOfContents steps={guideSteps} />
                 <GuideResources resources={guide.resources} />
-                <PrintButton />
               </div>
             </aside>
           </div>
