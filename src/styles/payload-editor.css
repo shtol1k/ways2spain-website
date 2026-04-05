@@ -114,3 +114,28 @@
   color: var(--editor-color-link);
   text-decoration: underline;
 }
+
+/* Blockquote — mirrors frontend .rich-text blockquote */
+.ContentEditable__root blockquote {
+  border-left: 2px solid #cbd5e1; /* slate-300 = --color-border-secondary */
+  padding-left: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--editor-color-body);
+  margin-bottom: 1.5rem;
+}
+
+.ContentEditable__root blockquote p {
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  margin-bottom: 0;
+}
+
+[data-theme="dark"] .ContentEditable__root blockquote {
+  border-left-color: #475569; /* slate-600 — visible on dark bg */
+}
