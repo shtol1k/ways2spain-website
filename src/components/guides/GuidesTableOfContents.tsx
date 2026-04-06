@@ -58,9 +58,7 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
 
   return (
     <div className="hidden lg:flex sticky top-24 print:hidden flex-col gap-4">
-      <h3 className="text-body-large font-bold color-content-primary tracking-tight">
-        Зміст
-      </h3>
+      <h4 className="mb-0">Зміст</h4>
       <nav aria-label="Зміст гайду">
         <ul
           ref={listRef}

@@ -28,7 +28,7 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
 
   return (
     <div className="flex flex-col gap-4">
-      <p className="font-bold text-lg tracking-tight color-content-primary">Ресурси</p>
+      <h4 className="mb-0">Ресурси</h4>
 
       {variant === 'sidebar' ? (
         <div className="flex flex-col gap-3">
@@ -42,7 +42,7 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                 href={r.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex gap-2 items-start w-full overflow-hidden"
+                className="group flex gap-2 items-start w-full overflow-hidden"
               >
                 {faviconUrl ? (
                   <img
@@ -61,9 +61,9 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                     !isLast && 'border-b border-(--color-border-primary) pb-3',
                   )}
                 >
-                  <p className="text-labels-sm color-content-primary truncate">{r.title}</p>
+                  <p className="mb-0 text-labels-sm color-content-primary truncate group-hover:underline">{r.title}</p>
                   {r.description ? (
-                    <p className="text-body-extra-small color-content-secondary">{r.description}</p>
+                    <p className="mb-0 text-body-extra-small color-content-secondary">{r.description}</p>
                   ) : null}
                 </div>
               </a>
@@ -81,7 +81,7 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                 href={r.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border border-(--color-border-primary) rounded-lg p-3 flex gap-2 items-start overflow-hidden transition-smooth hover:bg-fill-secondary"
+                className="group border border-(--color-border-primary) rounded-lg p-3 flex gap-2 items-start overflow-hidden transition-smooth hover:bg-fill-secondary"
               >
                 {faviconUrl ? (
                   <img
@@ -95,9 +95,9 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                   <Icon className="size-6 md:size-5 shrink-0 color-content-tertiary mt-0.5" />
                 )}
                 <div className="flex-1 min-w-0 flex flex-col gap-1">
-                  <p className="text-labels-sm color-content-primary">{r.title}</p>
+                  <p className="mb-0 text-labels-sm color-content-primary">{r.title}</p>
                   {r.description ? (
-                    <p className="text-body-small md:text-body-extra-small color-content-secondary">
+                    <p className="mb-0 text-body-small md:text-body-extra-small color-content-secondary">
                       {r.description}
                     </p>
                   ) : null}
