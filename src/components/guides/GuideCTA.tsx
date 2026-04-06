@@ -1,11 +1,19 @@
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
-export function GuideCTA() {
+interface GuideCTAProps {
+  className?: string
+}
+
+export function GuideCTA({ className }: GuideCTAProps) {
   return (
     <section
       aria-label="Консультація"
-      className="relative overflow-hidden bg-fill-primary border border-[var(--color-border-primary)] rounded-2xl shadow-elegant flex flex-col items-center justify-center gap-6 lg:gap-8 p-4 lg:px-10 lg:py-12 text-center mt-8 print:hidden"
+      className={cn(
+        'relative overflow-hidden bg-fill-primary border border-[var(--color-border-primary)] rounded-2xl shadow-elegant flex flex-col items-center justify-center gap-6 lg:gap-8 p-4 lg:px-10 lg:py-12 text-center mt-8 print:hidden',
+        className
+      )}
     >
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">

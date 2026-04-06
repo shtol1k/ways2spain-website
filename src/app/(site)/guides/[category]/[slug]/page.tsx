@@ -147,10 +147,10 @@ export default async function GuidePage({ params }: GuidePageProps) {
               <GuideSummary summary={guide.summary} />
               <GuideContent content={guide.content} />
               <GuideFAQ faqs={guide.faqs} />
-              <GuideCTA />
               <div className="lg:hidden mt-8 print:hidden">
                 <GuideResources resources={guide.resources} variant="inline" />
               </div>
+              <GuideCTA className="lg:hidden" />
             </main>
 
             <aside className="space-y-6 print:hidden">
@@ -162,6 +162,8 @@ export default async function GuidePage({ params }: GuidePageProps) {
               </div>
             </aside>
           </div>
+
+          <GuideCTA className="hidden lg:flex" />
 
           <PrintStyles />
         </div>
