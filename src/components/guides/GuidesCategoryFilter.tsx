@@ -44,11 +44,6 @@ export function GuidesCategoryFilter({
                 ? 'bg-primary text-primary-foreground'
                 : 'bg-muted hover:bg-muted/80'
             )}
-            style={
-              isActive && cat.color
-                ? { backgroundColor: cat.color, color: '#fff', borderColor: cat.color }
-                : undefined
-            }
           >
             {cat.name}
             {count > 0 ? ` (${count})` : ''}

@@ -9,7 +9,7 @@ export const GuideCategories: CollectionConfig = {
   },
   admin: {
     useAsTitle: 'name',
-    defaultColumns: ['name', 'slug', 'order'],
+    defaultColumns: ['name', 'slug'],
     group: 'Guides',
   },
   access: {
@@ -56,36 +56,12 @@ export const GuideCategories: CollectionConfig = {
       },
     },
     {
-      name: 'description',
-      type: 'textarea',
-      label: 'Description',
-      admin: {
-        description: 'Category description for listing page',
-      },
-    },
-    {
-      name: 'icon',
-      type: 'text',
-      label: 'Icon',
-      admin: {
-        description: 'Lucide icon name (e.g. FileText, Car, Heart)',
-      },
-    },
-    {
       name: 'order',
       type: 'number',
       defaultValue: 0,
       label: 'Order',
       admin: {
         description: 'Sorting order (lower number = higher in list)',
-      },
-    },
-    {
-      name: 'color',
-      type: 'text',
-      label: 'Color',
-      admin: {
-        description: 'Hex color for badges (e.g. #3b82f6)',
       },
     },
   ],

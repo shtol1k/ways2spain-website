@@ -18,10 +18,7 @@ export type GuideCategory = {
   id: number
   name: string
   slug: string
-  description?: string | null
-  icon?: string | null
   order?: number | null
-  color?: string | null
   updatedAt: string
   createdAt: string
 }

@@ -724,21 +724,9 @@ export interface GuideCategory {
    */
   slug: string;
   /**
-   * Category description for listing page
-   */
-  description?: string | null;
-  /**
-   * Lucide icon name (e.g. FileText, Car, Heart)
-   */
-  icon?: string | null;
-  /**
    * Sorting order (lower number = higher in list)
    */
   order?: number | null;
-  /**
-   * Hex color for badges (e.g. #3b82f6)
-   */
-  color?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -1220,10 +1208,7 @@ export interface GuidesSelect<T extends boolean = true> {
 export interface GuideCategoriesSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
-  description?: T;
-  icon?: T;
   order?: T;
-  color?: T;
   updatedAt?: T;
   createdAt?: T;
 }
