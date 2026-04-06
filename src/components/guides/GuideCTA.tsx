@@ -11,16 +11,17 @@ export function GuideCTA({ className }: GuideCTAProps) {
     <section
       aria-label="Консультація"
       className={cn(
-        'relative overflow-hidden bg-fill-primary border border-[var(--color-border-primary)] rounded-2xl shadow-elegant flex flex-col items-center justify-center gap-6 lg:gap-8 p-4 lg:px-10 lg:py-12 text-center mt-8 print:hidden',
+        'relative overflow-hidden bg-fill-primary border border-[var(--color-border-primary)] rounded-2xl flex flex-col items-center justify-center gap-6 lg:gap-8 p-4 lg:px-10 lg:py-12 text-center mt-8 print:hidden',
         className
       )}
     >
       {/* Background image */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
         <Image
-          src="/assets/guide-cta-bg.png"
+          src="/assets/guide-cta-bg.webp"
           alt=""
           fill
+          sizes="(min-width: 1024px) calc(100vw - 4rem), 100vw"
           className="object-cover opacity-40"
           quality={80}
         />
