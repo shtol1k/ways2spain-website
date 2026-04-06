@@ -12,6 +12,7 @@ import { GuideResources } from '@/components/guides/GuideResources'
 import { GuidesTableOfContents } from '@/components/guides/GuidesTableOfContents'
 import type { GuideStep } from '@/components/guides/GuidesTableOfContents'
 import { GuideFAQ } from '@/components/guides/GuideFAQ'
+import { GuideCTA } from '@/components/guides/GuideCTA'
 import { PrintStyles } from '@/components/guides/PrintStyles'
 import { JsonLd } from '@/components/JsonLd'
 import type { GuideCategory } from '@/api/guides'
@@ -146,6 +147,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
               <GuideSummary summary={guide.summary} />
               <GuideContent content={guide.content} />
               <GuideFAQ faqs={guide.faqs} />
+              <GuideCTA />
               <div className="lg:hidden mt-8 print:hidden">
                 <GuideResources resources={guide.resources} variant="inline" />
               </div>
