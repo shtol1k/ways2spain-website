@@ -37,12 +37,9 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
             const Icon = typeIcons[r.type ?? 'website'] ?? Globe
             const faviconUrl = getFaviconUrl(r.url)
             return (
-              <a
+              <div
                 key={r.id}
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex gap-2 items-start w-full overflow-hidden"
+                className="flex gap-2 items-start w-full overflow-hidden"
               >
                 {faviconUrl ? (
                   <img
@@ -61,12 +58,19 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                     !isLast && 'border-b border-(--color-border-primary) pb-3',
                   )}
                 >
-                  <p className="mb-0 text-labels-sm color-content-primary truncate group-hover:underline">{r.title}</p>
+                  <a
+                    href={r.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mb-0 text-labels-sm color-content-primary truncate hover:underline"
+                  >
+                    {r.title}
+                  </a>
                   {r.description ? (
                     <p className="mb-0 text-body-extra-small color-content-secondary">{r.description}</p>
                   ) : null}
                 </div>
-              </a>
+              </div>
             )
           })}
         </div>
