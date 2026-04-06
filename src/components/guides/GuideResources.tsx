@@ -85,7 +85,7 @@ export function GuideResources({ resources, variant = 'sidebar' }: GuideResource
                 href={r.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group border border-(--color-border-primary) rounded-lg p-3 flex gap-2 items-start overflow-hidden transition-smooth hover:bg-fill-secondary"
+                className="border border-(--color-border-primary) rounded-lg p-3 flex gap-2 items-start overflow-hidden"
               >
                 {faviconUrl ? (
                   <img
