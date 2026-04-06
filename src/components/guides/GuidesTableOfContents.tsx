@@ -37,22 +37,50 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
     setIndicator({ top: activeEl.offsetTop, height: activeEl.offsetHeight })
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Scroll observer: секція стає активною при перетині 50% viewport
+  // Scroll spy: активний елемент — останній step, чий верхній край пройшов поріг
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            const id = entry.target.getAttribute('data-step-value')
-            if (id) setActiveId(id)
-          }
+    const THRESHOLD = 130
+
+    const updateActiveId = () => {
+      const elements = steps
+        .map((step) => document.getElementById(step.id))
+        .filter((el): el is HTMLElement => el !== null)
+
+      if (elements.length === 0) return
+
+      // Біля низу сторінки → останній елемент
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10
+      if (nearBottom) {
+        setActiveId(steps[steps.length - 1]!.id)
+        return
+      }
+
+      // Останній елемент, чий верхній край ≤ порогу
+      let active = elements[0]
+      for (const el of elements) {
+        if (el.getBoundingClientRect().top <= THRESHOLD) {
+          active = el
         }
-      },
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-    )
-    document.querySelectorAll('[data-step-value]').forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [steps.length])
+      }
+
+      setActiveId(active.id)
+    }
+
+    updateActiveId()
+
+    let rafId: number
+    const onScroll = () => {
+      cancelAnimationFrame(rafId)
+      rafId = requestAnimationFrame(updateActiveId)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      cancelAnimationFrame(rafId)
+    }
+  }, [steps])
 
   if (steps.length === 0) return null
 
