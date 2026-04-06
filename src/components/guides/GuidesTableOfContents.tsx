@@ -57,7 +57,7 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
   if (steps.length === 0) return null
 
   return (
-    <div className="hidden lg:flex sticky top-24 print:hidden flex-col gap-4">
+    <div className="hidden lg:flex print:hidden flex-col gap-4">
       <h4 className="mb-0">Зміст</h4>
       <nav aria-label="Зміст гайду">
         <ul

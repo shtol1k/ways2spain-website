@@ -152,7 +152,7 @@ export default async function GuidePage({ params }: GuidePageProps) {
             </main>
 
             <aside className="space-y-6 print:hidden">
-              <div className="lg:sticky lg:top-24 space-y-10">
+              <div className="lg:sticky lg:top-24 max-h-[calc(100vh-6rem)] overflow-y-auto space-y-10">
                 <GuidesTableOfContents steps={guideSteps} />
                 <div className="hidden lg:block">
                   <GuideResources resources={guide.resources} />
