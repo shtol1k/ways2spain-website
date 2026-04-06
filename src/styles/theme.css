@@ -72,11 +72,11 @@
 
 /* === Overlay === */
 @utility mask-default {
-  background-color: var(--color-stone-800);
+  background-color: var(--color-zinc-800);
   opacity: 0.6;
 }
 @utility mask-hover {
-  background-color: var(--color-stone-600);
+  background-color: var(--color-zinc-600);
   opacity: 0.5;
 }
 
