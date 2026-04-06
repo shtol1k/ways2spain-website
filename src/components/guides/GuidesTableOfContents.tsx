@@ -85,7 +85,7 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
                     document.getElementById(step.id)?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   className={cn(
-                    'flex items-center px-4 py-1 text-body-small cursor-pointer',
+                    'flex items-center pl-4 py-1 text-body-small cursor-pointer',
                     isActive
                       ? 'color-content-primary'
                       : 'color-content-tertiary hover:color-content-primary hover:underline'
