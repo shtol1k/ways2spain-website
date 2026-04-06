@@ -1,9 +1,10 @@
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import type { GuideResource } from '@/api/guides'
-import { ExternalLink, FileText, Globe, Video, FileInput } from 'lucide-react'
+import { FileText, Globe, Video, FileInput } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 interface GuideResourcesProps {
   resources: GuideResource[] | null | undefined
+  variant?: 'sidebar' | 'inline'
 }
 
 const typeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -22,50 +23,90 @@ function getFaviconUrl(url: string): string {
   }
 }
 
-export function GuideResources({ resources }: GuideResourcesProps) {
+export function GuideResources({ resources, variant = 'sidebar' }: GuideResourcesProps) {
   if (!resources?.length) return null
 
   return (
-    <Card className="sticky top-24 print:hidden">
-      <CardHeader className="pb-2">
-        <h3 className="text-sm font-semibold">Ресурси та посилання</h3>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        {resources.map((r) => {
-          const Icon = typeIcons[r.type ?? 'website'] ?? Globe
-          const faviconUrl = getFaviconUrl(r.url)
-          return (
-            <a
-              key={r.id}
-              href={r.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-start gap-3 rounded-lg border p-3 transition-colors hover:bg-muted/50"
-            >
-              {faviconUrl ? (
-                <img
-                  src={faviconUrl}
-                  alt=""
-                  className="size-5 shrink-0 rounded"
-                  width={20}
-                  height={20}
-                />
-              ) : (
-                <Icon className="size-5 shrink-0 text-muted-foreground" />
-              )}
-              <div className="min-w-0 flex-1">
-                <p className="font-medium text-sm truncate">{r.title}</p>
-                {r.description ? (
-                  <p className="text-xs text-muted-foreground line-clamp-2 mt-0.5">
-                    {r.description}
-                  </p>
-                ) : null}
-              </div>
-              <ExternalLink className="size-4 shrink-0 text-muted-foreground" />
-            </a>
-          )
-        })}
-      </CardContent>
-    </Card>
+    <div className="flex flex-col gap-4">
+      <p className="font-bold text-lg tracking-tight color-content-primary">Ресурси</p>
+
+      {variant === 'sidebar' ? (
+        <div className="flex flex-col gap-3">
+          {resources.map((r, index) => {
+            const isLast = index === resources.length - 1
+            const Icon = typeIcons[r.type ?? 'website'] ?? Globe
+            const faviconUrl = getFaviconUrl(r.url)
+            return (
+              <a
+                key={r.id}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex gap-2 items-start w-full overflow-hidden"
+              >
+                {faviconUrl ? (
+                  <img
+                    src={faviconUrl}
+                    alt=""
+                    className="size-5 shrink-0 rounded mt-0.5"
+                    width={20}
+                    height={20}
+                  />
+                ) : (
+                  <Icon className="size-5 shrink-0 color-content-tertiary mt-0.5" />
+                )}
+                <div
+                  className={cn(
+                    'flex-1 min-w-0 flex flex-col gap-1',
+                    !isLast && 'border-b border-(--color-border-primary) pb-3',
+                  )}
+                >
+                  <p className="text-labels-sm color-content-primary truncate">{r.title}</p>
+                  {r.description ? (
+                    <p className="text-body-extra-small color-content-secondary">{r.description}</p>
+                  ) : null}
+                </div>
+              </a>
+            )
+          })}
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+          {resources.map((r) => {
+            const Icon = typeIcons[r.type ?? 'website'] ?? Globe
+            const faviconUrl = getFaviconUrl(r.url)
+            return (
+              <a
+                key={r.id}
+                href={r.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border border-(--color-border-primary) rounded-lg p-3 flex gap-2 items-start overflow-hidden transition-smooth hover:bg-fill-secondary"
+              >
+                {faviconUrl ? (
+                  <img
+                    src={faviconUrl}
+                    alt=""
+                    className="size-6 md:size-5 shrink-0 rounded mt-0.5"
+                    width={20}
+                    height={20}
+                  />
+                ) : (
+                  <Icon className="size-6 md:size-5 shrink-0 color-content-tertiary mt-0.5" />
+                )}
+                <div className="flex-1 min-w-0 flex flex-col gap-1">
+                  <p className="text-labels-sm color-content-primary">{r.title}</p>
+                  {r.description ? (
+                    <p className="text-body-small md:text-body-extra-small color-content-secondary">
+                      {r.description}
+                    </p>
+                  ) : null}
+                </div>
+              </a>
+            )
+          })}
+        </div>
+      )}
+    </div>
   )
 }

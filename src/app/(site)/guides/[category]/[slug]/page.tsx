@@ -146,12 +146,17 @@ export default async function GuidePage({ params }: GuidePageProps) {
               <GuideSummary summary={guide.summary} />
               <GuideContent content={guide.content} />
               <GuideFAQ faqs={guide.faqs} />
+              <div className="lg:hidden mt-8 print:hidden">
+                <GuideResources resources={guide.resources} variant="inline" />
+              </div>
             </main>
 
             <aside className="space-y-6 print:hidden">
               <div className="lg:sticky lg:top-24 space-y-6">
                 <GuidesTableOfContents steps={guideSteps} />
-                <GuideResources resources={guide.resources} />
+                <div className="hidden lg:block">
+                  <GuideResources resources={guide.resources} />
+                </div>
               </div>
             </aside>
           </div>
