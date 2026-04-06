@@ -62,7 +62,7 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
       <nav aria-label="Зміст гайду">
         <ul
           ref={listRef}
-          className="relative border-l border-(--color-border-primary) flex flex-col gap-2"
+          className="relative border-l border-(--color-border-primary) flex flex-col gap-1"
         >
           <div
             className="absolute -left-px w-0.5 bg-(--color-border-brand)"
@@ -85,8 +85,10 @@ export function GuidesTableOfContents({ steps }: GuidesTableOfContentsProps) {
                     document.getElementById(step.id)?.scrollIntoView({ behavior: 'smooth' })
                   }}
                   className={cn(
-                    'flex items-center px-4 py-1 text-body-base cursor-pointer hover:underline',
-                    isActive ? 'color-content-primary' : 'color-content-tertiary'
+                    'flex items-center px-4 py-1 text-body-small cursor-pointer',
+                    isActive
+                      ? 'color-content-primary'
+                      : 'color-content-tertiary hover:color-content-primary hover:underline'
                   )}
                 >
                   {step.title}
